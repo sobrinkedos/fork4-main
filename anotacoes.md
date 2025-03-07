@@ -1,0 +1,17 @@
+Supabase
+Projeto: domino
+https://supabase.com/dashboard/project/evakdtqrtpqiuqhetkqr/settings/api
+
+Conta: riltons@gmail.com
+
+Senha bd: l6oieWz4LtSuv8Uy
+
+Project Configuration
+Project URL
+URL: https://evakdtqrtpqiuqhetkqr.supabase.co
+
+Project API Keys
+anonpublic: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWtkdHFydHBxaXVxaGV0a3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzNjk1MjQsImV4cCI6MjA1NDk0NTUyNH0.Ms4VB9QGBBcWMZPJ5j5Oanl3RD1SeECp7twFb_riPAI
+
+service_rolesecret: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWtkdHFydHBxaXVxaGV0a3FyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTM2OTUyNCwiZXhwIjoyMDU0OTQ1NTI0fQ.TLgSEhrgsxhQ_png34HGvhCXbxY-xBo0YEpx8M6HCS0
+
