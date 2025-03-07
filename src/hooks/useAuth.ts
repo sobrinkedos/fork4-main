@@ -84,6 +84,12 @@ export function useAuth() {
             error?.message?.includes('Refresh Token Not Found') ||
             error?.message?.includes('JWT expired')) {
             
+            // Limpar tokens imediatamente para evitar loops de erro
+            if (Platform.OS === 'web') {
+                localStorage.removeItem('supabase.auth.token');
+                localStorage.removeItem('supabase.auth.refreshToken');
+            }
+            
             Alert.alert(
                 'Sessão expirada',
                 'Sua sessão expirou. Por favor, faça login novamente.',
@@ -91,9 +97,14 @@ export function useAuth() {
                     { 
                         text: 'OK', 
                         onPress: async () => {
-                            await supabase.auth.signOut();
-                            setSession(null);
-                            router.replace('/login');
+                            try {
+                                await supabase.auth.signOut();
+                            } catch (signOutError) {
+                                console.error('Erro ao fazer logout:', signOutError);
+                            } finally {
+                                setSession(null);
+                                router.replace('/login');
+                            }
                         } 
                     }
                 ]

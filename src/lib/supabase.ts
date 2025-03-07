@@ -60,12 +60,17 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
         storage: storageAdapter,
         autoRefreshToken: true,
         persistSession: true,
-        detectSessionInUrl: false,
+        detectSessionInUrl: true,
+        flowType: 'pkce',
         onAuthStateChange: (event, session) => {
+            console.log('Auth state change:', event);
             if (event === 'TOKEN_REFRESHED') {
                 console.log('Token atualizado com sucesso');
             } else if (event === 'SIGNED_OUT') {
                 console.log('Usuário desconectado');
+                // Clear any stored tokens
+                storageAdapter.removeItem('supabase.auth.token');
+                storageAdapter.removeItem('supabase.auth.refreshToken');
             } else if (event === 'USER_UPDATED') {
                 console.log('Dados do usuário atualizados');
             }
