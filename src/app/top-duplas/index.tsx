@@ -21,8 +21,8 @@ const Content = styled.View`
 const PairCard = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
     border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
 `;
 
 const Position = styled.Text`
@@ -34,13 +34,15 @@ const Position = styled.Text`
 
 const CardHeader = styled.View`
     flex-direction: column;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 `;
 
 const PlayerInfo = styled.View`
     flex: 1;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
 `;
 
 const PlayerName = styled.Text`
@@ -48,6 +50,7 @@ const PlayerName = styled.Text`
     font-size: 16px;
     font-weight: bold;
     margin-left: 8px;
+    flex: 1;
 `;
 
 const PlayerIcon = styled.View`
@@ -57,11 +60,13 @@ const PlayerIcon = styled.View`
     background-color: ${({ theme }) => theme.colors.primary}20;
     align-items: center;
     justify-content: center;
+    margin-right: 4px;
 `;
 
 const Separator = styled.View`
     width: 32px;
     align-items: center;
+    margin-vertical: 8px;
 `;
 
 const SeparatorText = styled.Text`
@@ -72,7 +77,7 @@ const SeparatorText = styled.Text`
 const StatsContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 12px;
+    padding-top: 16px;
     border-top-width: 1px;
     border-top-color: ${({ theme }) => theme.colors.backgroundLight};
 `;
