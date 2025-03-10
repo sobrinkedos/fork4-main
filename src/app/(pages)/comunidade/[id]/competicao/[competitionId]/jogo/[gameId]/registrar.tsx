@@ -4,7 +4,8 @@ import {
     TouchableOpacity,
     Alert,
     ScrollView,
-    ActivityIndicator
+    ActivityIndicator,
+    Platform
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import styled from 'styled-components/native';
@@ -127,14 +128,26 @@ export default function RegisterResult() {
                 } else if (result.team2_was_losing_5_0) {
                     message = 'BUCHUDA DE RÉ! 🎉🔄\nIncrível virada do Time 2 após estar perdendo de 5x0!';
                 }
-                Alert.alert('Parabéns!', message, [
-                    { 
-                        text: 'OK', 
-                        onPress: () => {
-                            router.back();
+                
+                // Verificar se estamos na versão web para garantir o redirecionamento
+                if (Platform.OS === 'web') {
+                    // Na versão web, mostrar o alerta e redirecionar após um curto período
+                    Alert.alert('Parabéns!', message);
+                    // Redirecionar após um pequeno delay para garantir que o alerta seja visto
+                    setTimeout(() => {
+                        router.back();
+                    }, 1500);
+                } else {
+                    // No mobile, manter o comportamento atual com o botão OK
+                    Alert.alert('Parabéns!', message, [
+                        { 
+                            text: 'OK', 
+                            onPress: () => {
+                                router.back();
+                            }
                         }
-                    }
-                ]);
+                    ]);
+                }
             } else {
                 router.back();
             }
