@@ -7,6 +7,7 @@ import { PageTransition } from '@/components/Transitions';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { rankingService, PairRanking } from '@/services/rankingService';
 import { useRouter } from 'expo-router';
+import { LoggedLayout } from '@/components/LoggedLayout';
 
 const Container = styled.View`
     flex: 1;
@@ -195,44 +196,50 @@ export default function TopDuplas() {
 
     if (loading) {
         return (
-            <Container>
-                <InternalHeader title="Top Duplas" />
-                <LoadingContainer>
-                    <ActivityIndicator size="large" color={colors.primary} />
-                </LoadingContainer>
-            </Container>
+            <LoggedLayout>
+                <Container>
+                    <InternalHeader title="Top Duplas" />
+                    <LoadingContainer>
+                        <ActivityIndicator size="large" color={colors.primary} />
+                    </LoadingContainer>
+                </Container>
+            </LoggedLayout>
         );
     }
 
     if (error) {
         return (
-            <Container>
-                <InternalHeader title="Top Duplas" />
-                <ErrorContainer>
-                    <ErrorText>{error}</ErrorText>
-                </ErrorContainer>
-            </Container>
+            <LoggedLayout>
+                <Container>
+                    <InternalHeader title="Top Duplas" />
+                    <ErrorContainer>
+                        <ErrorText>{error}</ErrorText>
+                    </ErrorContainer>
+                </Container>
+            </LoggedLayout>
         );
     }
 
     return (
-        <PageTransition>
-            <Container>
-                <InternalHeader title="Top Duplas" />
-                <Content>
-                    {pairs.length > 0 ? (
-                        <FlatList
-                            data={pairs}
-                            renderItem={renderPair}
-                            keyExtractor={(item, index) => item.player1Id && item.player2Id ? `${item.player1Id}-${item.player2Id}` : `pair-${index}`}
-                        />
-                    ) : (
-                        <EmptyContainer>
-                            <EmptyText>Nenhuma dupla encontrada</EmptyText>
-                        </EmptyContainer>
-                    )}
-                </Content>
-            </Container>
-        </PageTransition>
+        <LoggedLayout>
+            <PageTransition>
+                <Container>
+                    <InternalHeader title="Top Duplas" />
+                    <Content>
+                        {pairs.length > 0 ? (
+                            <FlatList
+                                data={pairs}
+                                renderItem={renderPair}
+                                keyExtractor={(item, index) => item.player1Id && item.player2Id ? `${item.player1Id}-${item.player2Id}` : `pair-${index}`}
+                            />
+                        ) : (
+                            <EmptyContainer>
+                                <EmptyText>Nenhuma dupla encontrada</EmptyText>
+                            </EmptyContainer>
+                        )}
+                    </Content>
+                </Container>
+            </PageTransition>
+        </LoggedLayout>
     );
 }
