@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
   header: {
     padding: 40,
     alignItems: 'center',
-    paddingTop: 80,
+    paddingTop: 50,
   },
   logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: 350,
+    height: 350,
+    marginBottom: 10,
     resizeMode: 'contain',
   },
   title: {
