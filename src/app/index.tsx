@@ -74,7 +74,7 @@ export default function LandingPage() {
           
           <Link href="/register" asChild>
             <Pressable style={styles.ctaButton}>
-              <Text style={styles.ctaButtonText}>Criar Minha Conta</Text>
+              <Text style={styles.ctaButtonText}>Criar Conta</Text>
               <Ionicons name="arrow-forward" size={24} color="white" />
             </Pressable>
           </Link>
@@ -158,6 +158,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#8257E5',
     marginBottom: 16,
+  },
+  featureItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    gap: 10,
   },
   featureText: {
     fontSize: 16,
