@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { PageTransition } from '@/components/Transitions';
 import { Header } from '@/components/Header';
 import { useTheme } from 'styled-components/native';
+import AlertModal from '@/components/AlertModal';
 
 const Container = styled.View`
   flex: 1;
@@ -67,6 +68,13 @@ export default function ProfileScreen() {
     nickname: '',
     email: '',
     phone_number: '',
+  });
+  const [alertModal, setAlertModal] = useState({
+    visible: false,
+    title: '',
+    message: '',
+    confirmAction: () => {},
+    cancelAction: () => {},
   });
 
   useEffect(() => {
@@ -135,7 +143,17 @@ export default function ProfileScreen() {
       }
     } catch (error) {
       console.error('Erro completo:', error);
-      Alert.alert('Erro', 'Erro ao carregar perfil');
+      if (Platform.OS === 'web') {
+        setAlertModal({
+          visible: true,
+          title: 'Erro',
+          message: 'Erro ao carregar perfil',
+          confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+          cancelAction: () => {},
+        });
+      } else {
+        Alert.alert('Erro', 'Erro ao carregar perfil');
+      }
     } finally {
       setLoading(false);
     }
@@ -175,22 +193,40 @@ export default function ProfileScreen() {
           if (!existingRelation) {
             // Perguntar se deseja vincular ao jogador existente
             const userWantsToLink = await new Promise((resolve) => {
-              Alert.alert(
-                'Jogador Encontrado',
-                `Encontramos um jogador "${existingPlayer.name}" com este número de telefone. Deseja vincular seu perfil a este jogador e aproveitar seu histórico e pontuação?`,
-                [
-                  {
-                    text: 'Não',
-                    style: 'cancel',
-                    onPress: () => resolve(false),
+              if (Platform.OS === 'web') {
+                // Usar o modal personalizado na web
+                setAlertModal({
+                  visible: true,
+                  title: 'Jogador Encontrado',
+                  message: `Encontramos um jogador "${existingPlayer.name}" com este número de telefone. Deseja vincular seu perfil a este jogador e aproveitar seu histórico e pontuação?`,
+                  confirmAction: () => {
+                    setAlertModal(prev => ({ ...prev, visible: false }));
+                    resolve(true);
                   },
-                  {
-                    text: 'Sim',
-                    onPress: () => resolve(true),
+                  cancelAction: () => {
+                    setAlertModal(prev => ({ ...prev, visible: false }));
+                    resolve(false);
                   },
-                ],
-                { cancelable: false }
-              );
+                });
+              } else {
+                // Usar o Alert nativo em dispositivos móveis
+                Alert.alert(
+                  'Jogador Encontrado',
+                  `Encontramos um jogador "${existingPlayer.name}" com este número de telefone. Deseja vincular seu perfil a este jogador e aproveitar seu histórico e pontuação?`,
+                  [
+                    {
+                      text: 'Não',
+                      style: 'cancel',
+                      onPress: () => resolve(false),
+                    },
+                    {
+                      text: 'Sim',
+                      onPress: () => resolve(true),
+                    },
+                  ],
+                  { cancelable: false }
+                );
+              }
             });
 
             if (userWantsToLink) {
@@ -209,15 +245,35 @@ export default function ProfileScreen() {
                 throw relationError;
               }
 
-              Alert.alert(
-                'Sucesso',
-                'Seu perfil foi vinculado ao jogador existente. Agora você tem acesso ao histórico e pontuação deste jogador!'
-              );
+              if (Platform.OS === 'web') {
+                setAlertModal({
+                  visible: true,
+                  title: 'Sucesso',
+                  message: 'Seu perfil foi vinculado ao jogador existente. Agora você tem acesso ao histórico e pontuação deste jogador!',
+                  confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+                  cancelAction: () => {},
+                });
+              } else {
+                Alert.alert(
+                  'Sucesso',
+                  'Seu perfil foi vinculado ao jogador existente. Agora você tem acesso ao histórico e pontuação deste jogador!'
+                );
+              }
             } else {
-              Alert.alert(
-                'Telefone em Uso',
-                'Este número de telefone já está registrado para outro jogador. Por favor, use um número diferente.'
-              );
+              if (Platform.OS === 'web') {
+                setAlertModal({
+                  visible: true,
+                  title: 'Telefone em Uso',
+                  message: 'Este número de telefone já está registrado para outro jogador. Por favor, use um número diferente.',
+                  confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+                  cancelAction: () => {},
+                });
+              } else {
+                Alert.alert(
+                  'Telefone em Uso',
+                  'Este número de telefone já está registrado para outro jogador. Por favor, use um número diferente.'
+                );
+              }
               setLoading(false);
               return;
             }
@@ -255,10 +311,20 @@ export default function ProfileScreen() {
             throw relationError;
           }
 
-          Alert.alert(
-            'Novo Jogador',
-            'Um novo jogador foi criado e vinculado ao seu perfil!'
-          );
+          if (Platform.OS === 'web') {
+            setAlertModal({
+              visible: true,
+              title: 'Novo Jogador',
+              message: 'Um novo jogador foi criado e vinculado ao seu perfil!',
+              confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+              cancelAction: () => {},
+            });
+          } else {
+            Alert.alert(
+              'Novo Jogador',
+              'Um novo jogador foi criado e vinculado ao seu perfil!'
+            );
+          }
         }
       }
 
@@ -280,10 +346,30 @@ export default function ProfileScreen() {
       }
 
       setProfile(updatedProfile);
-      Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
+      if (Platform.OS === 'web') {
+        setAlertModal({
+          visible: true,
+          title: 'Sucesso',
+          message: 'Perfil atualizado com sucesso!',
+          confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+          cancelAction: () => {},
+        });
+      } else {
+        Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
+      }
     } catch (error) {
       console.error('Erro ao atualizar perfil:', error);
-      Alert.alert('Erro', 'Ocorreu um erro ao atualizar o perfil. Tente novamente.');
+      if (Platform.OS === 'web') {
+        setAlertModal({
+          visible: true,
+          title: 'Erro',
+          message: 'Ocorreu um erro ao atualizar o perfil. Tente novamente.',
+          confirmAction: () => setAlertModal(prev => ({ ...prev, visible: false })),
+          cancelAction: () => {},
+        });
+      } else {
+        Alert.alert('Erro', 'Ocorreu um erro ao atualizar o perfil. Tente novamente.');
+      }
     } finally {
       setLoading(false);
     }
@@ -292,6 +378,14 @@ export default function ProfileScreen() {
   return (
     <PageTransition>
       <Container>
+        <AlertModal
+          visible={alertModal.visible}
+          title={alertModal.title}
+          message={alertModal.message}
+          onConfirm={alertModal.confirmAction}
+          onCancel={alertModal.cancelAction}
+          onClose={() => setAlertModal(prev => ({ ...prev, visible: false }))}
+        />
         <Header
           title="Meu Perfil"
           onNotificationPress={() => {}}
