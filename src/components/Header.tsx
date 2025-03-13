@@ -33,8 +33,8 @@ const LeftContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    width: 160px;
-    height: 40px;
+    width: 300px;
+    height: 70px;
     align-items: center;
     justify-content: center;
 `;
@@ -99,7 +99,7 @@ export function Header({ title, showBackButton, isDashboard }: HeaderProps) {
                 <LeftContainer>
                     {isDashboard ? (
                         <LogoContainer>
-                            <Image source={dominoLogo} style={{ width: 150, height: 35, resizeMode: 'contain' }} />
+                            <Image source={dominoLogo} style={{ width: 300, height: 70, resizeMode: 'contain' }} />
                         </LogoContainer>
                     ) : showBackButton ? (
                         <IconButton onPress={() => router.back()}>
