@@ -4,16 +4,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useAuth } from '../hooks/useAuth';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { TouchableOpacity, StatusBar, Platform, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
+import { TouchableOpacity, StatusBar, Platform, View, Image } from 'react-native';
 import { ThemeToggle } from './ThemeToggle';
 
-const logoSvg = `
-<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="30" height="30" rx="8" fill="#1E1E1E"/>
-    <path d="M7 7h4v4H7zM7 13h4v4H7zM7 19h4v4H7zM13 7h4v4h-4zM13 13h4v4h-4zM13 19h4v4h-4zM19 7h4v4h-4zM19 13h4v4h-4zM19 19h4v4h-4z" fill="#FFF"/>
-</svg>
-`;
+// Importando a logo completa
+import dominoLogo from '../../assets/images/dominomania-logo.png';
+
+
 
 const SafeAreaView = styled.View`
     background-color: ${colors.primary};
@@ -36,10 +33,8 @@ const LeftContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    background-color: ${colors.white};
+    width: 160px;
+    height: 40px;
     align-items: center;
     justify-content: center;
 `;
@@ -52,12 +47,7 @@ const Title = styled.Text`
     flex-shrink: 1;
 `;
 
-const AppTitle = styled(Title)`
-    margin-left: 8px;
-    text-transform: none;
-    flex-shrink: 1;
-    font-size: 18px;
-`;
+
 
 const ActionContainer = styled.View`
     flex-direction: row;
@@ -108,12 +98,9 @@ export function Header({ title, showBackButton, isDashboard }: HeaderProps) {
             <Container statusBarHeight={statusBarHeight}>
                 <LeftContainer>
                     {isDashboard ? (
-                        <>
-                            <LogoContainer>
-                                <SvgXml xml={logoSvg} width={32} height={32} />
-                            </LogoContainer>
-                            <AppTitle>DommatchApp</AppTitle>
-                        </>
+                        <LogoContainer>
+                            <Image source={dominoLogo} style={{ width: 150, height: 35, resizeMode: 'contain' }} />
+                        </LogoContainer>
                     ) : showBackButton ? (
                         <IconButton onPress={() => router.back()}>
                             <MaterialCommunityIcons name="arrow-left" size={24} color={colors.white} />
