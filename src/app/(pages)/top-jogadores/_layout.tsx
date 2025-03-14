@@ -9,7 +9,7 @@ export default function TopJogadoresLayout() {
           name="index"
           options={{
             title: "Top Jogadores",
-            headerShown: true,
+            headerShown: false,
           }}
         />
       </Stack>
