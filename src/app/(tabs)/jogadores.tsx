@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Alert, FlatList, RefreshControl, ActivityIndicator, View } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialCommunityIcons, Feather, FontAwesome5 } from '@expo/vector-icons';
+import { PlayerAvatar } from '@/components/PlayerAvatar';
 import { Player, playerService } from '@/services/playerService';
 import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
@@ -223,9 +224,11 @@ export default function Jogadores() {
     const renderPlayerItem = ({ item, isMyPlayer }: { item: Player; isMyPlayer: boolean }) => (
         <PlayerCard onPress={() => router.push(`/jogador/${item.id}/jogos`)}>
             <PlayerHeader>
-                <Avatar>
-                    <FontAwesome5 name="user-alt" size={20} color={colors.accent} />
-                </Avatar>
+                <PlayerAvatar 
+                    avatarUrl={item.avatar_url} 
+                    name={item.name} 
+                    size={50} 
+                />
                 <PlayerInfo>
                     <PlayerNameContainer>
                         <PlayerName>{item.name}</PlayerName>

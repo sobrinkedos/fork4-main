@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { rankingService, PairRanking } from '@/services/rankingService';
 import { useRouter } from 'expo-router';
 import { LoggedLayout } from '@/components/LoggedLayout';
+import { PlayerAvatar } from '@/components/PlayerAvatar';
 
 const Container = styled.View`
     flex: 1;
@@ -162,18 +163,22 @@ export default function TopDuplas() {
             <CardHeader>
                 <Position>{index + 1}º</Position>
                 <PlayerInfo>
-                    <PlayerIcon>
-                        <MaterialCommunityIcons name="account" size={20} color={colors.primary} />
-                    </PlayerIcon>
+                    <PlayerAvatar 
+                        avatarUrl={item.player1.avatar_url} 
+                        name={item.player1.name} 
+                        size={32} 
+                    />
                     <PlayerName>{item.player1.name}</PlayerName>
                 </PlayerInfo>
                 <Separator>
                     <SeparatorText>&</SeparatorText>
                 </Separator>
                 <PlayerInfo>
-                    <PlayerIcon>
-                        <MaterialCommunityIcons name="account" size={20} color={colors.primary} />
-                    </PlayerIcon>
+                    <PlayerAvatar 
+                        avatarUrl={item.player2.avatar_url} 
+                        name={item.player2.name} 
+                        size={32} 
+                    />
                     <PlayerName>{item.player2.name}</PlayerName>
                 </PlayerInfo>
             </CardHeader>

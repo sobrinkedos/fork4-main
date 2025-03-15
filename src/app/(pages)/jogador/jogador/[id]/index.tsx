@@ -1,9 +1,9 @@
-import { Redirect } from 'expo-router';
+import { Redirect, useRouter } from 'expo-router';
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, Linking } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { getPlayer } from '@/services/playerService';
+import { playerService, Player as PlayerType } from '@/services/playerService';
 import { Header } from '@/components/Header';
 import { colors } from '@/styles/colors';
 import styled from 'styled-components/native';
@@ -49,14 +49,36 @@ const InfoValue = styled.Text`
     font-size: 16px;
 `;
 
+const ActionsContainer = styled.View`
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 16px;
+`;
+
+const ActionButton = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    background-color: ${colors.backgroundLight};
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-left: 8px;
+`;
+
+const ActionText = styled.Text`
+    color: ${colors.gray100};
+    font-size: 14px;
+    margin-left: 4px;
+`;
+
 type Player = {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   phone?: string;
 };
 
 export default function PlayerDetails() {
+  const router = useRouter();
   const { id } = useLocalSearchParams();
   const [player, setPlayer] = useState<Player | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,8 +88,17 @@ export default function PlayerDetails() {
     async function loadPlayer() {
       try {
         if (typeof id === 'string') {
-          const playerData = await getPlayer(id);
-          setPlayer(playerData);
+          const response = await playerService.getById(id);
+          // Verificar se a resposta é válida
+          if (response) {
+            const playerData = response as any;
+            setPlayer({
+              id: playerData.id,
+              name: playerData.name,
+              phone: playerData.phone,
+              email: playerData.email
+            });
+          }
         }
       } catch (err) {
         setError('Erro ao carregar os detalhes do jogador');
@@ -79,17 +110,22 @@ export default function PlayerDetails() {
     loadPlayer();
   }, [id]);
 
+  const navigateToEdit = () => {
+    if (typeof id === 'string') {
+      // Navegar para a nova página de edição
+      router.push({
+        pathname: '/jogador/editar',
+        params: { id }
+      } as any);
+    }
+  };
+
   return (
     <PageTransition>
       <Container>
         <Header 
           title="Detalhes do Jogador" 
           showBackButton
-          rightContent={
-            <TouchableOpacity onPress={() => router.push(`/jogador/${id}/estatisticas`)}>
-              <Feather name="bar-chart-2" size={24} color={colors.gray100} />
-            </TouchableOpacity>
-          }
         />
         {loading ? (
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -119,6 +155,13 @@ export default function PlayerDetails() {
                   <InfoValue>{player.email}</InfoValue>
                 </InfoItem>
               )}
+              
+              <ActionsContainer>
+                <ActionButton onPress={navigateToEdit}>
+                  <Feather name="edit" size={16} color={colors.gray100} />
+                  <ActionText>Editar</ActionText>
+                </ActionButton>
+              </ActionsContainer>
             </PlayerInfo>
           </Content>
         )}

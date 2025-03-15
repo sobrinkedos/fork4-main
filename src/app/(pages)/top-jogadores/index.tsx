@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { PlayerAvatar } from '@/components/PlayerAvatar';
 import styled from 'styled-components/native';
 import { useTheme } from '@/contexts/ThemeProvider';
 import { InternalHeader } from '@/components/InternalHeader';
@@ -176,6 +177,11 @@ export default function TopJogadores() {
         <PlayerCard onPress={() => router.push(`/jogador/${item.id}/jogos`)}>
             <CardHeader>
                 <Position>{calculatePosition(index, players)}º</Position>
+                <PlayerAvatar 
+                    avatarUrl={item.avatar_url} 
+                    name={item.name} 
+                    size={40} 
+                />
                 <PlayerInfo>
                     <PlayerName>{item.name}</PlayerName>
                 </PlayerInfo>

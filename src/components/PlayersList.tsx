@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import { useTheme } from '@/contexts/ThemeProvider';
 import { colors } from '@/styles/colors';
 import { playersService } from '@/services/playersService';
+import { PlayerAvatar } from '@/components/PlayerAvatar';
 
 type Player = {
     id: string;
@@ -78,7 +79,14 @@ export function PlayersList({ excludeIds = [], onSelectPlayer }: PlayersListProp
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <PlayerCard onPress={() => handlePlayerPress(item.id)}>
-                                <PlayerName>{item.name}</PlayerName>
+                                <PlayerCardContent>
+                                    <PlayerAvatar 
+                                        avatarUrl={item.avatar_url} 
+                                        name={item.name} 
+                                        size={40} 
+                                    />
+                                    <PlayerName>{item.name}</PlayerName>
+                                </PlayerCardContent>
                             </PlayerCard>
                         )}
                     />
@@ -95,7 +103,14 @@ export function PlayersList({ excludeIds = [], onSelectPlayer }: PlayersListProp
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <PlayerCard onPress={() => handlePlayerPress(item.id)}>
-                                <PlayerName>{item.name}</PlayerName>
+                                <PlayerCardContent>
+                                    <PlayerAvatar 
+                                        avatarUrl={item.avatar_url} 
+                                        name={item.name} 
+                                        size={40} 
+                                    />
+                                    <PlayerName>{item.name}</PlayerName>
+                                </PlayerCardContent>
                             </PlayerCard>
                         )}
                     />
@@ -132,9 +147,15 @@ const PlayerCard = styled.TouchableOpacity`
     margin-bottom: 8px;
 `;
 
+const PlayerCardContent = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
 const PlayerName = styled.Text`
     font-size: 16px;
     color: ${colors.textPrimary};
+    margin-left: 12px;
 `;
 
 const LoadingText = styled.Text`

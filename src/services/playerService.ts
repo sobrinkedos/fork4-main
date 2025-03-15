@@ -269,7 +269,7 @@ class PlayerService {
         }
     }
 
-    async update(id: string, data: Partial<CreatePlayerDTO>) {
+    async update(id: string, data: Partial<Player>) {
         try {
             const { data: updatedPlayer, error } = await supabase
                 .from('players')
@@ -289,6 +289,45 @@ class PlayerService {
             return updatedPlayer;
         } catch (error) {
             console.error('Erro ao atualizar jogador:', error);
+            throw error;
+        }
+    }
+
+    async uploadAvatar(playerId: string, uri: string) {
+        try {
+            // Converter URI para Blob
+            const response = await fetch(uri);
+            const blob = await response.blob();
+            
+            // Nome do arquivo: playerId/timestamp.extensão
+            const fileExt = uri.split('.').pop();
+            const fileName = `${playerId}/${Date.now()}.${fileExt}`;
+            
+            // Upload do arquivo para o bucket 'player-avatars'
+            const { data, error } = await supabase.storage
+                .from('player-avatars')
+                .upload(fileName, blob, {
+                    upsert: true,
+                    contentType: `image/${fileExt}`
+                });
+                
+            if (error) {
+                console.error('Erro ao fazer upload do avatar:', error);
+                throw new Error('Erro ao fazer upload do avatar');
+            }
+            
+            // Obter URL pública do avatar
+            const { data: publicUrlData } = supabase.storage
+                .from('player-avatars')
+                .getPublicUrl(fileName);
+                
+            // Atualizar o campo avatar_url do jogador
+            const avatarUrl = publicUrlData.publicUrl;
+            await this.update(playerId, { avatar_url: avatarUrl });
+            
+            return avatarUrl;
+        } catch (error) {
+            console.error('Erro ao fazer upload do avatar:', error);
             throw error;
         }
     }
