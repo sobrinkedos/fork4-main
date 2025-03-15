@@ -189,7 +189,15 @@ export default function EditarJogador() {
 
             // Atualizar avatar se houver uma nova imagem
             if (image) {
-                await playerService.uploadAvatar(id, image);
+                try {
+                    const avatarUrl = await playerService.uploadAvatar(id, image);
+                    // Atualiza a URL do avatar na interface
+                    setCurrentAvatarUrl(avatarUrl);
+                } catch (uploadError) {
+                    console.error('Erro ao fazer upload da foto:', uploadError);
+                    Alert.alert('Aviso', 'Não foi possível fazer o upload da foto, mas os outros dados foram salvos.');
+                    // Continua mesmo com erro no upload da foto
+                }
             }
 
             Alert.alert('Sucesso', 'Jogador atualizado com sucesso', [

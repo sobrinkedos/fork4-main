@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Alert, FlatList, RefreshControl, ActivityIndicator, View } from 'react-native';
+import { Alert, FlatList, RefreshControl, ActivityIndicator, View, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialCommunityIcons, Feather, FontAwesome5 } from '@expo/vector-icons';
 import { PlayerAvatar } from '@/components/PlayerAvatar';
@@ -222,7 +222,7 @@ export default function Jogadores() {
     };
 
     const renderPlayerItem = ({ item, isMyPlayer }: { item: Player; isMyPlayer: boolean }) => (
-        <PlayerCard onPress={() => router.push(`/jogador/${item.id}/jogos`)}>
+        <PlayerCard onPress={() => router.push(`/jogador/jogador/${item.id}/jogos`)}>
             <PlayerHeader>
                 <PlayerAvatar 
                     avatarUrl={item.avatar_url} 
@@ -247,10 +247,10 @@ export default function Jogadores() {
                         <PlayerNickname>@{item.nickname}</PlayerNickname>
                     )}
                     {item.phone && (
-                        <PlayerPhone>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                             <MaterialCommunityIcons name="phone" size={14} color={colors.textSecondary} style={{ marginRight: 4 }} />
-                            {item.phone}
-                        </PlayerPhone>
+                            <Text style={{ fontSize: 14, color: colors.textSecondary }}>{item.phone}</Text>
+                        </View>
                     )}
                 </PlayerInfo>
             </PlayerHeader>
@@ -276,7 +276,7 @@ export default function Jogadores() {
 
             {isMyPlayer && (
                 <ActionsContainer>
-                    <ActionButton onPress={() => router.push(`/jogador/${item.id}/editar`)}>
+                    <ActionButton onPress={() => router.push(`/jogador/jogador/${item.id}/editar`)}>
                         <Feather name="edit" size={20} color={colors.accent} />
                     </ActionButton>
                     <ActionButton onPress={() => handleDelete(item)}>

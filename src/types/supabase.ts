@@ -74,6 +74,9 @@ export interface Database {
           name: string
           nickname: string | null
           user_id: string
+          avatar_url?: string | null
+          phone?: string
+          created_by?: string
         }
         Insert: {
           created_at?: string
@@ -81,6 +84,9 @@ export interface Database {
           name: string
           nickname?: string | null
           user_id: string
+          avatar_url?: string | null
+          phone?: string
+          created_by?: string
         }
         Update: {
           created_at?: string
@@ -88,6 +94,9 @@ export interface Database {
           name?: string
           nickname?: string | null
           user_id?: string
+          avatar_url?: string | null
+          phone?: string
+          created_by?: string
         }
       }
     }
