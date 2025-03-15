@@ -112,11 +112,11 @@ export default function PlayerDetails() {
 
   const navigateToEdit = () => {
     if (typeof id === 'string') {
-      // Navegar para a nova página de edição
+      // Navegar para a nova página de edição com o ID como parâmetro
       router.push({
         pathname: '/jogador/editar',
         params: { id }
-      } as any);
+      });
     }
   };
 

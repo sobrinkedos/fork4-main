@@ -1,5 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import { activityService } from './activityService';
+import { Platform } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 
 export interface Player {
     id: string;
@@ -301,78 +303,59 @@ class PlayerService {
                 throw new Error('URI da imagem inválida');
             }
 
-            try {
-                let blob;
-                let fileExt = 'jpg';
-                
-                // Verificar se a URI é uma string base64
-                if (uri.startsWith('data:image')) {
-                    // Extrair o tipo de mídia e a extensão do arquivo
-                    const matches = uri.match(/^data:image\/(\w+);base64,/);
-                    if (matches) {
-                        fileExt = matches[1];
-                        // Remover o cabeçalho data:image/xxx;base64, para obter apenas os dados
-                        const base64Data = uri.replace(/^data:image\/\w+;base64,/, '');
-                        // Converter base64 para Blob
-                        const byteCharacters = atob(base64Data);
-                        const byteArrays = [];
-                        
-                        for (let i = 0; i < byteCharacters.length; i += 512) {
-                            const slice = byteCharacters.slice(i, i + 512);
-                            const byteNumbers = new Array(slice.length);
-                            for (let j = 0; j < slice.length; j++) {
-                                byteNumbers[j] = slice.charCodeAt(j);
-                            }
-                            const byteArray = new Uint8Array(byteNumbers);
-                            byteArrays.push(byteArray);
-                        }
-                        
-                        blob = new Blob(byteArrays, { type: `image/${fileExt}` });
-                    } else {
-                        throw new Error('Formato de imagem base64 inválido');
-                    }
-                } else {
-                    // URI normal (http/https/file)
-                    const response = await fetch(uri);
-                    if (!response.ok) {
-                        throw new Error(`Falha ao buscar imagem: ${response.status} ${response.statusText}`);
-                    }
-                    blob = await response.blob();
-                    fileExt = uri.split('.').pop() || 'jpg';
-                }
-                
-                // Nome do arquivo: playerId/timestamp.extensão
-                const fileName = `${playerId}/${Date.now()}.${fileExt}`;
-                
-                // Upload do arquivo para o bucket 'player-avatars'
-                const { data, error } = await supabase.storage
-                    .from('player-avatars')
-                    .upload(fileName, blob, {
-                        upsert: true,
-                        contentType: `image/${fileExt}`
-                    });
-                    
-                if (error) {
-                    console.error('Erro ao fazer upload do avatar:', error);
-                    throw new Error(`Erro ao fazer upload do avatar: ${error.message}`);
-                }
-                
-                // Obter URL pública do avatar
-                const { data: publicUrlData } = supabase.storage
-                    .from('player-avatars')
-                    .getPublicUrl(fileName);
-                    
-                // Atualizar o campo avatar_url do jogador
-                const avatarUrl = publicUrlData.publicUrl;
-                console.log('URL pública do avatar:', avatarUrl);
-                
+            console.log('Iniciando upload de avatar com URI:', uri);
+            
+            // Processar a imagem com base na plataforma
+            if (Platform.OS !== 'web') {
                 try {
-                    // Atualizar diretamente na tabela players para garantir que o campo seja atualizado
+                    // Para URIs locais em dispositivos móveis, usamos o FileSystem do Expo
+                    const fileInfo = await FileSystem.getInfoAsync(uri);
+                    if (!fileInfo.exists) {
+                        throw new Error('Arquivo de imagem não encontrado');
+                    }
+                    
+                    console.log('Arquivo encontrado:', fileInfo);
+                    
+                    // Determinar a extensão do arquivo
+                    const fileExt = uri.split('.').pop()?.toLowerCase() || 'jpg';
+                    const fileName = `${playerId}/${Date.now()}.${fileExt}`;
+                    
+                    console.log('Nome do arquivo para upload:', fileName);
+                    
+                    // Upload direto do arquivo usando o método upload do Supabase
+                    const { data, error } = await supabase.storage
+                        .from('player-avatars')
+                        .upload(fileName, {
+                            uri: uri,
+                            type: `image/${fileExt}`,
+                            name: `avatar.${fileExt}`
+                        }, {
+                            upsert: true,
+                            contentType: `image/${fileExt}`
+                        });
+                    
+                    if (error) {
+                        console.error('Erro ao fazer upload do avatar:', error);
+                        throw new Error(`Erro ao fazer upload do avatar: ${error.message}`);
+                    }
+                    
+                    console.log('Upload concluído com sucesso:', data);
+                    
+                    // Obter URL pública do avatar
+                    const { data: publicUrlData } = supabase.storage
+                        .from('player-avatars')
+                        .getPublicUrl(fileName);
+                    
+                    // Atualizar o campo avatar_url do jogador
+                    const avatarUrl = publicUrlData.publicUrl;
+                    console.log('URL pública do avatar:', avatarUrl);
+                    
+                    // Atualizar diretamente na tabela players
                     const { error: updateError } = await supabase
                         .from('players')
                         .update({ avatar_url: avatarUrl })
                         .eq('id', playerId);
-                        
+                    
                     if (updateError) {
                         console.error('Erro ao atualizar avatar_url:', updateError);
                         throw new Error(`Erro ao atualizar avatar_url: ${updateError.message}`);
@@ -382,15 +365,88 @@ class PlayerService {
                     
                     // Atualiza a lista de jogadores em memória
                     await this.list();
-                } catch (updateError) {
-                    console.error('Erro ao atualizar avatar_url:', updateError);
-                    throw updateError;
+                    
+                    return avatarUrl;
+                } catch (error) {
+                    console.error('Erro ao processar arquivo local:', error);
+                    throw new Error('Não foi possível processar a imagem local');
                 }
-                
-                return avatarUrl;
-            } catch (fetchError) {
-                console.error('Erro ao processar imagem:', fetchError);
-                throw new Error('Erro ao processar imagem. Verifique sua conexão com a internet.');
+            } else {
+                // Implementação para web - usando base64 diretamente
+                try {
+                    console.log('Processando upload para web com base64');
+                    
+                    // Verificar se a URI é uma string base64
+                    if (uri.startsWith('data:image')) {
+                        // Extrair o tipo de mídia e a extensão do arquivo
+                        const matches = uri.match(/^data:image\/(\w+);base64,/);
+                        if (!matches) {
+                            throw new Error('Formato de imagem base64 inválido');
+                        }
+                        
+                        const fileExt = matches[1];
+                        // Remover o cabeçalho data:image/xxx;base64, para obter apenas os dados
+                        const base64Data = uri.replace(/^data:image\/\w+;base64,/, '');
+                        
+                        // Nome do arquivo: playerId/timestamp.extensão
+                        const fileName = `${playerId}/${Date.now()}.${fileExt}`;
+                        console.log('Nome do arquivo para upload (web):', fileName);
+                        
+                        // Converter base64 para Uint8Array para o Supabase
+                        const binaryData = atob(base64Data);
+                        const bytes = new Uint8Array(binaryData.length);
+                        for (let i = 0; i < binaryData.length; i++) {
+                            bytes[i] = binaryData.charCodeAt(i);
+                        }
+                        
+                        // Upload dos dados para o bucket 'player-avatars'
+                        const { data, error } = await supabase.storage
+                            .from('player-avatars')
+                            .upload(fileName, bytes, {
+                                upsert: true,
+                                contentType: `image/${fileExt}`
+                            });
+                        
+                        if (error) {
+                            console.error('Erro ao fazer upload do avatar (web):', error);
+                            throw new Error(`Erro ao fazer upload do avatar: ${error.message}`);
+                        }
+                        
+                        console.log('Upload concluído com sucesso (web):', data);
+                        
+                        // Obter URL pública do avatar
+                        const { data: publicUrlData } = supabase.storage
+                            .from('player-avatars')
+                            .getPublicUrl(fileName);
+                        
+                        // Atualizar o campo avatar_url do jogador
+                        const avatarUrl = publicUrlData.publicUrl;
+                        console.log('URL pública do avatar (web):', avatarUrl);
+                        
+                        // Atualizar diretamente na tabela players
+                        const { error: updateError } = await supabase
+                            .from('players')
+                            .update({ avatar_url: avatarUrl })
+                            .eq('id', playerId);
+                        
+                        if (updateError) {
+                            console.error('Erro ao atualizar avatar_url (web):', updateError);
+                            throw new Error(`Erro ao atualizar avatar_url: ${updateError.message}`);
+                        }
+                        
+                        console.log('Campo avatar_url atualizado com sucesso (web)');
+                        
+                        // Atualiza a lista de jogadores em memória
+                        await this.list();
+                        
+                        return avatarUrl;
+                    } else {
+                        throw new Error('A imagem selecionada não está no formato base64 esperado');
+                    }
+                } catch (error) {
+                    console.error('Erro ao processar imagem para web:', error);
+                    throw new Error('Não foi possível processar a imagem para web');
+                }
             }
         } catch (error) {
             console.error('Erro ao fazer upload do avatar:', error);
