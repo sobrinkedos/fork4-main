@@ -188,24 +188,30 @@ export default function TopJogadores() {
             </CardHeader>
             <StatsContainer>
                 <StatItem>
-                    <StatValue>{item.winRate.toFixed(1)}%</StatValue>
-                    <StatLabel>Taxa de{"\n"}Vitória</StatLabel>
+                    <StatValue>{item.wins}/{item.losses}</StatValue>
+                    <StatLabel>Vitórias/{"\n"}Derrotas</StatLabel>
                 </StatItem>
                 <StatItem>
-                    <StatValue>{item.wins}</StatValue>
-                    <StatLabel>Vitórias</StatLabel>
+                    <StatValue>{item.pointsGained}/{item.pointsLost}</StatValue>
+                    <StatLabel>Pontos{"\n"}Ganhos/Perdidos</StatLabel>
                 </StatItem>
                 <StatItem>
                     <StatValue>{item.totalGames}</StatValue>
                     <StatLabel>Total de{"\n"}Jogos</StatLabel>
                 </StatItem>
                 <StatItem>
-                    <StatValue>{item.buchudas}</StatValue>
-                    <StatLabel>Buchudas</StatLabel>
+                    <StatValue>{item.winRate.toFixed(1)}%</StatValue>
+                    <StatLabel>Taxa de{"\n"}Vitória</StatLabel>
+                </StatItem>
+            </StatsContainer>
+            <StatsContainer style={{ marginTop: 8 }}>
+                <StatItem>
+                    <StatValue>{item.buchudas}/{item.buchudasTaken}</StatValue>
+                    <StatLabel>Buchudas{"\n"}Dadas/Levadas</StatLabel>
                 </StatItem>
                 <StatItem>
-                    <StatValue>{item.buchudasDeRe}</StatValue>
-                    <StatLabel>Buchudas{"\n"}de Ré</StatLabel>
+                    <StatValue>{item.buchudasDeRe}/{item.buchudasDeReTaken}</StatValue>
+                    <StatLabel>Buchudas de Ré{"\n"}Dadas/Levadas</StatLabel>
                 </StatItem>
             </StatsContainer>
         </PlayerCard>

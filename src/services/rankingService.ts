@@ -4,10 +4,16 @@ export interface PlayerRanking {
     id: string;
     name: string;
     wins: number;
+    losses: number;
     totalGames: number;
-    buchudas: number;
-    buchudasDeRe: number;
+    pointsGained: number;
+    pointsLost: number;
     winRate: number;
+    buchudas: number;
+    buchudasTaken: number;
+    buchudasDeRe: number;
+    buchudasDeReTaken: number;
+    avatar_url?: string;
 }
 
 export interface PairRanking {
@@ -132,7 +138,13 @@ export const rankingService = {
                 is_buchuda_de_re_raw: JSON.stringify(g.is_buchuda_de_re)
             })));
 
-            const wins = playerGames.filter(game => {
+            // Calcular vitórias, derrotas e pontos
+            let wins = 0;
+            let losses = 0;
+            let pointsGained = 0;
+            let pointsLost = 0;
+            
+            playerGames.forEach(game => {
                 const team1 = game.team1 || [];
                 const team2 = game.team2 || [];
                 const isTeam1 = team1.includes(playerId);
@@ -140,7 +152,23 @@ export const rankingService = {
                 const isWinner = (isTeam1 && game.team1_score > game.team2_score) || 
                                 (isTeam2 && game.team2_score > game.team1_score);
                 
-                console.log(`Calculando vitória para jogo ${game.id}:`, {
+                // Calcular pontos ganhos e perdidos
+                if (isTeam1) {
+                    pointsGained += game.team1_score || 0;
+                    pointsLost += game.team2_score || 0;
+                } else if (isTeam2) {
+                    pointsGained += game.team2_score || 0;
+                    pointsLost += game.team1_score || 0;
+                }
+                
+                // Contabilizar vitórias e derrotas
+                if (isWinner) {
+                    wins++;
+                } else if (game.status === 'finished') {
+                    losses++;
+                }
+                
+                console.log(`Calculando estatísticas para jogo ${game.id}:`, {
                     playerId,
                     team1,
                     team2,
@@ -148,14 +176,15 @@ export const rankingService = {
                     isTeam2,
                     team1_score: game.team1_score,
                     team2_score: game.team2_score,
-                    isWinner
+                    isWinner,
+                    pointsGained,
+                    pointsLost
                 });
-                
-                return isWinner;
-            }).length;
+            });
             
             const totalGames = playerGames.length;
 
+            // Calcular buchudas dadas
             const buchudas = playerGames.filter(game => {
                 const team1 = game.team1 || [];
                 const team2 = game.team2 || [];
@@ -167,22 +196,23 @@ export const rankingService = {
                                 ((isTeam1 && game.team2_score === 0) || 
                                  (isTeam2 && game.team1_score === 0));
                 
-                console.log(`Calculando buchuda para jogo ${game.id}:`, {
-                    playerId,
-                    team1,
-                    team2,
-                    isTeam1,
-                    isTeam2,
-                    team1_score: game.team1_score,
-                    team2_score: game.team2_score,
-                    is_buchuda: game.is_buchuda,
-                    isWinner,
-                    isBuchuda
-                });
-                
                 return isWinner && isBuchuda;
             }).length;
             
+            // Calcular buchudas levadas
+            const buchudasTaken = playerGames.filter(game => {
+                const team1 = game.team1 || [];
+                const team2 = game.team2 || [];
+                const isTeam1 = team1.includes(playerId);
+                const isTeam2 = team2.includes(playerId);
+                const isLoser = (isTeam1 && game.team1_score < game.team2_score) || 
+                               (isTeam2 && game.team2_score < game.team1_score);
+                const isBuchuda = game.is_buchuda === true;
+                
+                return isLoser && isBuchuda;
+            }).length;
+            
+            // Calcular buchudas de ré dadas
             const buchudasDeRe = playerGames.filter(game => {
                 const team1 = game.team1 || [];
                 const team2 = game.team2 || [];
@@ -192,27 +222,32 @@ export const rankingService = {
                                 (isTeam2 && game.team2_score > game.team1_score);
                 const isBuchudaRe = game.is_buchuda_de_re === true;
                 
-                console.log(`Calculando buchuda de ré para jogo ${game.id}:`, {
-                    playerId,
-                    team1,
-                    team2,
-                    isTeam1,
-                    isTeam2,
-                    team1_score: game.team1_score,
-                    team2_score: game.team2_score,
-                    is_buchuda_de_re: game.is_buchuda_de_re,
-                    isWinner,
-                    isBuchudaRe
-                });
-                
                 return isWinner && isBuchudaRe;
+            }).length;
+            
+            // Calcular buchudas de ré levadas
+            const buchudasDeReTaken = playerGames.filter(game => {
+                const team1 = game.team1 || [];
+                const team2 = game.team2 || [];
+                const isTeam1 = team1.includes(playerId);
+                const isTeam2 = team2.includes(playerId);
+                const isLoser = (isTeam1 && game.team1_score < game.team2_score) || 
+                               (isTeam2 && game.team2_score < game.team1_score);
+                const isBuchudaRe = game.is_buchuda_de_re === true;
+                
+                return isLoser && isBuchudaRe;
             }).length;
 
             console.log(`Estatísticas finais para jogador ${playerId}:`, {
                 totalGames,
                 wins,
+                losses,
+                pointsGained,
+                pointsLost,
                 buchudas,
+                buchudasTaken,
                 buchudasDeRe,
+                buchudasDeReTaken,
                 winRate: totalGames > 0 ? (wins / totalGames) * 100 : 0
             });
 
@@ -224,10 +259,16 @@ export const rankingService = {
                 id: playerId,
                 name: player?.name || 'Jogador Desconhecido',
                 wins,
+                losses,
                 totalGames,
+                pointsGained,
+                pointsLost,
                 buchudas,
+                buchudasTaken,
                 buchudasDeRe,
-                winRate: totalGames > 0 ? (wins / totalGames) * 100 : 0
+                buchudasDeReTaken,
+                winRate: totalGames > 0 ? (wins / totalGames) * 100 : 0,
+                avatar_url: player?.avatar_url
             };
         });
 
