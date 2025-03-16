@@ -10,8 +10,6 @@ import { ThemeToggle } from './ThemeToggle';
 // Importando a logo completa
 import dominoLogo from '../../assets/images/dominomania-logo.png';
 
-
-
 const SafeAreaView = styled.View`
     background-color: ${colors.primary};
 `;
@@ -20,7 +18,7 @@ const Container = styled.View<{ statusBarHeight: number }>`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 12px;
+    padding: 12px;
     background-color: ${colors.primary};
     padding-top: ${({ statusBarHeight }) => Platform.OS === 'ios' ? 44 : 16}px;
     width: 100%;
@@ -33,26 +31,24 @@ const LeftContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    width: 200px;
-    height: 70px;
+    width: 160px;
+    height: 50px;
     align-items: flex-start;
     justify-content: center;
 `;
 
 const Title = styled.Text`
     color: ${colors.white};
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     flex-shrink: 1;
 `;
 
-
-
 const ActionContainer = styled.View`
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 `;
 
 const IconButton = styled.TouchableOpacity`
@@ -99,7 +95,7 @@ export function Header({ title, showBackButton, isDashboard }: HeaderProps) {
                 <LeftContainer>
                     {isDashboard ? (
                         <LogoContainer>
-                            <Image source={dominoLogo} style={{ width: 200, height: 70, resizeMode: 'contain' }} />
+                            <Image source={dominoLogo} style={{ width: 160, height: 50, resizeMode: 'contain' }} />
                         </LogoContainer>
                     ) : showBackButton ? (
                         <IconButton onPress={() => router.back()}>

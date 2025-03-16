@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../contexts/ThemeProvider';
+import { colors } from '@/styles/colors';
 
 interface ThemeToggleProps {
   size?: number;
@@ -16,14 +17,12 @@ export function ThemeToggle({ size = 24 }: ThemeToggleProps) {
       <Feather 
         name={isDarkTheme ? 'sun' : 'moon'} 
         size={size} 
-        color={isDarkTheme ? '#F5F5FA' : '#121214'} 
+        color={colors.white} 
       />
     </ToggleButton>
   );
 }
 
 const ToggleButton = styled(TouchableOpacity)`
-  padding: 8px;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.tertiary};
+  padding: 4px;
 `;
