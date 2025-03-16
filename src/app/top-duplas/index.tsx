@@ -39,12 +39,16 @@ const CardHeader = styled.View`
     margin-bottom: 16px;
 `;
 
-const PlayerInfo = styled.View`
-    flex: 1;
+const PlayersContainer = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-bottom: 12px;
     margin-top: 12px;
+    margin-bottom: 12px;
+`;
+
+const PlayerInfo = styled.View`
+    flex-direction: row;
+    align-items: center;
 `;
 
 const PlayerName = styled.Text`
@@ -52,7 +56,11 @@ const PlayerName = styled.Text`
     font-size: 16px;
     font-weight: bold;
     margin-left: 8px;
-    flex: 1;
+`;
+
+const Separator = styled.View`
+    margin-horizontal: 8px;
+    align-items: center;
 `;
 
 const PlayerIcon = styled.View`
@@ -65,7 +73,7 @@ const PlayerIcon = styled.View`
     margin-right: 4px;
 `;
 
-const Separator = styled.View`
+const PlayerSeparator = styled.View`
     width: 32px;
     align-items: center;
     margin-vertical: 8px;
@@ -162,25 +170,27 @@ export default function TopDuplas() {
         <PairCard>
             <CardHeader>
                 <Position>{index + 1}º</Position>
-                <PlayerInfo>
-                    <PlayerAvatar 
-                        avatarUrl={item.player1.avatar_url} 
-                        name={item.player1.name} 
-                        size={32} 
-                    />
-                    <PlayerName>{item.player1.name}</PlayerName>
-                </PlayerInfo>
-                <Separator>
-                    <SeparatorText>&</SeparatorText>
-                </Separator>
-                <PlayerInfo>
-                    <PlayerAvatar 
-                        avatarUrl={item.player2.avatar_url} 
-                        name={item.player2.name} 
-                        size={32} 
-                    />
-                    <PlayerName>{item.player2.name}</PlayerName>
-                </PlayerInfo>
+                <PlayersContainer>
+                    <PlayerInfo>
+                        <PlayerAvatar 
+                            avatarUrl={item.player1.avatar_url} 
+                            name={item.player1.name} 
+                            size={32} 
+                        />
+                        <PlayerName>{item.player1.name}</PlayerName>
+                    </PlayerInfo>
+                    <PlayerSeparator>
+                        <SeparatorText>&</SeparatorText>
+                    </PlayerSeparator>
+                    <PlayerInfo>
+                        <PlayerAvatar 
+                            avatarUrl={item.player2.avatar_url} 
+                            name={item.player2.name} 
+                            size={32} 
+                        />
+                        <PlayerName>{item.player2.name}</PlayerName>
+                    </PlayerInfo>
+                </PlayersContainer>
             </CardHeader>
             <StatsContainer>
                 <StatItem>
