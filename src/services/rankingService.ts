@@ -21,15 +21,22 @@ export interface PairRanking {
     player1: {
         id: string;
         name: string;
+        avatar_url?: string;
     };
     player2: {
         id: string;
         name: string;
+        avatar_url?: string;
     };
     wins: number;
+    losses: number;
     totalGames: number;
+    pointsGained: number;
+    pointsLost: number;
     buchudas: number;
+    buchudasTaken: number;
     buchudasDeRe: number;
+    buchudasDeReTaken: number;
     winRate: number;
 }
 
@@ -357,12 +364,17 @@ export const rankingService = {
             // Processar estatísticas por dupla
             const pairStats = new Map<string, {
                 id: string;
-                player1: { id: string; name: string; };
-                player2: { id: string; name: string; };
+                player1: { id: string; name: string; avatar_url?: string; };
+                player2: { id: string; name: string; avatar_url?: string; };
                 wins: number;
+                losses: number;
                 totalGames: number;
+                pointsGained: number;
+                pointsLost: number;
                 buchudas: number;
+                buchudasTaken: number;
                 buchudasDeRe: number;
+                buchudasDeReTaken: number;
             }>();
 
             // Processar jogos
@@ -382,12 +394,17 @@ export const rankingService = {
                             const pairId = [player1Id, player2Id].sort().join('-');
                             const stats = pairStats.get(pairId) || {
                                 id: pairId,
-                                player1: { id: player1.id, name: player1.name },
-                                player2: { id: player2.id, name: player2.name },
+                                player1: { id: player1.id, name: player1.name, avatar_url: player1.avatar_url },
+                                player2: { id: player2.id, name: player2.name, avatar_url: player2.avatar_url },
                                 wins: 0,
+                                losses: 0,
                                 totalGames: 0,
+                                pointsGained: 0,
+                                pointsLost: 0,
                                 buchudas: 0,
-                                buchudasDeRe: 0
+                                buchudasTaken: 0,
+                                buchudasDeRe: 0,
+                                buchudasDeReTaken: 0
                             };
                             return { pairId, stats };
                         }
@@ -400,6 +417,10 @@ export const rankingService = {
                 if (team1Result) {
                     const { pairId, stats } = team1Result;
                     stats.totalGames++;
+                    // Calcular pontos ganhos e perdidos
+                    stats.pointsGained += game.team1_score || 0;
+                    stats.pointsLost += game.team2_score || 0;
+                    
                     if (game.team1_score > game.team2_score) {
                         stats.wins++;
                         if (game.is_buchuda && game.team2_score === 0) {
@@ -407,6 +428,14 @@ export const rankingService = {
                         }
                         if (game.is_buchuda_de_re) {
                             stats.buchudasDeRe++;
+                        }
+                    } else if (game.status === 'finished') {
+                        stats.losses++;
+                        if (game.is_buchuda && game.team1_score === 0) {
+                            stats.buchudasTaken++;
+                        }
+                        if (game.is_buchuda_de_re) {
+                            stats.buchudasDeReTaken++;
                         }
                     }
                     pairStats.set(pairId, stats);
@@ -417,6 +446,10 @@ export const rankingService = {
                 if (team2Result) {
                     const { pairId, stats } = team2Result;
                     stats.totalGames++;
+                    // Calcular pontos ganhos e perdidos
+                    stats.pointsGained += game.team2_score || 0;
+                    stats.pointsLost += game.team1_score || 0;
+                    
                     if (game.team2_score > game.team1_score) {
                         stats.wins++;
                         if (game.is_buchuda && game.team1_score === 0) {
@@ -424,6 +457,14 @@ export const rankingService = {
                         }
                         if (game.is_buchuda_de_re) {
                             stats.buchudasDeRe++;
+                        }
+                    } else if (game.status === 'finished') {
+                        stats.losses++;
+                        if (game.is_buchuda && game.team2_score === 0) {
+                            stats.buchudasTaken++;
+                        }
+                        if (game.is_buchuda_de_re) {
+                            stats.buchudasDeReTaken++;
                         }
                     }
                     pairStats.set(pairId, stats);
