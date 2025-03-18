@@ -83,7 +83,7 @@ export const rankingService = {
             .from('community_members')
             .select(`
                 player_id,
-                players (id, name)
+                players (id, name, avatar_url)
             `)
             .in('community_id', communityIds);
 
@@ -331,7 +331,7 @@ export const rankingService = {
                 .from('community_members')
                 .select(`
                     player_id,
-                    players (id, name)
+                    players (id, name, avatar_url)
                 `)
                 .in('community_id', communityIds);
 

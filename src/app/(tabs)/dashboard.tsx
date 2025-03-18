@@ -563,7 +563,7 @@ const Dashboard: React.FC = () => {
                         {topPlayers.map((player, index) => {
                             const position = calculatePosition(index, topPlayers);
                             return (
-                                <PlayerCard key={player.id} onPress={() => router.push(`/jogador/${player.id}`)}>
+                                <PlayerCard key={player.id} onPress={() => router.push(`/jogador/jogador/${player.id}/jogos`)}>
                                     <MaterialCommunityIcons 
                                         name={position === 1 ? "crown" : "star"} 
                                         size={24} 

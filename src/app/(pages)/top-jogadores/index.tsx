@@ -174,7 +174,7 @@ export default function TopJogadores() {
     };
     
     const renderPlayer = ({ item, index }: { item: PlayerRanking; index: number }) => (
-        <PlayerCard onPress={() => router.push(`/jogador/${item.id}/jogos`)}>
+        <PlayerCard onPress={() => router.push(`/jogador/jogador/${item.id}/jogos`)}>
             <CardHeader>
                 <Position>{calculatePosition(index, players)}º</Position>
                 <PlayerAvatar 

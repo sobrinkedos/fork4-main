@@ -57,7 +57,7 @@ export function PlayersList({ excludeIds = [], onSelectPlayer }: PlayersListProp
         if (onSelectPlayer) {
             onSelectPlayer(playerId);
         } else {
-            router.push(`/jogador/${playerId}/jogos`);
+            router.push(`/jogador/jogador/${playerId}/jogos`);
         }
     };
 
