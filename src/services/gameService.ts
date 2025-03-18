@@ -532,5 +532,46 @@ export const gameService = {
             console.error('Erro ao excluir jogo:', error);
             throw error;
         }
+    },
+
+    async listByPlayer(playerId: string) {
+        try {
+            // Busca jogos onde o jogador está em qualquer time
+            const { data, error } = await supabase
+                .from('games')
+                .select('*, competitions(id, name)')
+                .or(`team1.cs.{${playerId}},team2.cs.{${playerId}}`)
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Erro ao buscar jogos do jogador:', error);
+                throw error;
+            }
+
+            // Organiza os jogos por competição
+            const gamesByCompetition = data?.reduce((acc, game) => {
+                const competitionId = game.competition_id;
+                const competitionName = game.competitions?.name || 'Competição Desconhecida';
+                
+                if (!acc[competitionId]) {
+                    acc[competitionId] = {
+                        id: competitionId,
+                        name: competitionName,
+                        games: []
+                    };
+                }
+                
+                acc[competitionId].games.push(game);
+                return acc;
+            }, {});
+
+            // Converte o objeto em array
+            const result = Object.values(gamesByCompetition || {});
+            
+            return result;
+        } catch (error) {
+            console.error('Erro ao listar jogos do jogador:', error);
+            throw error;
+        }
     }
 };

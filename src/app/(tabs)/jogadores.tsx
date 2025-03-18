@@ -28,53 +28,60 @@ const LoadingContainer = styled.View`
 const PlayerCard = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.colors.secondary};
     border-radius: 12px;
-    padding: 12px;
+    padding: 16px;
     margin-bottom: 8px;
     elevation: 3;
 `;
 
 const PlayerHeader = styled.View`
     flex-direction: row;
-    align-items: center;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    margin-bottom: 16px;
 `;
 
 const Avatar = styled.View`
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
     background-color: ${({ theme }) => theme.colors.accent}20;
     justify-content: center;
     align-items: center;
-    margin-right: 12px;
+    margin-right: 15px;
 `;
 
 const PlayerInfo = styled.View`
     flex: 1;
+    justify-content: center;
 `;
 
 const PlayerNameContainer = styled.View`
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 8px;
+    margin-left: 15px;
 `;
 
 const PlayerName = styled.Text`
     font-size: 18px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
+    margin-right: 8px;
 `;
 
 const PlayerNickname = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 2px;
+    margin-bottom: 8px;
+    margin-left: 15px;
 `;
 
 const PlayerPhone = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
-    margin-top: 4px;
+    margin-top: 2px;
+    
 `;
 
 const LinkedUserBadge = styled.View`
@@ -95,14 +102,16 @@ const LinkedUserText = styled.Text`
 const StatsContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 12px;
-    padding-top: 12px;
+    margin-top: 0;
+    padding-top: 10px;
     border-top-width: 1px;
     border-top-color: ${({ theme }) => theme.colors.backgroundLight}40;
 `;
 
 const StatItem = styled.View`
     align-items: center;
+    flex: 1;
+    padding: 0 5px;
 `;
 
 const StatValue = styled.Text`
@@ -222,7 +231,7 @@ export default function Jogadores() {
     };
 
     const renderPlayerItem = ({ item, isMyPlayer }: { item: Player; isMyPlayer: boolean }) => (
-        <PlayerCard onPress={() => router.push(`/jogador/jogador/${item.id}/jogos`)}>
+        <PlayerCard onPress={() => router.push(`/jogador/jogador/${item.id}/jogos`)}>        
             <PlayerHeader>
                 <PlayerAvatar 
                     avatarUrl={item.avatar_url} 
@@ -247,32 +256,13 @@ export default function Jogadores() {
                         <PlayerNickname>@{item.nickname}</PlayerNickname>
                     )}
                     {item.phone && (
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
-                            <MaterialCommunityIcons name="phone" size={14} color={colors.textSecondary} style={{ marginRight: 4 }} />
-                            <Text style={{ fontSize: 14, color: colors.textSecondary }}>{item.phone}</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <MaterialCommunityIcons name="phone" size={16} color={colors.textSecondary} style={{ marginRight: 6 }} />
+                            <PlayerPhone>{item.phone}</PlayerPhone>
                         </View>
                     )}
                 </PlayerInfo>
             </PlayerHeader>
-
-            <StatsContainer>
-                <StatItem>
-                    <StatValue>{item.stats?.total_games || 0}</StatValue>
-                    <StatLabel>Jogos</StatLabel>
-                </StatItem>
-                <StatItem>
-                    <StatValue>{item.stats?.wins || 0}</StatValue>
-                    <StatLabel>Vitórias</StatLabel>
-                </StatItem>
-                <StatItem>
-                    <StatValue>{item.stats?.losses || 0}</StatValue>
-                    <StatLabel>Derrotas</StatLabel>
-                </StatItem>
-                <StatItem>
-                    <StatValue>{item.stats?.buchudas || 0}</StatValue>
-                    <StatLabel>Buchudas</StatLabel>
-                </StatItem>
-            </StatsContainer>
 
             {isMyPlayer && (
                 <ActionsContainer>
@@ -344,7 +334,7 @@ export default function Jogadores() {
                     data={sections}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => item.id || `section-${index}`}
-                    contentContainerStyle={{ padding: 20 }}
+                    contentContainerStyle={{ padding: 12 }}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}

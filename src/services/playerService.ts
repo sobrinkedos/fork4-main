@@ -134,34 +134,63 @@ class PlayerService {
 
     async getPlayerStats(playerId: string): Promise<PlayerStats> {
         try {
+            console.log(`Buscando estatísticas para o jogador ${playerId}`);
+            
             // Buscar total de jogos
-            const { count: totalGames } = await supabase
+            const { count: totalGames, error: totalGamesError } = await supabase
                 .from('game_players')
                 .select('*', { count: 'exact' })
                 .eq('player_id', playerId);
-
+            
+            if (totalGamesError) {
+                console.error('Erro ao buscar total de jogos:', totalGamesError);
+                throw totalGamesError;
+            }
+            
+            console.log(`Total de jogos para o jogador ${playerId}: ${totalGames || 0}`);
+    
             // Buscar vitórias (quando o jogador está no time vencedor)
-            const { data: wins } = await supabase
+            // Verificamos se o time do jogador (1 ou 2) corresponde ao time vencedor do jogo
+            const { data: wins, error: winsError } = await supabase
                 .from('game_players')
                 .select(`
                     id,
-                    games!inner (id, team1_score, team2_score)
+                    team,
+                    games!inner (id, team1_score, team2_score, status)
                 `)
                 .eq('player_id', playerId)
-                .or(`and(team.eq.1,games.team1_score.gt.games.team2_score),and(team.eq.2,games.team2_score.gt.games.team1_score)`);
-
-
-            // Buscar buchudas dadas
-            const { data: buchudas } = await supabase
+                .eq('games.status', 'finished')
+                .or('and(team.eq.1,games.team1_score.gte.6),and(team.eq.2,games.team2_score.gte.6)');
+            
+            if (winsError) {
+                console.error('Erro ao buscar vitórias:', winsError);
+                throw winsError;
+            }
+            
+            console.log(`Jogador ${playerId}: ${wins?.length || 0} vitórias de ${totalGames || 0} jogos`);
+            if (wins && wins.length > 0) {
+                console.log('Detalhes das vitórias:', JSON.stringify(wins.slice(0, 2)));
+            }
+    
+            // Buscar buchudas dadas (quando o jogador está no time vencedor e o jogo é uma buchuda)
+            const { data: buchudas, error: buchudasError } = await supabase
                 .from('game_players')
                 .select(`
-                    games!inner (
-                        is_buchuda
-                    )
+                    id,
+                    team,
+                    games!inner (id, is_buchuda, team1_score, team2_score)
                 `)
                 .eq('player_id', playerId)
-                .eq('games.is_buchuda', true);
-
+                .eq('games.is_buchuda', true)
+                .or('and(team.eq.1,games.team1_score.gte.6),and(team.eq.2,games.team2_score.gte.6)');
+            
+            if (buchudasError) {
+                console.error('Erro ao buscar buchudas:', buchudasError);
+                throw buchudasError;
+            }
+            
+            console.log(`Jogador ${playerId}: ${buchudas?.length || 0} buchudas`);
+    
             return {
                 total_games: totalGames || 0,
                 wins: wins?.length || 0,
