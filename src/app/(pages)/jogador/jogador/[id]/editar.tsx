@@ -78,10 +78,25 @@ export default function EditarJogador() {
             allowsEditing: true,
             aspect: [1, 1],
             quality: 0.7,
+            // Na web, precisamos ativar base64 para processar a imagem corretamente
+            base64: Platform.OS === 'web',
         });
         
-        if (!result.canceled) {
-            setImage(result.assets[0].uri);
+        if (!result.canceled && result.assets && result.assets.length > 0) {
+            if (Platform.OS === 'web') {
+                // Na web, precisamos usar o formato base64
+                if (result.assets[0].base64) {
+                    const base64Uri = `data:image/jpeg;base64,${result.assets[0].base64}`;
+                    console.log('Imagem convertida para base64');
+                    setImage(base64Uri);
+                } else {
+                    console.error('Imagem sem dados base64');
+                    Alert.alert('Erro', 'Não foi possível processar a imagem selecionada');
+                }
+            } else {
+                // Em dispositivos móveis, usamos a URI diretamente
+                setImage(result.assets[0].uri);
+            }
         }
     };
     
