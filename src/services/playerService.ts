@@ -208,7 +208,7 @@ class PlayerService {
         }
     }
 
-    async list() {
+    async list(fetchStats = false) {
         try {
             const { data: userData, error: userError } = await supabase.auth.getUser();
             if (userError) throw userError;
@@ -250,31 +250,52 @@ class PlayerService {
                 throw new Error('Erro ao listar jogadores');
             }
 
-            // Adicionar estatísticas aos jogadores
-            const myPlayersWithStats = await Promise.all((myPlayers || []).map(async (player) => {
-                const stats = await this.getPlayerStats(player.id);
+            // Processar jogadores com ou sem estatísticas dependendo do parâmetro
+            if (fetchStats) {
+                // Adicionar estatísticas aos jogadores
+                const myPlayersWithStats = await Promise.all((myPlayers || []).map(async (player) => {
+                    const stats = await this.getPlayerStats(player.id);
+                    return {
+                        ...player,
+                        stats,
+                        isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
+                        isMine: true
+                    };
+                }));
+
+                const communityPlayersWithStats = await Promise.all((communityPlayers || []).map(async (player) => {
+                    const stats = await this.getPlayerStats(player.id);
+                    return {
+                        ...player,
+                        stats,
+                        isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
+                        isMine: false
+                    };
+                }));
+
                 return {
+                    myPlayers: myPlayersWithStats,
+                    communityPlayers: communityPlayersWithStats
+                };
+            } else {
+                // Retornar jogadores sem estatísticas
+                const myPlayersWithoutStats = (myPlayers || []).map(player => ({
                     ...player,
-                    stats,
                     isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
                     isMine: true
-                };
-            }));
+                }));
 
-            const communityPlayersWithStats = await Promise.all((communityPlayers || []).map(async (player) => {
-                const stats = await this.getPlayerStats(player.id);
-                return {
+                const communityPlayersWithoutStats = (communityPlayers || []).map(player => ({
                     ...player,
-                    stats,
                     isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
                     isMine: false
-                };
-            }));
+                }));
 
-            return {
-                myPlayers: myPlayersWithStats,
-                communityPlayers: communityPlayersWithStats
-            };
+                return {
+                    myPlayers: myPlayersWithoutStats,
+                    communityPlayers: communityPlayersWithoutStats
+                };
+            }
         } catch (error) {
             console.error('Erro ao listar jogadores:', error);
             throw error;

@@ -596,7 +596,7 @@ export default function CommunityDetails() {
             console.log('Organizadores encontrados:', organizersData);
             setOrganizers(organizersData);
 
-            const { myPlayers, communityPlayers } = await playerService.list();
+            const { myPlayers, communityPlayers } = await playerService.list(false); // Especificando false para não buscar estatísticas
             console.log('Jogadores encontrados:', { myPlayers, communityPlayers });
 
             console.log('Buscando competições...');
