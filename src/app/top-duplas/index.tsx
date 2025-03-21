@@ -40,8 +40,8 @@ const CardHeader = styled.View`
 `;
 
 const PlayersContainer = styled.View`
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     margin-top: 12px;
     margin-bottom: 12px;
 `;
@@ -179,9 +179,7 @@ export default function TopDuplas() {
                         />
                         <PlayerName>{item.player1.name}</PlayerName>
                     </PlayerInfo>
-                    <PlayerSeparator>
-                        <SeparatorText>&</SeparatorText>
-                    </PlayerSeparator>
+                    <View style={{ height: 8 }} />
                     <PlayerInfo>
                         <PlayerAvatar 
                             avatarUrl={item.player2.avatar_url} 

@@ -14,6 +14,7 @@ import { statisticsService } from "@/services/statisticsService";
 import { rankingService } from "@/services/rankingService";
 import { activityService } from "@/services/activityService";
 import { supabase } from "@/lib/supabase";
+import { PlayerAvatar } from "@/components/PlayerAvatar";
 
 interface Stats {
     totalGames: number;
@@ -30,6 +31,7 @@ interface Player {
     buchudas: number;
     buchudasDeRe: number;
     winRate: number;
+    avatar_url?: string;
 }
 
 interface Pair {
@@ -37,10 +39,12 @@ interface Pair {
     player1: {
         id: string;
         name: string;
+        avatar_url?: string;
     };
     player2: {
         id: string;
         name: string;
+        avatar_url?: string;
     };
     wins: number;
     buchudas: number;
@@ -301,7 +305,8 @@ const Dashboard: React.FC = () => {
                     wins: player.wins,
                     buchudas: player.buchudas,
                     buchudasDeRe: player.buchudasDeRe,
-                    winRate: player.winRate
+                    winRate: player.winRate,
+                    avatar_url: player.avatar_url
                 }));
                 setTopPlayers(top4Players);
             } catch (error) {
@@ -320,8 +325,16 @@ const Dashboard: React.FC = () => {
                 const rankings = await rankingService.getTopPairs();
                 const top4Pairs = rankings.slice(0, 4).map(pair => ({
                     id: pair.id,
-                    player1: pair.player1,
-                    player2: pair.player2,
+                    player1: {
+                        id: pair.player1.id,
+                        name: pair.player1.name,
+                        avatar_url: pair.player1.avatar_url
+                    },
+                    player2: {
+                        id: pair.player2.id,
+                        name: pair.player2.name,
+                        avatar_url: pair.player2.avatar_url
+                    },
                     wins: pair.wins,
                     buchudas: pair.buchudas,
                     buchudasDeRe: pair.buchudasDeRe,
@@ -569,6 +582,11 @@ const Dashboard: React.FC = () => {
                                         size={24} 
                                         color={position === 1 ? "#FFD700" : colors.textSecondary} 
                                     />
+                                    <PlayerAvatar 
+                                        avatarUrl={player.avatar_url} 
+                                        name={player.name} 
+                                        size={40} 
+                                    />
                                     <PlayerInfo>
                                         <PlayerName>{player.name}</PlayerName>
                                         <PlayerStats>
@@ -597,6 +615,19 @@ const Dashboard: React.FC = () => {
                                         size={24} 
                                         color={position === 1 ? "#FFD700" : colors.textSecondary} 
                                     />
+                                    <View style={{ flexDirection: 'column', alignItems: 'center', marginRight: 8 }}>
+                                        <PlayerAvatar 
+                                            avatarUrl={pair.player1.avatar_url} 
+                                            name={pair.player1.name} 
+                                            size={32} 
+                                        />
+                                        <View style={{ height: 4 }} />
+                                        <PlayerAvatar 
+                                            avatarUrl={pair.player2.avatar_url} 
+                                            name={pair.player2.name} 
+                                            size={32} 
+                                        />
+                                    </View>
                                     <PlayerInfo>
                                         <PlayerName>{pair.player1.name} & {pair.player2.name}</PlayerName>
                                         <PlayerStats>
