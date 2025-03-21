@@ -57,7 +57,8 @@ class CommunityService {
                 .from('communities')
                 .select(`
                     *,
-                    members:community_members(count)
+                    members:community_members(count),
+                    competitions:competitions(count)
                 `)
                 .eq('created_by', userId);
 
@@ -90,7 +91,8 @@ class CommunityService {
                     description,
                     created_at,
                     created_by,
-                    members:community_members(count)
+                    members:community_members(count),
+                    competitions:competitions(count)
                 `)
                 .in('id', organizedIds.map(org => org.community_id));
 
@@ -107,11 +109,13 @@ class CommunityService {
             return {
                 created: createdCommunities.map(c => ({
                     ...c,
-                    members_count: c.members?.[0]?.count || 0
+                    members_count: c.members?.[0]?.count || 0,
+                    competitions_count: c.competitions?.[0]?.count || 0
                 })),
                 organized: organizedCommunities.map(c => ({
                     ...c,
-                    members_count: c.members?.[0]?.count || 0
+                    members_count: c.members?.[0]?.count || 0,
+                    competitions_count: c.competitions?.[0]?.count || 0
                 }))
             };
         } catch (error) {

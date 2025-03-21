@@ -168,11 +168,11 @@ export default function Comunidades() {
             <CommunityStats>
                 <StatContainer>
                     <MaterialCommunityIcons name="account-group" size={20} color={colors.textTertiary} />
-                    <StatText>{community.membersCount || 0} membros</StatText>
+                    <StatText>{community.members_count || 0} membros</StatText>
                 </StatContainer>
                 <StatContainer>
                     <MaterialCommunityIcons name="trophy" size={20} color={colors.textTertiary} />
-                    <StatText>{community.competitionsCount || 0} competições</StatText>
+                    <StatText>{community.competitions_count || 0} competições</StatText>
                 </StatContainer>
             </CommunityStats>
         </CommunityCard>
