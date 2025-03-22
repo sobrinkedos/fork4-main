@@ -28,7 +28,9 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#122a13"
       },
-      "package": "com.rnnotion"
+      "package": "com.rnnotion",
+      "buildType": "apk",
+      "jsEngine": "hermes"
     },
     "web": {
       "bundler": "metro",
