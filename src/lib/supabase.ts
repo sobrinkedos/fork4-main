@@ -4,15 +4,18 @@ import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { Database } from '@/types';
 
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+// Valores de fallback para quando as variáveis de ambiente não estiverem disponíveis no APK
+const FALLBACK_SUPABASE_URL = 'https://evakdtqrtpqiuqhetkqr.supabase.co';
+const FALLBACK_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWtkdHFydHBxaXVxaGV0a3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzNjk1MjQsImV4cCI6MjA1NDk0NTUyNH0.Ms4VB9QGBBcWMZPJ5j5Oanl3RD1SeECp7twFb_riPAI';
+
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || FALLBACK_SUPABASE_URL;
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || FALLBACK_SUPABASE_ANON_KEY;
 
 console.log('Inicializando cliente Supabase...');
 if (!supabaseUrl || !supabaseAnonKey) {
-    console.error('Erro: Variáveis de ambiente do Supabase não encontradas');
+    console.error('Erro: Variáveis de ambiente do Supabase não encontradas, usando valores de fallback');
     console.log('URL:', supabaseUrl);
     console.log('ANON_KEY:', supabaseAnonKey ? '[PRESENTE]' : '[AUSENTE]');
-    throw new Error('Configuração do Supabase incompleta');
 }
 console.log('Variáveis de ambiente do Supabase verificadas com sucesso');
 

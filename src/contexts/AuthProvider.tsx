@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
+import { Platform } from 'react-native';
 
 interface AuthContextData {
   session: Session | null;
@@ -27,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setSession(null);
           setIsLoading(false);
         }
-      }, 10000); // Aumentado para 10 segundos para dar mais tempo à inicialização
+      }, 5000); // Reduzido para 5 segundos para evitar que o app fique preso por muito tempo
     };
 
     const initializeAuth = async () => {
