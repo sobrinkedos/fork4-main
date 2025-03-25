@@ -80,6 +80,10 @@ export default function Login() {
                     )}
                 </LoginButton>
 
+                <ForgotPasswordButton onPress={() => router.push('/forgot-password')} disabled={loading}>
+                    <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+                </ForgotPasswordButton>
+
                 <SignUpButton onPress={() => router.push('/register')} disabled={loading}>
                     <SignUpButtonText>Não tem uma conta? Cadastre-se</SignUpButtonText>
                 </SignUpButton>
@@ -139,6 +143,17 @@ const LoginButtonText = styled.Text`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.gray900};
+`;
+
+const ForgotPasswordButton = styled.TouchableOpacity`
+    padding: 12px;
+    align-items: center;
+    margin-top: 8px;
+`;
+
+const ForgotPasswordText = styled.Text`
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 14px;
 `;
 
 const SignUpButton = styled.TouchableOpacity`
