@@ -5,7 +5,8 @@ import {
     Alert,
     ScrollView,
     ActivityIndicator,
-    Platform
+    Platform,
+    Text
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import styled from 'styled-components/native';
@@ -13,6 +14,7 @@ import { Feather } from '@expo/vector-icons';
 import { gameService, VictoryType } from '@/services/gameService';
 import { competitionService } from '@/services/competitionService';
 import { InternalHeader } from '@/components/InternalHeader';
+import CustomModal from '@/components/CustomModal';
 import { useTheme } from '@/contexts/ThemeProvider';
 
 interface VictoryOption {
@@ -75,6 +77,11 @@ export default function RegisterResult() {
     const [loading, setLoading] = useState(false);
     const [team1Players, setTeam1Players] = useState<Player[]>([]);
     const [team2Players, setTeam2Players] = useState<Player[]>([]);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [showUndoButton, setShowUndoButton] = useState(false);
+    const [lastResult, setLastResult] = useState<any>(null);
+    const [showScoreboard, setShowScoreboard] = useState(false);
+    const [currentScore, setCurrentScore] = useState({ team1: 0, team2: 0 });
 
     useEffect(() => {
         loadPlayers();
@@ -95,6 +102,17 @@ export default function RegisterResult() {
 
             setTeam1Players(team1.filter(Boolean));
             setTeam2Players(team2.filter(Boolean));
+            
+            // Inicializar o placar atual
+            setCurrentScore({
+                team1: game.team1_score || 0,
+                team2: game.team2_score || 0
+            });
+            
+            // Mostrar o placar se o jogo já tiver pontos
+            if (game.team1_score > 0 || game.team2_score > 0) {
+                setShowScoreboard(true);
+            }
         } catch (error) {
             console.error('Erro ao carregar jogadores:', error);
             Alert.alert('Erro', 'Não foi possível carregar os jogadores');
@@ -116,8 +134,10 @@ export default function RegisterResult() {
             setLoading(true);
             const winnerTeamNumber = winnerTeam === 'team1' ? 1 : winnerTeam === 'team2' ? 2 : null;
             const result = await gameService.registerRound(gameId as string, selectedType, winnerTeamNumber);
+            setLastResult(result);
             
             if (result.status === 'finished') {
+                // Se o jogo foi finalizado, mostrar o modal de confirmação
                 let message = 'Jogo finalizado!';
                 if (result.team1_score === 6 && result.team2_score === 0) {
                     message = 'BUCHUDA! 🎉\nTime 1 venceu sem que o adversário marcasse pontos!';
@@ -129,31 +149,66 @@ export default function RegisterResult() {
                     message = 'BUCHUDA DE RÉ! 🎉🔄\nIncrível virada do Time 2 após estar perdendo de 5x0!';
                 }
                 
-                // Verificar se estamos na versão web para garantir o redirecionamento
-                if (Platform.OS === 'web') {
-                    // Na versão web, mostrar o alerta e redirecionar após um curto período
-                    Alert.alert('Parabéns!', message);
-                    // Redirecionar após um pequeno delay para garantir que o alerta seja visto
-                    setTimeout(() => {
-                        router.back();
-                    }, 1500);
-                } else {
-                    // No mobile, manter o comportamento atual com o botão OK
-                    Alert.alert('Parabéns!', message, [
-                        { 
-                            text: 'OK', 
-                            onPress: () => {
-                                router.back();
-                            }
-                        }
-                    ]);
-                }
+                // Atualizar o placar atual
+                setCurrentScore({
+                    team1: result.team1_score,
+                    team2: result.team2_score
+                });
+                
+                // Mostrar o placar
+                setShowScoreboard(true);
+                
+                // Mostrar o modal de confirmação para o resultado final
+                setShowConfirmationModal(true);
             } else {
-                router.back();
+                // Se o jogo não foi finalizado, mostrar o botão de desfazer e exibir o placar atual
+                setShowUndoButton(true);
+                // Resetar os campos para permitir o registro do próximo resultado
+                setSelectedType(null);
+                setWinnerTeam(null);
+                
+                // Atualizar o placar atual
+                setCurrentScore({
+                    team1: result.team1_score,
+                    team2: result.team2_score
+                });
+                
+                // Mostrar o placar
+                setShowScoreboard(true);
             }
         } catch (error) {
             console.error('Erro ao registrar resultado:', error);
             Alert.alert('Erro', 'Não foi possível registrar o resultado');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleUndoLastResult = async () => {
+        try {
+            setLoading(true);
+            const result = await gameService.undoLastRound(gameId as string);
+            Alert.alert('Sucesso', 'Último resultado desfeito com sucesso');
+            setShowConfirmationModal(false);
+            
+            // Atualizar o placar após desfazer
+            if (result) {
+                setCurrentScore({
+                    team1: result.team1_score,
+                    team2: result.team2_score
+                });
+                
+                // Esconder o placar se não houver mais pontos
+                if (result.team1_score === 0 && result.team2_score === 0) {
+                    setShowScoreboard(false);
+                }
+            } else {
+                // Se não houver resultado, voltar à tela anterior
+                router.back();
+            }
+        } catch (error) {
+            console.error('Erro ao desfazer resultado:', error);
+            Alert.alert('Erro', 'Não foi possível desfazer o último resultado');
         } finally {
             setLoading(false);
         }
@@ -174,6 +229,39 @@ export default function RegisterResult() {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 32 }}
             >
+                {showScoreboard && (
+                    <ScoreboardContainer colors={colors}>
+                        <ScoreboardTitle colors={colors}>Placar Atual</ScoreboardTitle>
+                        <ScoreboardContent>
+                            <TeamScoreContainer>
+                                <TeamName colors={colors}>
+                                    {team1Players.map((player, index) => (
+                                        <React.Fragment key={player.id}>
+                                            {player.name}
+                                            {index < team1Players.length - 1 ? ' e ' : ''}
+                                        </React.Fragment>
+                                    ))}
+                                </TeamName>
+                                <TeamScore colors={colors}>{currentScore.team1}</TeamScore>
+                            </TeamScoreContainer>
+                            
+                            <ScoreboardDivider colors={colors}>x</ScoreboardDivider>
+                            
+                            <TeamScoreContainer>
+                                <TeamName colors={colors}>
+                                    {team2Players.map((player, index) => (
+                                        <React.Fragment key={player.id}>
+                                            {player.name}
+                                            {index < team2Players.length - 1 ? ' e ' : ''}
+                                        </React.Fragment>
+                                    ))}
+                                </TeamName>
+                                <TeamScore colors={colors}>{currentScore.team2}</TeamScore>
+                            </TeamScoreContainer>
+                        </ScoreboardContent>
+                    </ScoreboardContainer>
+                )}
+                
                 <SectionTitle colors={colors}>Tipo de Vitória</SectionTitle>
 
                 <VictoryOptionsGrid>
@@ -241,7 +329,45 @@ export default function RegisterResult() {
                 <RegisterButton onPress={handleRegisterResult} colors={colors}>
                     <RegisterButtonText colors={colors}>Registrar Resultado</RegisterButtonText>
                 </RegisterButton>
+                
+                <UndoButton 
+                    onPress={handleUndoLastResult} 
+                    colors={colors}
+                    style={{ opacity: showUndoButton ? 1 : 0 }}
+                    disabled={!showUndoButton}
+                >
+                    <UndoButtonText colors={colors}>Desfazer Último Resultado</UndoButtonText>
+                </UndoButton>
             </MainContent>
+
+            {/* Modal de confirmação para resultado final */}
+            <CustomModal
+                visible={showConfirmationModal}
+                onClose={() => setShowConfirmationModal(false)}
+                colors={colors}
+                title="Jogo Finalizado!"
+                subtitle={lastResult ? `Placar Final: ${lastResult.team1_score} x ${lastResult.team2_score}` : "Confirmar o resultado final?"}
+            >
+                <ModalButtonsContainer>
+                    <ModalButton
+                        onPress={() => {
+                            setShowConfirmationModal(false);
+                            router.back();
+                        }}
+                        colors={colors}
+                        variant="primary"
+                    >
+                        <ModalButtonText colors={colors}>Confirmar</ModalButtonText>
+                    </ModalButton>
+                    <ModalButton
+                        onPress={handleUndoLastResult}
+                        colors={colors}
+                        variant="secondary"
+                    >
+                        <ModalButtonText colors={colors}>Desfazer Último Resultado</ModalButtonText>
+                    </ModalButton>
+                </ModalButtonsContainer>
+            </CustomModal>
         </Container>
     );
 }
@@ -349,4 +475,86 @@ const RegisterButtonText = styled.Text<{ colors: any }>`
     color: ${props => props.colors.buttonText};
     font-size: 16px;
     font-weight: bold;
+`;
+
+const ModalButtonsContainer = styled.View`
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+`;
+
+const ModalButton = styled.TouchableOpacity<{ colors: any, variant: 'primary' | 'secondary' }>`
+    background-color: ${props => props.variant === 'primary' ? props.colors.primary : props.colors.card};
+    padding: 16px;
+    border-radius: 8px;
+    align-items: center;
+    border: 1px solid ${props => props.variant === 'primary' ? props.colors.primary : props.colors.border};
+`;
+
+const ModalButtonText = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.buttonText};
+    font-size: 16px;
+    font-weight: bold;
+`;
+
+const UndoButton = styled.TouchableOpacity<{ colors: any }>`
+    background-color: ${props => props.colors.card};
+    padding: 12px;
+    border-radius: 8px;
+    align-items: center;
+    margin-top: 8px;
+    border: 1px solid ${props => props.colors.border};
+`;
+
+const UndoButtonText = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.text};
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+const ScoreboardContainer = styled.View<{ colors: any }>`
+    background-color: ${props => props.colors.card};
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 1px solid ${props => props.colors.border};
+`;
+
+const ScoreboardTitle = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.text};
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+`;
+
+const ScoreboardContent = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const TeamScoreContainer = styled.View`
+    flex: 1;
+    align-items: center;
+`;
+
+const TeamName = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.textSecondary};
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 8px;
+`;
+
+const TeamScore = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.primary};
+    font-size: 32px;
+    font-weight: bold;
+`;
+
+const ScoreboardDivider = styled.Text<{ colors: any }>`
+    color: ${props => props.colors.textSecondary};
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 16px;
 `;

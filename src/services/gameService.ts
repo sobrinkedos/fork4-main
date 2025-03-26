@@ -534,6 +534,130 @@ export const gameService = {
         }
     },
 
+    async undoLastRound(id: string) {
+        try {
+            console.log('GameService: Desfazendo última rodada do jogo:', id);
+            
+            // Buscar o jogo atual
+            const { data: game, error: getError } = await supabase
+                .from('games')
+                .select('*')
+                .eq('id', id)
+                .single();
+
+            if (getError) throw getError;
+            
+            // Verificar se há rodadas para desfazer
+            if (!game.rounds || game.rounds.length === 0) {
+                throw new Error('Não há rodadas para desfazer');
+            }
+
+            // Obter a última rodada
+            const lastRound = game.rounds[game.rounds.length - 1];
+            console.log('GameService: Última rodada:', lastRound);
+
+            // Remover a última rodada do array
+            const updatedRounds = [...game.rounds];
+            updatedRounds.pop();
+
+            // Recalcular o placar
+            let team1Score = 0;
+            let team2Score = 0;
+            let lastRoundWasTie = false;
+            let team1WasLosing5_0 = false;
+            let team2WasLosing5_0 = false;
+
+            // Recalcular o placar baseado nas rodadas restantes
+            for (let i = 0; i < updatedRounds.length; i++) {
+                const round = updatedRounds[i];
+                let points = 0;
+                
+                // Calcular pontos baseado no tipo de vitória
+                switch (round.type) {
+                    case 'simple':
+                    case 'contagem':
+                        points = 1;
+                        break;
+                    case 'carroca':
+                        points = 2;
+                        break;
+                    case 'la_e_lo':
+                        points = 3;
+                        break;
+                    case 'cruzada':
+                        points = 4;
+                        break;
+                    case 'empate':
+                        points = 0;
+                        break;
+                }
+
+                // Adicionar bônus se a rodada anterior foi empate
+                if (lastRoundWasTie && round.type !== 'empate') {
+                    points += 1;
+                }
+
+                // Atualizar o placar
+                if (round.winner_team === 1) {
+                    team1Score += points;
+                } else if (round.winner_team === 2) {
+                    team2Score += points;
+                }
+
+                // Verificar se algum time está em desvantagem de 5x0
+                if (team1Score === 0 && team2Score === 5) {
+                    team1WasLosing5_0 = true;
+                }
+                if (team2Score === 0 && team1Score === 5) {
+                    team2WasLosing5_0 = true;
+                }
+
+                // Atualizar o estado de empate para a próxima rodada
+                lastRoundWasTie = round.type === 'empate';
+            }
+
+            // Verificar se é uma buchuda (vencer sem que o adversário pontue)
+            const isBuchuda = (team1Score >= 6 && team2Score === 0) || (team2Score >= 6 && team1Score === 0);
+            
+            // Verificar se é uma buchuda de ré (time que estava perdendo de 5x0 venceu)
+            const isBuchudaDeRe = 
+                (team1Score >= 6 && team1WasLosing5_0) || 
+                (team2Score >= 6 && team2WasLosing5_0);
+
+            // Determinar o status do jogo
+            const status = (team1Score >= 6 || team2Score >= 6) ? 'finished' : 'in_progress';
+
+            // Atualizar o jogo no banco de dados
+            const updateData = {
+                team1_score: team1Score,
+                team2_score: team2Score,
+                rounds: updatedRounds,
+                last_round_was_tie: lastRoundWasTie,
+                status: status,
+                is_buchuda: isBuchuda,
+                is_buchuda_de_re: isBuchudaDeRe,
+                team1_was_losing_5_0: team1WasLosing5_0,
+                team2_was_losing_5_0: team2WasLosing5_0
+            };
+
+            console.log('GameService: Atualizando jogo após desfazer rodada:', updateData);
+
+            const { data: updatedGame, error: updateError } = await supabase
+                .from('games')
+                .update(updateData)
+                .eq('id', id)
+                .select()
+                .single();
+
+            if (updateError) throw updateError;
+
+            return updatedGame;
+        } catch (error) {
+            console.error('Erro ao desfazer última rodada:', error);
+            throw error;
+        }
+    },
+
     async listByPlayer(playerId: string) {
         try {
             // Busca jogos onde o jogador está em qualquer time
