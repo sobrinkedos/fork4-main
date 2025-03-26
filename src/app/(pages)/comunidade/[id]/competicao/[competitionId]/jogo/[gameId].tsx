@@ -117,7 +117,7 @@ export default function GameDetails() {
                     animationType="fade"
                     onRequestClose={() => setShowDeleteModal(false)}
                 >
-                    <ModalOverlay>
+                    <ModalOverlay colors={colors}>
                         <ModalContent colors={colors}>
                             <ModalTitle colors={colors}>Confirmar Exclusão</ModalTitle>
                             <ModalText colors={colors}>Tem certeza que deseja excluir este jogo? Esta ação não pode ser desfeita.</ModalText>
@@ -172,7 +172,7 @@ export default function GameDetails() {
                                             </>
                                         )}
                                     </WinnerText>
-                                    <Feather name="award" size={24} color="#4F8EF7" />
+                                    <Feather name="award" size={24} color={colors.primary} />
                                 </WinnerInfo>
                             </GameStatusFinished>
                         )}
@@ -463,9 +463,9 @@ const VictoryTypeTag = styled.Text<{ colors: any }>`
     border-radius: 4px;
 `;
 
-const ModalOverlay = styled.View`
+const ModalOverlay = styled.View<{ colors: any }>`
     flex: 1;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${props => props.colors.overlay};
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -501,7 +501,7 @@ const ModalButton = styled.TouchableOpacity<{ variant: 'cancel' | 'delete', colo
     padding: 12px 20px;
     border-radius: 6px;
     margin-left: 12px;
-    background-color: ${props => props.variant === 'delete' ? props.colors.error : 'transparent'};
+    background-color: ${props => props.variant === 'delete' ? props.colors.error : props.colors.surface};
 `;
 
 const ModalButtonText = styled.Text<{ colors: any }>`
