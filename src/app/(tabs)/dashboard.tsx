@@ -365,11 +365,17 @@ const Dashboard: React.FC = () => {
     }, []);
 
     const [totalCommunities, setTotalCommunities] = useState(0);
+    const [monthlyGamesData, setMonthlyGamesData] = useState({
+        labels: [],
+        datasets: [{
+            data: []
+        }]
+    });
 
-    const chartData = {
+    const chartData = monthlyGamesData.labels.length > 0 ? monthlyGamesData : {
         labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
         datasets: [{
-            data: [20, 45, 28, 80, 99, 43]
+            data: [0, 0, 0, 0, 0, 0]
         }]
     };
 
@@ -438,6 +444,23 @@ const Dashboard: React.FC = () => {
                 console.log('[Dashboard] Estatísticas carregadas:', userStats);
                 
                 setStats(userStats);
+                
+                // Carregar dados de jogos por mês
+                try {
+                    const monthlyData = await statisticsService.getMonthlyGamesData();
+                    console.log('[Dashboard] Dados de jogos por mês carregados:', monthlyData);
+                    
+                    if (monthlyData.labels.length > 0) {
+                        setMonthlyGamesData({
+                            labels: monthlyData.labels,
+                            datasets: [{
+                                data: monthlyData.data
+                            }]
+                        });
+                    }
+                } catch (monthlyError) {
+                    console.error('[Dashboard] Erro ao carregar dados de jogos por mês:', monthlyError);
+                }
                 
                 // Carregar atividades recentes
                 const recentActivities = await activityService.getRecentActivities();
