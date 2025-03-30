@@ -57,7 +57,7 @@ Este documento apresenta todas as funcionalidades já implementadas no aplicativ
 ### Comunidades
 - ❌ Comunidades privadas com convites
 - ❌ Solicitações de entrada para comunidades
-- ❌ Integração com grupos do WhatsApp
+- ✅ Integração com grupos do WhatsApp
 
 ### Competições
 - ❌ Diferentes formatos de competição (mata-mata, grupos, pontos corridos)

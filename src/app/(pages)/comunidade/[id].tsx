@@ -12,6 +12,7 @@ import { communityOrganizersService } from '@/services/communityOrganizersServic
 import { playerService } from '@/services/playerService';
 import { competitionService } from '@/services/competitionService';
 import { InternalHeader } from '@/components/InternalHeader';
+import WhatsappGroupManager from '@/components/WhatsappGroupManager';
 
 type CommunityOrganizer = {
     id: string;
@@ -909,6 +910,13 @@ export default function CommunityDetails() {
                         )}
                     </Section>
                 )}
+                
+                {/* Componente de gerenciamento de grupos do WhatsApp */}
+                <WhatsappGroupManager 
+                    communityId={community.id} 
+                    isOrganizer={isOrganizer || community.created_by === user?.id} 
+                    colors={colors} 
+                />
 
                 <Section colors={colors}>
                     <SectionHeader>
