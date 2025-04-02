@@ -124,6 +124,34 @@ export const communityMembersService = {
                 throw error;
             }
 
+            // Integração com WhatsApp: adicionar membros ao grupo
+            try {
+                // Buscar os telefones dos jogadores adicionados
+                const { data: players } = await supabase
+                    .from('players')
+                    .select('phone')
+                    .in('id', playerIds)
+                    .not('phone', 'is', null);
+                
+                if (players && players.length > 0) {
+                    // Importação dinâmica para evitar dependência circular
+                    const { whatsappIntegrationService } = await import('./whatsappIntegrationService');
+                    
+                    // Filtrar apenas telefones válidos
+                    const phones = players
+                        .filter(player => player.phone && player.phone.trim() !== '')
+                        .map(player => player.phone);
+                    
+                    if (phones.length > 0) {
+                        // Adicionar os membros ao grupo do WhatsApp
+                        await whatsappIntegrationService.addMembersToGroup(communityId, phones);
+                    }
+                }
+            } catch (whatsappError) {
+                // Não interromper o fluxo se a integração com WhatsApp falhar
+                console.error('Erro na integração com WhatsApp:', whatsappError);
+            }
+            
             return data;
         } catch (error) {
             console.error('Erro ao adicionar membros:', error);

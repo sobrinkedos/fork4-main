@@ -99,6 +99,30 @@ export const competitionService = {
                                 competition_id: newCompetition.id
                             }
                         });
+                        
+                        // Integração com WhatsApp: enviar mensagem sobre a nova competição
+                        try {
+                            // Buscar o nome da comunidade
+                            const { data: community } = await supabase
+                                .from('communities')
+                                .select('name')
+                                .eq('id', data.community_id)
+                                .single();
+                            
+                            if (community) {
+                                // Importação dinâmica para evitar dependência circular
+                                const { whatsappIntegrationService } = await import('./whatsappIntegrationService');
+                                
+                                // Enviar mensagem sobre a nova competição
+                                await whatsappIntegrationService.sendCompetitionCreatedMessage(
+                                    newCompetition,
+                                    community.name
+                                );
+                            }
+                        } catch (whatsappError) {
+                            // Não interromper o fluxo se a integração com WhatsApp falhar
+                            console.error('Erro na integração com WhatsApp:', whatsappError);
+                        }
                         console.log('[competitionService] Atividade criada com sucesso!');
                         return true;
                     } catch (activityError) {
@@ -522,6 +546,36 @@ export const competitionService = {
                 
                 if (community) {
                     communityName = community.name;
+                    
+                    // Integração com WhatsApp: enviar mensagem sobre a competição finalizada
+                    try {
+                        // Importação dinâmica para evitar dependência circular
+                        const { whatsappIntegrationService } = await import('./whatsappIntegrationService');
+                        
+                        // Ordena os jogadores por pontuação para enviar os melhores no WhatsApp
+                        const sortedPlayers = [...players].sort((a, b) => {
+                            if (a.wins !== b.wins) return b.wins - a.wins;
+                            if (a.losses !== b.losses) return a.losses - b.losses;
+                            return b.score - a.score;
+                        });
+                        
+                        // Ordena as duplas por pontuação
+                        const sortedPairs = [...pairs].sort((a, b) => {
+                            if (a.wins !== b.wins) return b.wins - a.wins;
+                            if (a.losses !== b.losses) return a.losses - b.losses;
+                            return b.score - a.score;
+                        });
+                        
+                        // Enviar mensagem com os resultados da competição
+                        await whatsappIntegrationService.sendCompetitionFinishedMessage(
+                            competition,
+                            { players: sortedPlayers, pairs: sortedPairs },
+                            communityName
+                        );
+                    } catch (whatsappError) {
+                        // Não interromper o fluxo se a integração com WhatsApp falhar
+                        console.error('Erro na integração com WhatsApp:', whatsappError);
+                    }
                 }
             }
 

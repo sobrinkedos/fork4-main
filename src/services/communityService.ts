@@ -199,6 +199,27 @@ class CommunityService {
                 console.error('Erro ao criar comunidade:', error);
                 throw error;
             }
+            
+            // Integração com WhatsApp: criar grupo para a comunidade
+            try {
+                // Importação dinâmica para evitar dependência circular
+                const { whatsappIntegrationService } = await import('./whatsappIntegrationService');
+                
+                // Buscar o telefone do usuário para adicioná-lo como admin do grupo
+                const { data: userProfile } = await supabase
+                    .from('user_profiles')
+                    .select('phone')
+                    .eq('user_id', userId)
+                    .single();
+                
+                if (userProfile?.phone) {
+                    // Criar o grupo do WhatsApp para a comunidade
+                    await whatsappIntegrationService.createGroupForCommunity(community, userProfile.phone);
+                }
+            } catch (whatsappError) {
+                // Não interromper o fluxo se a integração com WhatsApp falhar
+                console.error('Erro na integração com WhatsApp:', whatsappError);
+            }
 
             // Adicionar o criador como organizador
             // Primeiro, verificar se já existe como organizador
