@@ -30,9 +30,7 @@ export default function NovaComunidade() {
             setLoading(true);
             const newCommunity = await communityService.create({
                 name: formData.name.trim(),
-                description: formData.description.trim(),
-                whatsapp_group_name: formData.whatsapp_group_name.trim(),
-                whatsapp_group_link: formData.whatsapp_group_link.trim()
+                description: formData.description.trim()
             });
             
             // Se tiver link do WhatsApp, cria a integração
