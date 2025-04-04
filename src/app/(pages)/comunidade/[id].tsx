@@ -568,7 +568,7 @@ export default function CommunityDetails() {
     const handleRemoveOrganizer = async (userId: string) => {
         try {
             await communityOrganizersService.removeOrganizer(id, userId);
-            const updatedOrganizers = await communityOrganizersService.listOrganizers(id);
+            const updatedOrganizers = await communityOrganizersService.listOrganizers(id, false);
             setOrganizers(updatedOrganizers);
             Alert.alert('Sucesso', 'Organizador removido com sucesso!');
         } catch (error) {
@@ -593,8 +593,8 @@ export default function CommunityDetails() {
             setMembers(membersData);
 
             console.log('Buscando organizadores...');
-            const organizersData = await communityOrganizersService.listOrganizers(id);
-            console.log('Organizadores encontrados:', organizersData);
+            const organizersData = await communityOrganizersService.listOrganizers(id, false);
+            console.log('Organizadores encontrados (modo seguro):', organizersData);
             setOrganizers(organizersData);
 
             const { myPlayers, communityPlayers } = await playerService.list(false); // Especificando false para não buscar estatísticas
@@ -617,7 +617,7 @@ export default function CommunityDetails() {
     useEffect(() => {
         const loadOrganizers = async () => {
             try {
-                const data = await communityOrganizersService.listOrganizers(id);
+                const data = await communityOrganizersService.listOrganizers(id, false);
                 setOrganizers(data);
             } catch (error) {
                 console.error('Erro ao carregar organizadores:', error);

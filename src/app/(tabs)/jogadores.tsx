@@ -9,23 +9,40 @@ import { useRouter } from 'expo-router';
 import { Header } from '@/components/Header';
 import { useTheme } from '@/contexts/ThemeProvider';
 
-const Container = styled.View`
+// Definir o tipo para o tema
+interface ThemeProps {
+    theme: {
+        colors: {
+            backgroundDark: string;
+            secondary: string;
+            accent: string;
+            textPrimary: string;
+            textSecondary: string;
+            successLight: string;
+            success: string;
+            backgroundLight: string;
+            error: string;
+        };
+    };
+}
+
+const Container = styled(View)<ThemeProps>`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.backgroundDark};
 `;
 
-const Content = styled.View`
+const Content = styled(View)<ThemeProps>`
     flex: 1;
     padding: 8px;
 `;
 
-const LoadingContainer = styled.View`
+const LoadingContainer = styled(View)<ThemeProps>`
     flex: 1;
     justify-content: center;
     align-items: center;
 `;
 
-const PlayerCard = styled.TouchableOpacity`
+const PlayerCard = styled.TouchableOpacity<ThemeProps>`
     background-color: ${({ theme }) => theme.colors.secondary};
     border-radius: 12px;
     padding: 16px;
@@ -33,13 +50,13 @@ const PlayerCard = styled.TouchableOpacity`
     elevation: 3;
 `;
 
-const PlayerHeader = styled.View`
+const PlayerHeader = styled(View)<ThemeProps>`
     flex-direction: row;
     align-items: flex-start;
     margin-bottom: 16px;
 `;
 
-const Avatar = styled.View`
+const Avatar = styled(View)<ThemeProps>`
     width: 60px;
     height: 60px;
     border-radius: 30px;
@@ -49,12 +66,12 @@ const Avatar = styled.View`
     margin-right: 15px;
 `;
 
-const PlayerInfo = styled.View`
+const PlayerInfo = styled(View)<ThemeProps>`
     flex: 1;
     justify-content: center;
 `;
 
-const PlayerNameContainer = styled.View`
+const PlayerNameContainer = styled(View)<ThemeProps>`
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
@@ -62,14 +79,14 @@ const PlayerNameContainer = styled.View`
     margin-left: 15px;
 `;
 
-const PlayerName = styled.Text`
+const PlayerName = styled(Text)<ThemeProps>`
     font-size: 18px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
     margin-right: 8px;
 `;
 
-const PlayerNickname = styled.Text`
+const PlayerNickname = styled(Text)<ThemeProps>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 2px;
@@ -77,14 +94,13 @@ const PlayerNickname = styled.Text`
     margin-left: 15px;
 `;
 
-const PlayerPhone = styled.Text`
+const PlayerPhone = styled(Text)<ThemeProps>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 2px;
-    
 `;
 
-const LinkedUserBadge = styled.View`
+const LinkedUserBadge = styled(View)<ThemeProps>`
     flex-direction: row;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.successLight};
@@ -93,13 +109,13 @@ const LinkedUserBadge = styled.View`
     margin-left: 8px;
 `;
 
-const LinkedUserText = styled.Text`
+const LinkedUserText = styled(Text)<ThemeProps>`
     font-size: 12px;
     color: ${({ theme }) => theme.colors.success};
     margin-left: 4px;
 `;
 
-const StatsContainer = styled.View`
+const StatsContainer = styled(View)<ThemeProps>`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 0;
@@ -108,37 +124,37 @@ const StatsContainer = styled.View`
     border-top-color: ${({ theme }) => theme.colors.backgroundLight}40;
 `;
 
-const StatItem = styled.View`
+const StatItem = styled(View)<ThemeProps>`
     align-items: center;
     flex: 1;
     padding: 0 5px;
 `;
 
-const StatValue = styled.Text`
+const StatValue = styled(Text)<ThemeProps>`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
     margin-bottom: 4px;
 `;
 
-const StatLabel = styled.Text`
+const StatLabel = styled(Text)<ThemeProps>`
     font-size: 12px;
     color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-const ActionsContainer = styled.View`
+const ActionsContainer = styled(View)<ThemeProps>`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
     margin-top: 12px;
 `;
 
-const ActionButton = styled.Pressable`
+const ActionButton = styled.TouchableOpacity<ThemeProps>`
     padding: 8px;
     margin-left: 8px;
 `;
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled(Text)<ThemeProps>`
     font-size: 20px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
@@ -146,14 +162,14 @@ const SectionTitle = styled.Text`
     margin-top: 24px;
 `;
 
-const EmptyText = styled.Text`
+const EmptyText = styled(Text)<ThemeProps>`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.textSecondary};
     text-align: center;
     margin: 24px 0;
 `;
 
-const FAB = styled.Pressable`
+const FAB = styled.TouchableOpacity<ThemeProps>`
     position: absolute;
     right: 20px;
     bottom: 20px;
@@ -175,11 +191,12 @@ export default function Jogadores() {
     const { theme, colors } = useTheme();
 
     const loadPlayers = async () => {
+        setLoading(true);
         try {
-            setLoading(true);
-            const { myPlayers: my, communityPlayers: community } = await playerService.list();
-            setMyPlayers(my || []);
-            setCommunityPlayers(community || []);
+            // Buscando jogadores com fetchStats = false, pois as estatísticas não são necessárias nessa página
+            const { myPlayers: my, communityPlayers: community } = await playerService.list(false);
+            setMyPlayers(my);
+            setCommunityPlayers(community);
         } catch (error) {
             console.error('Erro ao carregar jogadores:', error);
             Alert.alert('Erro', 'Não foi possível carregar os jogadores');

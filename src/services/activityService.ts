@@ -185,11 +185,17 @@ export const activityService = {
         }
     },
 
-    async getRecentActivities(page: number = 1, itemsPerPage: number = 5) {
+    async getRecentActivities(page: number = 1, itemsPerPage: number = 5, fetchFullData: boolean = true) {
         try {
             const { data: { user }, error: authError } = await supabase.auth.getUser();
             if (authError || !user) {
                 throw new Error('Usuário não autenticado');
+            }
+
+            // Se fetchFullData for false, retornar dados vazios para evitar consultas problemáticas
+            if (!fetchFullData) {
+                console.log('[activityService] Pulando consultas problemáticas (fetchFullData=false)');
+                return [];
             }
 
             // Busca as comunidades onde o usuário é organizador

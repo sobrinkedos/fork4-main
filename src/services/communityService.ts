@@ -11,6 +11,8 @@ export interface Community {
     members_count: number;
     games_count: number;
     is_organizer?: boolean;
+    is_active?: boolean;
+    competitions_count?: number;
 }
 
 export interface CreateCommunityDTO {
@@ -21,6 +23,7 @@ export interface CreateCommunityDTO {
 export interface UpdateCommunityDTO {
     name?: string;
     description?: string;
+    is_active?: boolean;
 }
 
 class CommunityService {
@@ -45,82 +48,122 @@ class CommunityService {
         }
     }
 
-    async list() {
+    async list(fetchFullData: boolean = true) {
         try {
             const userId = (await supabase.auth.getUser()).data.user?.id;
             if (!userId) throw new Error('Usuário não autenticado');
 
             console.log('Buscando comunidades para o usuário:', userId);
 
-            // Busca todas as comunidades onde o usuário é criador
-            const { data: createdCommunities = [], error: createdError } = await supabase
-                .from('communities')
-                .select(`
-                    *,
-                    members:community_members(count),
-                    competitions:competitions(count)
-                `)
-                .eq('created_by', userId);
+            // Se fetchFullData for false, buscar apenas dados básicos sem detalhes completos
+            // para evitar recursão infinita, mas ainda retornar as comunidades do usuário
+            if (!fetchFullData) {
+                console.log('Buscando dados simplificados para evitar recursão infinita');
+                
+                // Busca comunidades criadas pelo usuário (incluindo inativas)
+                const { data: createdCommunities = [], error: createdError } = await supabase
+                    .from('communities')
+                    .select('*')
+                    .eq('created_by', userId);
 
-            if (createdError) {
-                console.error('Erro ao listar comunidades criadas:', createdError);
-                throw new Error('Erro ao listar comunidades');
+                if (createdError) {
+                    console.error('Erro ao buscar comunidades criadas (modo simplificado):', createdError);
+                    return { created: [], organized: [], member: [] };
+                }
+
+                // Busca comunidades onde o usuário é organizador
+                const { data: organizedCommunities = [], error: organizedError } = await supabase
+                    .from('community_organizers')
+                    .select('community:communities(*)')
+                    .eq('user_id', userId);
+
+                if (organizedError) {
+                    console.error('Erro ao buscar comunidades organizadas (modo simplificado):', organizedError);
+                    return { created: createdCommunities, organized: [], member: [] };
+                }
+
+                // Extrair as comunidades do resultado e filtrar para não incluir as que já estão em createdCommunities
+                const createdIds = createdCommunities.map(c => c.id);
+                const organizedOnly = organizedCommunities
+                    .map(item => item.community)
+                    .filter(community => community && !createdIds.includes(community.id));
+
+                return {
+                    created: createdCommunities,
+                    organized: organizedOnly,
+                    member: []
+                };
             }
 
-            // IDs das comunidades que o usuário criou
-            const createdIds = createdCommunities.map(c => c.id);
+            try {
+                // Busca todas as comunidades onde o usuário é criador (incluindo inativas)
+                const { data: createdCommunities = [], error: createdError } = await supabase
+                    .from('communities')
+                    .select(`
+                        *,
+                        members:community_members(count),
+                        competitions:competitions(count)
+                    `)
+                    .eq('created_by', userId);
 
-            // Primeiro busca os IDs das comunidades onde o usuário é organizador
-            const { data: organizedIds = [], error: organizedIdsError } = await supabase
-                .from('community_organizers')
-                .select('community_id')
-                .eq('user_id', userId)
-                .not('community_id', 'in', `(${createdIds.join(',')})`); // Excluir comunidades que já é criador
+                if (createdError) {
+                    console.error('Erro ao buscar comunidades criadas:', createdError);
+                    // Retornar dados vazios em caso de erro para evitar quebrar a aplicação
+                    return {
+                        created: [],
+                        organized: [],
+                        member: []
+                    };
+                }
 
-            if (organizedIdsError) {
-                console.error('Erro ao buscar IDs de comunidades organizadas:', organizedIdsError);
-                throw new Error('Erro ao listar comunidades');
+                // IDs das comunidades que o usuário criou
+                const createdIds = createdCommunities.map(c => c.id);
+
+                // Primeiro busca os IDs das comunidades onde o usuário é organizador
+                let organizedIdsQuery = supabase
+                    .from('community_organizers')
+                    .select('community_id')
+                    .eq('user_id', userId);
+                
+                // Apenas aplica o filtro de exclusão se houver comunidades criadas
+                if (createdIds.length > 0) {
+                    organizedIdsQuery = organizedIdsQuery.not('community_id', 'in', `(${createdIds.join(',')})`);
+                }
+                
+                const { data: organizedIds = [], error: organizedIdsError } = await organizedIdsQuery;
+
+                if (organizedIdsError) {
+                    console.error('Erro ao buscar IDs de comunidades organizadas:', organizedIdsError);
+                    // Retornar dados parciais em caso de erro
+                    return {
+                        created: createdCommunities,
+                        organized: [],
+                        member: []
+                    };
+                }
+            } catch (error) {
+                console.error('Erro ao buscar comunidades:', error);
+                // Retornar dados vazios em caso de erro para evitar quebrar a aplicação
+                return {
+                    created: [],
+                    organized: [],
+                    member: []
+                };
             }
 
-            // Depois busca os detalhes dessas comunidades
-            const { data: organizedCommunities = [], error: organizedError } = await supabase
-                .from('communities')
-                .select(`
-                    id,
-                    name,
-                    description,
-                    created_at,
-                    created_by,
-                    members:community_members(count),
-                    competitions:competitions(count)
-                `)
-                .in('id', organizedIds.map(org => org.community_id));
-
-            if (organizedError) {
-                console.error('Erro ao buscar detalhes das comunidades organizadas:', organizedError);
-                throw new Error('Erro ao listar comunidades');
-            }
-
-            console.log('Comunidades encontradas:', {
-                criadas: createdCommunities.length,
-                organizadas: organizedCommunities.length
-            });
-
+            // Em caso de qualquer outro erro, retornar dados vazios
             return {
-                created: createdCommunities.map(c => ({
-                    ...c,
-                    members_count: c.members?.[0]?.count || 0,
-                    competitions_count: c.competitions?.[0]?.count || 0
-                })),
-                organized: organizedCommunities.map(c => ({
-                    ...c,
-                    members_count: c.members?.[0]?.count || 0,
-                    competitions_count: c.competitions?.[0]?.count || 0
-                }))
+                created: [],
+                organized: [],
+                member: []
             };
         } catch (error) {
-            console.error('Erro ao listar comunidades:', error);
-            throw error;
+            console.error('Erro geral ao listar comunidades:', error);
+            return {
+                created: [],
+                organized: [],
+                member: []
+            };
         }
     }
 

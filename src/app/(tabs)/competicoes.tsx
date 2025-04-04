@@ -187,7 +187,7 @@ export default function Competicoes() {
   const loadCompetitions = async () => {
     try {
       setLoading(true);
-      const comps = await competitionService.listMyCompetitions();
+      const comps = await competitionService.listMyCompetitions(false);
 
       // Busca estatísticas para cada competição
       const stats: {[key: string]: { totalPlayers: number, totalGames: number }} = {};

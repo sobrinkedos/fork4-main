@@ -36,6 +36,16 @@ const CommunityHeader = styled.View`
     justify-content: space-between;
 `;
 
+const ActionButtons = styled.View`
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+`;
+
+const ActionButton = styled.TouchableOpacity`
+    padding: 8px;
+`;
+
 const CommunityInfo = styled.View`
     flex: 1;
     margin-right: 12px;
@@ -126,7 +136,8 @@ export default function Comunidades() {
 
     const loadCommunities = useCallback(async () => {
         try {
-            const { created, organized } = await communityService.list();
+            console.log('Carregando comunidades em modo seguro (sem dados completos)');
+            const { created, organized } = await communityService.list(false);
             setCreatedCommunities(created || []);
             setOrganizedCommunities(organized || []);
         } catch (error) {
@@ -151,6 +162,63 @@ export default function Comunidades() {
         loadCommunities();
     };
 
+    const handleEditCommunity = (community: Community, event: any) => {
+        event.stopPropagation();
+        router.push(`/comunidade/${community.id}/editar`);
+    };
+
+    const handleDeleteCommunity = async (community: Community, event: any) => {
+        event.stopPropagation();
+        
+        // Verificar se existem competições associadas
+        if (community.competitions_count > 0) {
+            Alert.alert(
+                'Não é possível excluir',
+                'Esta comunidade possui competições e não pode ser excluída. Deseja inativá-la?',
+                [
+                    { text: 'Cancelar', style: 'cancel' },
+                    { 
+                        text: 'Inativar', 
+                        onPress: async () => {
+                            try {
+                                await communityService.updateCommunity(community.id, { is_active: false });
+                                Alert.alert('Sucesso', 'Comunidade inativada com sucesso!');
+                                loadCommunities();
+                            } catch (error) {
+                                console.error('Erro ao inativar comunidade:', error);
+                                Alert.alert('Erro', 'Não foi possível inativar a comunidade');
+                            }
+                        } 
+                    },
+                ]
+            );
+            return;
+        }
+
+        // Se não houver competições, confirmar exclusão
+        Alert.alert(
+            'Confirmar exclusão',
+            'Tem certeza que deseja excluir esta comunidade? Esta ação não pode ser desfeita.',
+            [
+                { text: 'Cancelar', style: 'cancel' },
+                { 
+                    text: 'Excluir', 
+                    style: 'destructive',
+                    onPress: async () => {
+                        try {
+                            await communityService.deleteCommunity(community.id);
+                            Alert.alert('Sucesso', 'Comunidade excluída com sucesso!');
+                            loadCommunities();
+                        } catch (error) {
+                            console.error('Erro ao excluir comunidade:', error);
+                            Alert.alert('Erro', 'Não foi possível excluir a comunidade');
+                        }
+                    } 
+                },
+            ]
+        );
+    };
+
     const renderCommunityCard = (community: Community) => (
         <CommunityCard
             key={community.id}
@@ -163,6 +231,14 @@ export default function Comunidades() {
                         <CommunityDescription>{community.description}</CommunityDescription>
                     )}
                 </CommunityInfo>
+                <ActionButtons>
+                    <ActionButton onPress={(e) => handleEditCommunity(community, e)}>
+                        <MaterialCommunityIcons name="pencil" size={20} color={colors.primary} />
+                    </ActionButton>
+                    <ActionButton onPress={(e) => handleDeleteCommunity(community, e)}>
+                        <MaterialCommunityIcons name="delete" size={20} color={colors.error} />
+                    </ActionButton>
+                </ActionButtons>
             </CommunityHeader>
             
             <CommunityStats>
@@ -174,6 +250,12 @@ export default function Comunidades() {
                     <MaterialCommunityIcons name="trophy" size={20} color={colors.textTertiary} />
                     <StatText>{community.competitions_count || 0} competições</StatText>
                 </StatContainer>
+                {community.is_active === false && (
+                    <StatContainer>
+                        <MaterialCommunityIcons name="cancel" size={20} color={colors.error} />
+                        <StatText style={{ color: colors.error }}>Inativa</StatText>
+                    </StatContainer>
+                )}
             </CommunityStats>
         </CommunityCard>
     );

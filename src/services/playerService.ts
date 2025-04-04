@@ -156,7 +156,12 @@ class PlayerService {
                 .select(`
                     id,
                     team,
-                    games!inner (id, team1_score, team2_score, status)
+                    games!inner (
+                        id,
+                        team1_score,
+                        team2_score,
+                        status
+                    )
                 `)
                 .eq('player_id', playerId)
                 .eq('games.status', 'finished')
@@ -178,7 +183,12 @@ class PlayerService {
                 .select(`
                     id,
                     team,
-                    games!inner (id, is_buchuda, team1_score, team2_score)
+                    games!inner (
+                        id,
+                        is_buchuda,
+                        team1_score,
+                        team2_score
+                    )
                 `)
                 .eq('player_id', playerId)
                 .eq('games.is_buchuda', true)
@@ -225,6 +235,33 @@ class PlayerService {
                 throw new Error('Erro ao listar jogadores');
             }
 
+            // Buscar comunidades onde sou organizador
+            const { data: myCommunities, error: myCommunitiesError } = await supabase
+                .from('community_organizers')
+                .select('community_id')
+                .eq('user_id', userData.user.id);
+
+            if (myCommunitiesError) {
+                console.error('Erro ao buscar comunidades como organizador:', myCommunitiesError);
+                throw new Error('Erro ao listar jogadores');
+            }
+
+            const communityIds = myCommunities?.map(c => c.community_id) || [];
+
+            // Se não for organizador de nenhuma comunidade, retornar apenas os jogadores criados
+            if (communityIds.length === 0) {
+                const myPlayersProcessed = (myPlayers || []).map(player => ({
+                    ...player,
+                    isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
+                    isMine: true
+                }));
+
+                return {
+                    myPlayers: fetchStats ? await this.addStatsToPlayers(myPlayersProcessed, true) : myPlayersProcessed,
+                    communityPlayers: []
+                };
+            }
+
             // Buscar jogadores das comunidades onde sou organizador
             const { data: communityPlayers, error: communityPlayersError } = await supabase
                 .from('players')
@@ -232,16 +269,10 @@ class PlayerService {
                     *,
                     user_player_relations(user_id, is_primary_user),
                     community_members!inner (
-                        community_id,
-                        communities!inner (
-                            id,
-                            community_organizers!inner (
-                                user_id
-                            )
-                        )
+                        community_id
                     )
                 `)
-                .eq('community_members.communities.community_organizers.user_id', userData.user.id)
+                .in('community_members.community_id', communityIds)
                 .neq('created_by', userData.user.id) // Excluir jogadores que já estão em myPlayers
                 .order('name');
 
@@ -250,56 +281,47 @@ class PlayerService {
                 throw new Error('Erro ao listar jogadores');
             }
 
-            // Processar jogadores com ou sem estatísticas dependendo do parâmetro
+            // Processar jogadores
+            const myPlayersProcessed = (myPlayers || []).map(player => ({
+                ...player,
+                isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
+                isMine: true
+            }));
+
+            const communityPlayersProcessed = (communityPlayers || []).map(player => ({
+                ...player,
+                isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
+                isMine: false
+            }));
+
+            // Adicionar estatísticas se necessário
             if (fetchStats) {
-                // Adicionar estatísticas aos jogadores
-                const myPlayersWithStats = await Promise.all((myPlayers || []).map(async (player) => {
-                    const stats = await this.getPlayerStats(player.id);
-                    return {
-                        ...player,
-                        stats,
-                        isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
-                        isMine: true
-                    };
-                }));
-
-                const communityPlayersWithStats = await Promise.all((communityPlayers || []).map(async (player) => {
-                    const stats = await this.getPlayerStats(player.id);
-                    return {
-                        ...player,
-                        stats,
-                        isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
-                        isMine: false
-                    };
-                }));
-
                 return {
-                    myPlayers: myPlayersWithStats,
-                    communityPlayers: communityPlayersWithStats
+                    myPlayers: await this.addStatsToPlayers(myPlayersProcessed, true),
+                    communityPlayers: await this.addStatsToPlayers(communityPlayersProcessed, false)
                 };
             } else {
-                // Retornar jogadores sem estatísticas
-                const myPlayersWithoutStats = (myPlayers || []).map(player => ({
-                    ...player,
-                    isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
-                    isMine: true
-                }));
-
-                const communityPlayersWithoutStats = (communityPlayers || []).map(player => ({
-                    ...player,
-                    isLinkedUser: player.user_player_relations?.some(rel => rel.is_primary_user),
-                    isMine: false
-                }));
-
                 return {
-                    myPlayers: myPlayersWithoutStats,
-                    communityPlayers: communityPlayersWithoutStats
+                    myPlayers: myPlayersProcessed,
+                    communityPlayers: communityPlayersProcessed
                 };
             }
         } catch (error) {
             console.error('Erro ao listar jogadores:', error);
             throw error;
         }
+    }
+
+    // Método auxiliar para adicionar estatísticas aos jogadores
+    private async addStatsToPlayers(players: Player[], isMine: boolean) {
+        return await Promise.all(players.map(async (player) => {
+            const stats = await this.getPlayerStats(player.id);
+            return {
+                ...player,
+                stats,
+                isMine
+            };
+        }));
     }
 
     async getById(id: string) {

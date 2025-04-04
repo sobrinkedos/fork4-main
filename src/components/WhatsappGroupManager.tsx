@@ -32,7 +32,17 @@ export default function WhatsappGroupManager({ communityId, isOrganizer, colors 
       setGroupLinks(links);
     } catch (error) {
       console.error('Erro ao carregar links de grupos:', error);
-      Alert.alert('Erro', 'Não foi possível carregar os grupos do WhatsApp');
+      // Exibir mensagem de erro mais específica se disponível
+      let errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Não foi possível carregar os grupos do WhatsApp';
+      
+      // Mensagem mais amigável para o erro de tabela não existente
+      if (errorMessage.includes('tabela de grupos do WhatsApp não existe')) {
+        errorMessage = 'O sistema de grupos do WhatsApp não está configurado. Por favor, execute a migração "whatsapp_integration.sql" para habilitar esta funcionalidade.';
+      }
+      
+      Alert.alert('Erro', errorMessage);
     } finally {
       setLoading(false);
     }

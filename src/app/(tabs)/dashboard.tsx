@@ -15,6 +15,7 @@ import { rankingService } from "@/services/rankingService";
 import { activityService } from "@/services/activityService";
 import { supabase } from "@/lib/supabase";
 import { PlayerAvatar } from "@/components/PlayerAvatar";
+import { ColorType } from "@/styles/themes";
 
 interface Stats {
     totalGames: number;
@@ -59,50 +60,50 @@ interface Activity {
     created_at: Date;
 }
 
-const Container = styled.View`
+const Container = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.backgroundDark};
 `;
 
-const ScrollContent = styled.ScrollView`
+const ScrollContent = styled.ScrollView<React.ComponentProps<ScrollView> & { theme: ColorType }>`
     flex: 1;
 `;
 
-const Content = styled.View`
+const Content = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex: 1;
     padding-bottom: 20px;
 `;
 
-const WelcomeContainer = styled.View`
+const WelcomeContainer = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     padding: 20px 20px;
     margin-bottom: 10px;
 `;
 
-const WelcomeText = styled.Text`
+const WelcomeText = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 28px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const WelcomeSubtext = styled.Text`
+const WelcomeSubtext = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 4px;
 `;
 
-const StatisticsContainer = styled.View`
+const StatisticsContainer = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0 20px;
     justify-content: space-between;
 `;
 
-const StatCardWrapper = styled.View`
+const StatCardWrapper = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     width: 48%;
     margin-bottom: 16px;
 `;
 
-const StatCard = styled.TouchableOpacity`
+const StatCard = styled.TouchableOpacity<React.ComponentProps<TouchableOpacity> & { theme: ColorType }>`
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
     border-radius: 16px;
     padding: 20px;
@@ -112,7 +113,7 @@ const StatCard = styled.TouchableOpacity`
     border: 1px solid ${({ theme }) => theme.colors.tertiary}40;
 `;
 
-const StatIcon = styled.View`
+const StatIcon = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     width: 40px;
     height: 40px;
     border-radius: 20px;
@@ -122,20 +123,20 @@ const StatIcon = styled.View`
     margin-bottom: 8px;
 `;
 
-const StatValue = styled.Text`
+const StatValue = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 24px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
     margin-top: 8px;
 `;
 
-const StatLabel = styled.Text`
+const StatLabel = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 4px;
 `;
 
-const ChartContainer = styled.View`
+const ChartContainer = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
     border-radius: 16px;
     padding: 20px;
@@ -144,44 +145,44 @@ const ChartContainer = styled.View`
     align-items: center;
 `;
 
-const ChartTitle = styled.Text`
+const ChartTitle = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
     margin-bottom: 16px;
 `;
 
-const SectionContainer = styled.View`
+const SectionContainer = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     padding: 0 20px;
     margin-bottom: 20px;
 `;
 
-const SectionHeader = styled.View`
+const SectionHeader = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
 `;
 
-const SectionTitle = styled.Text`
+const SectionTitle = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 20px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const SeeAllButton = styled.TouchableOpacity`
+const SeeAllButton = styled.TouchableOpacity<React.ComponentProps<TouchableOpacity> & { theme: ColorType }>`
     padding: 8px 16px;
     background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 8px;
 `;
 
-const SeeAllButtonText = styled.Text`
+const SeeAllButtonText = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     color: ${({ theme }) => theme.colors.white};
     font-size: 14px;
     font-weight: bold;
 `;
 
-const PlayerCard = styled.TouchableOpacity`
+const PlayerCard = styled.TouchableOpacity<React.ComponentProps<TouchableOpacity> & { theme: ColorType }>`
     flex-direction: row;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
@@ -191,24 +192,24 @@ const PlayerCard = styled.TouchableOpacity`
     border: 1px solid ${({ theme }) => theme.colors.tertiary}40;
 `;
 
-const PlayerInfo = styled.View`
+const PlayerInfo = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex: 1;
     margin-left: 12px;
 `;
 
-const PlayerName = styled.Text`
+const PlayerName = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const PlayerStats = styled.Text`
+const PlayerStats = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 4px;
 `;
 
-const ActivityCard = styled.TouchableOpacity`
+const ActivityCard = styled.TouchableOpacity<React.ComponentProps<TouchableOpacity> & { theme: ColorType }>`
     flex-direction: row;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
@@ -218,23 +219,23 @@ const ActivityCard = styled.TouchableOpacity`
     border: 1px solid ${({ theme }) => theme.colors.tertiary}40;
 `;
 
-const ActivityInfo = styled.View`
+const ActivityInfo = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex: 1;
     margin-left: 12px;
 `;
 
-const ActivityText = styled.Text`
+const ActivityText = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const ActivityTime = styled.Text`
+const ActivityTime = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 12px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-top: 4px;
 `;
 
-const RankingCard = styled.View`
+const RankingCard = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     background-color: ${({ theme }) => theme.colors.backgroundMedium};
     border-radius: 12px;
     padding: 16px;
@@ -242,30 +243,30 @@ const RankingCard = styled.View`
     border: 1px solid ${({ theme }) => theme.colors.tertiary}40;
 `;
 
-const RankingPosition = styled.Text`
+const RankingPosition = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
     margin-bottom: 8px;
 `;
 
-const RankingInfo = styled.View`
+const RankingInfo = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex: 1;
     margin-left: 12px;
 `;
 
-const RankingName = styled.Text`
+const RankingName = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 16px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.textPrimary};
 `;
 
-const RankingStats = styled.View`
+const RankingStats = styled.View<React.ComponentProps<View> & { theme: ColorType }>`
     flex-direction: row;
     flex-wrap: wrap;
 `;
 
-const StatText = styled.Text`
+const StatText = styled.Text<React.ComponentProps<Text> & { theme: ColorType }>`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.textSecondary};
     margin-right: 8px;
@@ -354,7 +355,7 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         async function loadRecentActivities() {
             try {
-                const activities = await activityService.getRecentActivities();
+                const activities = await activityService.getRecentActivities(1, 5, false);
                 setRecentActivities(activities);
             } catch (error) {
                 console.error('Dashboard: Erro ao carregar atividades recentes:', error);
@@ -438,16 +439,15 @@ const Dashboard: React.FC = () => {
             }
             
             try {
-                // Carregar estatísticas diretamente, sem verificações adicionais
-                // Isso nos ajudará a isolar o problema
-                const userStats = await statisticsService.getUserStats();
+                // Carregar estatísticas completas para exibir os dados corretos
+                const userStats = await statisticsService.getUserStats(true);
                 console.log('[Dashboard] Estatísticas carregadas:', userStats);
                 
                 setStats(userStats);
                 
                 // Carregar dados de jogos por mês
                 try {
-                    const monthlyData = await statisticsService.getMonthlyGamesData();
+                    const monthlyData = await statisticsService.getMonthlyGamesData(true);
                     console.log('[Dashboard] Dados de jogos por mês carregados:', monthlyData);
                     
                     if (monthlyData.labels.length > 0) {
@@ -463,7 +463,8 @@ const Dashboard: React.FC = () => {
                 }
                 
                 // Carregar atividades recentes
-                const recentActivities = await activityService.getRecentActivities();
+                const recentActivities = await activityService.getRecentActivities(1, 5, true);
+                console.log('[Dashboard] Atividades recentes carregadas');
                 setRecentActivities(recentActivities);
                 
                 // Carregar ranking

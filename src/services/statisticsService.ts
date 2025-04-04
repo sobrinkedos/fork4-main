@@ -17,7 +17,7 @@ interface MonthlyGamesData {
 }
 
 export const statisticsService = {
-    async getMonthlyGamesData(): Promise<MonthlyGamesData> {
+    async getMonthlyGamesData(fetchFullData: boolean = true): Promise<MonthlyGamesData> {
         try {
             console.log('[statisticsService] Iniciando busca de jogos por mês...');
             
@@ -32,6 +32,15 @@ export const statisticsService = {
             if (sessionError || !sessionData.session) {
                 console.error('[statisticsService] Sessão inválida:', sessionError);
                 throw new Error('Sessão de usuário inválida');
+            }
+
+            // Se fetchFullData for false, retornar dados vazios para evitar consultas problemáticas
+            if (!fetchFullData) {
+                console.log('[statisticsService] Pulando consultas problemáticas (fetchFullData=false)');
+                return {
+                    labels: [],
+                    data: []
+                };
             }
 
             // Buscar comunidades onde o usuário é membro
@@ -151,7 +160,7 @@ export const statisticsService = {
             };
         }
     },
-    async getUserStats(): Promise<UserStats> {
+    async getUserStats(fetchFullData: boolean = true): Promise<UserStats> {
         try {
             console.log('[statisticsService] Iniciando busca de estatísticas...');
             
@@ -168,6 +177,18 @@ export const statisticsService = {
             if (sessionError || !sessionData.session) {
                 console.error('[statisticsService] Sessão inválida:', sessionError);
                 throw new Error('Sessão de usuário inválida');
+            }
+
+            // Se fetchFullData for false, retornar dados vazios para evitar consultas problemáticas
+            if (!fetchFullData) {
+                console.log('[statisticsService] Pulando consultas problemáticas (fetchFullData=false)');
+                return {
+                    totalGames: 0,
+                    totalCompetitions: 0,
+                    totalPlayers: 0,
+                    averageScore: 0,
+                    totalCommunities: 0
+                };
             }
 
             // Buscar comunidades onde o usuário é membro

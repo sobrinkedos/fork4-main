@@ -25,6 +25,40 @@ export interface UpdateWhatsappGroupLinkDTO {
 class WhatsappService {
   async getGroupLinksByCommunity(communityId: string) {
     try {
+      console.log(`[whatsappService] Buscando grupos do WhatsApp para a comunidade: ${communityId}`);
+      
+      // Verificar se o usuário está autenticado
+      const { data: userData, error: authError } = await supabase.auth.getUser();
+      if (authError) {
+        console.error('[whatsappService] Erro de autenticação:', authError);
+        throw new Error('Erro de autenticação ao buscar grupos do WhatsApp');
+      }
+      
+      if (!userData.user) {
+        console.error('[whatsappService] Usuário não autenticado');
+        throw new Error('Usuário não autenticado');
+      }
+      
+      // Verificar se a tabela existe
+      try {
+        // Consulta para verificar se a tabela existe
+        const { error: tableCheckError } = await supabase
+          .from('whatsapp_group_links')
+          .select('id')
+          .limit(1);
+          
+        if (tableCheckError) {
+          console.error('[whatsappService] Erro ao verificar tabela:', tableCheckError);
+          if (tableCheckError.message.includes('does not exist')) {
+            throw new Error('A tabela de grupos do WhatsApp não existe no banco de dados');
+          }
+        }
+      } catch (tableError) {
+        console.error('[whatsappService] Erro ao verificar tabela:', tableError);
+        // Continuar mesmo com erro para tentar a consulta principal
+      }
+      
+      // Buscar os links dos grupos
       const { data, error } = await supabase
         .from('whatsapp_group_links')
         .select('*')
@@ -32,13 +66,20 @@ class WhatsappService {
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Erro ao buscar links de grupos do WhatsApp:', error);
-        throw error;
+        console.error('[whatsappService] Erro ao buscar links de grupos do WhatsApp:', error);
+        if (error.code === '42P01') {
+          throw new Error('A tabela de grupos do WhatsApp não existe no banco de dados');
+        } else if (error.code === '42501') {
+          throw new Error('Permissão negada ao acessar grupos do WhatsApp');
+        } else {
+          throw new Error(`Erro ao buscar grupos do WhatsApp: ${error.message}`);
+        }
       }
 
+      console.log(`[whatsappService] Encontrados ${data?.length || 0} grupos para a comunidade ${communityId}`);
       return data || [];
     } catch (error) {
-      console.error('Erro ao buscar links de grupos do WhatsApp:', error);
+      console.error('[whatsappService] Erro ao buscar links de grupos do WhatsApp:', error);
       throw error;
     }
   }

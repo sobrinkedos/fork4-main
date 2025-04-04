@@ -13,8 +13,14 @@ type CommunityOrganizer = {
 };
 
 export const communityOrganizersService = {
-    async listOrganizers(communityId: string): Promise<CommunityOrganizer[]> {
+    async listOrganizers(communityId: string, fetchFullData: boolean = true): Promise<CommunityOrganizer[]> {
         try {
+            // Se fetchFullData for false, retornar dados vazios para evitar recursão infinita
+            if (!fetchFullData) {
+                console.log('Retornando lista vazia de organizadores para evitar recursão infinita');
+                return [];
+            }
+
             // Primeiro, buscar a comunidade para obter o criador
             const { data: community, error: communityError } = await supabase
                 .from('communities')

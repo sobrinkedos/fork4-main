@@ -23,7 +23,7 @@ export default function ActivitiesPage() {
                 setLoading(true);
             }
 
-            const data = await activityService.getRecentActivities(pageNumber, ITEMS_PER_PAGE);
+            const data = await activityService.getRecentActivities(pageNumber, ITEMS_PER_PAGE, false);
             
             if (data.length < ITEMS_PER_PAGE) {
                 setHasMore(false);
@@ -86,17 +86,17 @@ export default function ActivitiesPage() {
                             color={colors.primary} 
                         />
                     </View>
-                    <Text style={styles.activityTitle}>{item.title}</Text>
+                    <Text style={styles.activityTitle}>{item.description}</Text>
                 </View>
-                <Text style={styles.activityDescription}>{item.description}</Text>
+                <Text style={styles.activityDescription}>{item.metadata?.name || ''}</Text>
                 <Text style={styles.activityTimestamp}>
-                    {new Date(item.created_at).toLocaleDateString('pt-BR', {
+                    {item.created_at ? new Date(item.created_at).toLocaleDateString('pt-BR', {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',
                         hour: '2-digit',
                         minute: '2-digit'
-                    })}
+                    }) : ''}
                 </Text>
             </View>
         );

@@ -1,0 +1,5 @@
+- 20250307_add_get_competition_by_id.sql
+- 20250308_fix_competition_members_policies.sql
+- 20250401_add_is_active_to_communities.sql
+- 20250402101718_whatsapp_integration.sql
+- 20250402_fix_communities_update_policy.sql
