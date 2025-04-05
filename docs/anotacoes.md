@@ -1,4 +1,4 @@
-Supabase
+Supabase - produção
 Projeto: domino
 https://supabase.com/dashboard/project/evakdtqrtpqiuqhetkqr/settings/api
 
@@ -15,3 +15,20 @@ anonpublic: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI
 
 service_rolesecret: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWtkdHFydHBxaXVxaGV0a3FyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTM2OTUyNCwiZXhwIjoyMDU0OTQ1NTI0fQ.TLgSEhrgsxhQ_png34HGvhCXbxY-xBo0YEpx8M6HCS0
 
+
+Supabase - desenvolvimento
+Projeto: domino_new
+https://supabase.com/dashboard/project/dwsnwsxdkekkaeabiqrw
+
+Conta: riltons@gmail.com
+
+Senha bd: l6oieWz4LtSuv8Uy
+
+Project Configuration
+Project URL
+URL: https://dwsnwsxdkekkaeabiqrw.supabase.co
+
+Project API Keys
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3c253c3hka2Vra2FlYWJpcXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM4MTQ2MTIsImV4cCI6MjA1OTM5MDYxMn0.xixg7V4Jqsny1kJMrJ6b49F5UtwuME9Lv4wY8AiTcxw
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3c253c3hka2Vra2FlYWJpcXJ3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MzgxNDYxMiwiZXhwIjoyMDU5MzkwNjEyfQ.7TE_sKGfsDjrz4VL1TfG7ACYJqZpwC822IBT8REJaYM

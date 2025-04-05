@@ -1,13 +1,13 @@
 # Gerenciamento de Ambientes no DominoApp
 
-Este documento descreve como o DominoApp gerencia diferentes ambientes (desenvolvimento e produção) para as configurações do Supabase e outras integrações, utilizando o recurso de Database Branching do Supabase.
+Este documento descreve como o DominoApp gerencia diferentes ambientes (desenvolvimento e produção) para as configurações do Supabase e outras integrações, utilizando dois projetos Supabase distintos.
 
 ## Estrutura de Arquivos
 
 O projeto utiliza os seguintes arquivos para gerenciar os ambientes:
 
-- `.env.development`: Contém as variáveis de ambiente para o ambiente de desenvolvimento
-- `.env.production`: Contém as variáveis de ambiente para o ambiente de produção
+- `.env.development`: Contém as variáveis de ambiente para o ambiente de desenvolvimento (banco `domino_new`)
+- `.env.production`: Contém as variáveis de ambiente para o ambiente de produção (banco `domino`)
 - `.env`: Arquivo gerado automaticamente pelo script de alternância de ambiente
 
 ## Variáveis de Ambiente
@@ -15,9 +15,9 @@ O projeto utiliza os seguintes arquivos para gerenciar os ambientes:
 As seguintes variáveis de ambiente são configuradas para cada ambiente:
 
 ### Supabase
-- `EXPO_PUBLIC_SUPABASE_URL`: URL da instância do Supabase
-- `EXPO_PUBLIC_SUPABASE_ANON_KEY`: Chave anônima para autenticação no Supabase
-- `EXPO_PUBLIC_SUPABASE_BRANCH`: Branch do banco de dados Supabase a ser utilizado (development ou main)
+- `EXPO_PUBLIC_SUPABASE_URL`: URL da instância do Supabase (diferente para cada ambiente)
+- `EXPO_PUBLIC_SUPABASE_ANON_KEY`: Chave anônima para autenticação no Supabase (diferente para cada ambiente)
+- `EXPO_PUBLIC_SUPABASE_BRANCH`: Mantido por compatibilidade, sempre definido como 'main'
 
 ### Integração com WhatsApp (N8N)
 - `N8N_BASE_URL`: URL base do servidor N8N
@@ -43,38 +43,34 @@ npm run env:prod
 
 Estes comandos copiam o arquivo de configuração correspondente (`.env.development` ou `.env.production`) para o arquivo `.env` que é utilizado pela aplicação.
 
-## Database Branching do Supabase
+## Estratégia de Ambientes Separados
 
-O projeto utiliza o recurso de Database Branching do Supabase para manter ambientes separados para desenvolvimento e produção. Isso permite testar alterações no banco de dados sem afetar o ambiente de produção.
+Devido às limitações do plano gratuito do Supabase, que não permite a criação de branches de banco de dados, adotamos uma estratégia alternativa para separar os ambientes de desenvolvimento e produção. Em vez de usar branches dentro de um único projeto Supabase, utilizamos dois projetos Supabase distintos:
 
-### Branches Disponíveis
+- **Ambiente de Desenvolvimento**: Projeto `domino_new` (https://dwsnwsxdkekkaeabiqrw.supabase.co)
+- **Ambiente de Produção**: Projeto `domino` (https://evakdtqrtpqiuqhetkqr.supabase.co)
 
-- `main`: Branch principal utilizado em produção
-- `development`: Branch de desenvolvimento para testes
+### Sincronização Entre Ambientes
 
-### Scripts para Gerenciamento de Branches
+Como estamos utilizando dois bancos de dados separados, é necessário sincronizar manualmente as alterações entre os ambientes. Recomendamos o seguinte fluxo de trabalho:
 
-O projeto inclui scripts para facilitar o gerenciamento dos branches do Supabase:
+1. Desenvolva e teste todas as alterações no ambiente de desenvolvimento
+2. Quando as alterações estiverem prontas para produção, crie scripts SQL para aplicar as mesmas alterações no banco de dados de produção
+3. Aplique os scripts SQL no ambiente de produção
+
+### Exemplo de Sincronização
 
 ```bash
-# Criar branch de desenvolvimento
-npm run supabase:create-dev
-
-# Sincronizar branch de desenvolvimento com o branch principal
-npm run supabase:sync-dev
-
-# Mesclar alterações do branch de desenvolvimento para o branch principal
-npm run supabase:merge-dev
-
-# Gerar script de migração
-npm run supabase:migration nome-da-migracao
+# 1. Crie um arquivo SQL com as alterações necessárias
+# 2. Conecte-se ao banco de dados de produção através do painel do Supabase
+# 3. Execute o script SQL no editor SQL do Supabase
 ```
 
 ### Documentação Detalhada
 
-Para mais informações sobre como utilizar o Database Branching do Supabase, consulte:
+Para mais informações sobre como gerenciar os ambientes separados, consulte:
 
-- [Guia de Database Branching](./supabase-database-branching.md)
+- [Estratégia de Ambientes](./estrategia-ambientes.md)
 - [Guia de Migração Entre Ambientes](./migracao-entre-ambientes.md)
 
 ## Configuração no Vercel
@@ -93,3 +89,5 @@ As variáveis de ambiente devem ser configuradas no painel do Vercel para cada a
 2. Mantenha uma cópia de backup dos arquivos `.env.*` em um local seguro.
 3. Ao adicionar novas variáveis de ambiente, atualize ambos os arquivos `.env.development` e `.env.production`.
 4. Ao implantar em produção, verifique se as variáveis de ambiente estão corretamente configuradas no Vercel.
+5. Documente todas as alterações de esquema para facilitar a sincronização entre ambientes.
+6. Considere criar scripts de migração para automatizar a sincronização entre ambientes.

@@ -5,7 +5,8 @@ import { Platform } from 'react-native';
 import { Database } from '@/types';
 
 // Valores de fallback para quando as variáveis de ambiente não estiverem disponíveis no APK
-const FALLBACK_SUPABASE_URL = 'https://evakdtqrtpqiuqhetkqr.supabase.co';
+// Usando os valores de produção como fallback
+const FALLBACK_SUPABASE_URL = 'https://evakdtqrtpqiuqhetkqr.supabase.co'; // Banco: domino (produção)
 const FALLBACK_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YWtkdHFydHBxaXVxaGV0a3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzNjk1MjQsImV4cCI6MjA1NDk0NTUyNH0.Ms4VB9QGBBcWMZPJ5j5Oanl3RD1SeECp7twFb_riPAI';
 const FALLBACK_SUPABASE_BRANCH = 'main';
 
@@ -21,7 +22,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
     console.log('BRANCH:', supabaseBranch);
 }
 console.log('Variáveis de ambiente do Supabase verificadas com sucesso');
-console.log(`Conectando ao branch: ${supabaseBranch}`);
+console.log(`Conectando ao ambiente: ${supabaseUrl.includes('dwsnwsxdkekkaeabiqrw') ? 'DESENVOLVIMENTO (domino_new)' : 'PRODUÇÃO (domino)'}`);
+console.log(`Branch: ${supabaseBranch}`);
 
 // Adapter para web
 const webAdapter = {

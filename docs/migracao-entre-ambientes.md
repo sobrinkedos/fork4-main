@@ -1,6 +1,6 @@
 # Guia de Migração Entre Ambientes no DominoApp
 
-Este documento fornece um guia passo a passo sobre como testar alterações no ambiente de desenvolvimento e depois aplicá-las com segurança no ambiente de produção utilizando o Database Branching do Supabase.
+Este documento fornece um guia passo a passo sobre como testar alterações no ambiente de desenvolvimento e depois aplicá-las com segurança no ambiente de produção utilizando dois projetos Supabase separados.
 
 ## Visão Geral do Processo
 
@@ -18,7 +18,7 @@ Antes de iniciar o processo de migração, certifique-se de que:
 
 - Você tem acesso aos ambientes de desenvolvimento e produção do Supabase
 - A Supabase CLI está instalada e configurada corretamente
-- Os branches de desenvolvimento e produção estão configurados
+- Os dois projetos Supabase (desenvolvimento e produção) estão configurados
 
 ## Passo a Passo
 
@@ -27,12 +27,9 @@ Antes de iniciar o processo de migração, certifique-se de que:
 ```bash
 # Alternar para o ambiente de desenvolvimento
 npm run env:dev
-
-# Sincronizar o branch de desenvolvimento com o branch principal (caso necessário)
-npm run supabase:sync-dev
 ```
 
-Este passo garante que você está trabalhando com uma cópia atualizada do banco de dados de produção.
+Este passo garante que você está trabalhando com o ambiente de desenvolvimento correto.
 
 ### 2. Desenvolvimento e Teste
 
@@ -69,11 +66,11 @@ Revise cuidadosamente o script de migração gerado para garantir que ele faz ex
 Após revisar e validar o script de migração, aplique-o ao ambiente de produção:
 
 ```bash
-# Mesclar alterações do branch de desenvolvimento para o branch principal
-npm run supabase:merge-dev
-
 # Alternar para o ambiente de produção
 npm run env:prod
+
+# Aplicar o script de migração manualmente no ambiente de produção
+# através do editor SQL do Supabase ou usando a CLI
 ```
 
 ### 6. Verificação em Produção
@@ -111,11 +108,11 @@ Verifique se as alterações foram aplicadas corretamente no ambiente de produç
 
 ### Conflitos de Migração
 
-Se ocorrerem conflitos durante a mesclagem de branches:
+Se ocorrerem problemas durante a aplicação das migrações:
 
-1. Execute `npx supabase db branch conflicts development` para identificar os conflitos
-2. Resolva os conflitos manualmente editando os scripts de migração
-3. Tente mesclar novamente
+1. Verifique se o script SQL está correto e compatível com o ambiente de produção
+2. Resolva os problemas manualmente editando os scripts de migração
+3. Tente aplicar novamente
 
 ### Reversão de Alterações
 
@@ -141,6 +138,5 @@ Se uma migração causar problemas em produção:
 
 ## Referências
 
-- [Documentação do Supabase sobre Database Branching](https://supabase.com/docs/guides/platform/branching)
 - [Documentação do Supabase sobre Migrações](https://supabase.com/docs/guides/cli/migrations)
-- [Guia de Database Branching do DominoApp](./supabase-database-branching.md)
+- [Estratégia de Ambientes do DominoApp](./estrategia-ambientes.md)
