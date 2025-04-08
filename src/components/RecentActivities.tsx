@@ -14,7 +14,7 @@ export function RecentActivities() {
 
     async function loadRecentActivities() {
         try {
-            const data = await activityService.getRecentActivities();
+            const data = await activityService.getRecentActivities(1, 10, false);
             setActivities(data);
         } catch (error) {
             console.error('Erro ao carregar atividades recentes:', error);

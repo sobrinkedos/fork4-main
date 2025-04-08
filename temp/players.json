@@ -1,0 +1,302 @@
+[
+  {
+    "id": "3bf8e484-b230-4e01-b702-96b4ff36c053",
+    "name": "Maria",
+    "nickname": null,
+    "phone": "87996498211",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:27:34.903113+00:00",
+    "updated_at": "2025-03-29T22:27:34.903113+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "name": "Liege",
+    "nickname": null,
+    "phone": "87996112144",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:03:56.579534+00:00",
+    "updated_at": "2025-03-07T02:03:56.579534+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/58815c9c-8651-442d-9d89-edb8024219d2/1742051235652.jpeg"
+  },
+  {
+    "id": "3f19eb53-053a-486c-8688-9fb073a219fa",
+    "name": "Ronaldo",
+    "nickname": null,
+    "phone": "87999880423",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:24:40.631434+00:00",
+    "updated_at": "2025-03-29T22:24:40.631434+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/3f19eb53-053a-486c-8688-9fb073a219fa/1743329140973.jpeg"
+  },
+  {
+    "id": "52e2cb74-57ce-4178-bef8-daf83b7db243",
+    "name": "Sandro",
+    "nickname": null,
+    "phone": "87981364146",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:26:01.475618+00:00",
+    "updated_at": "2025-03-29T22:26:01.475618+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/52e2cb74-57ce-4178-bef8-daf83b7db243/1743329234640.jpeg"
+  },
+  {
+    "id": "54ea271b-1126-4754-a9c1-6cb56624e4dc",
+    "name": "Ivan",
+    "nickname": null,
+    "phone": "82999068071",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-08T13:21:44.515777+00:00",
+    "updated_at": "2025-03-08T13:21:44.515777+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/54ea271b-1126-4754-a9c1-6cb56624e4dc/1743329338275.jpeg"
+  },
+  {
+    "id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "name": "Bruna",
+    "nickname": null,
+    "phone": "87999502223",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:02:47.398174+00:00",
+    "updated_at": "2025-03-07T02:02:47.398174+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/753e873f-bc1e-4908-b0ea-4da03803a548/1742058966180.jpeg"
+  },
+  {
+    "id": "103e44fa-a9cd-4c02-a77e-7c7a328185e9",
+    "name": "Ivanzinho",
+    "nickname": null,
+    "phone": "82999761795",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-08T13:22:12.362167+00:00",
+    "updated_at": "2025-03-08T13:22:12.362167+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/103e44fa-a9cd-4c02-a77e-7c7a328185e9/1743329360673.jpeg"
+  },
+  {
+    "id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "name": "Iuri",
+    "nickname": null,
+    "phone": "87981663634",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:05:14.013863+00:00",
+    "updated_at": "2025-03-07T02:05:14.013863+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe/1742262942164.jpeg"
+  },
+  {
+    "id": "359d02e5-0d8b-4da4-8fa3-9bd99305746c",
+    "name": "Wanessa",
+    "nickname": null,
+    "phone": "82996586146",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-08T13:22:58.506002+00:00",
+    "updated_at": "2025-03-08T13:22:58.506002+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/359d02e5-0d8b-4da4-8fa3-9bd99305746c/1743329390217.jpeg"
+  },
+  {
+    "id": "47c5c234-e5bc-413b-b564-3f574fd7803b",
+    "name": "Thays",
+    "nickname": null,
+    "phone": "87999101229",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:06:42.537421+00:00",
+    "updated_at": "2025-03-07T02:06:42.537421+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/47c5c234-e5bc-413b-b564-3f574fd7803b/1742263046050.jpeg"
+  },
+  {
+    "id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "name": "Beta",
+    "nickname": null,
+    "phone": "87998040941",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:05:56.019617+00:00",
+    "updated_at": "2025-03-07T02:05:56.019617+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/1637ccd3-f390-478a-863a-4b9e810831e3/1742263120104.jpeg"
+  },
+  {
+    "id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "name": "Gabriel",
+    "nickname": "Biel",
+    "phone": "87999465437",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:03:34.332993+00:00",
+    "updated_at": "2025-03-07T02:03:34.332993+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/501d4f90-f56d-4603-aba1-9d184b087975/1742051364587.jpeg"
+  },
+  {
+    "id": "622bf66f-d16b-4a3e-b11d-9bfb560c960c",
+    "name": "Meyre",
+    "nickname": null,
+    "phone": "87922222222",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T23:44:08.8979+00:00",
+    "updated_at": "2025-03-29T23:44:08.8979+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/622bf66f-d16b-4a3e-b11d-9bfb560c960c/1743329494879.jpeg"
+  },
+  {
+    "id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "name": "Bianca",
+    "nickname": "Bia",
+    "phone": "87996602017",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:02:16.520452+00:00",
+    "updated_at": "2025-03-07T02:02:16.520452+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df/1742621119623.jpeg"
+  },
+  {
+    "id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "name": "Rilton",
+    "nickname": "Rilton",
+    "phone": "87988380013",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T01:54:08.596426+00:00",
+    "updated_at": "2025-03-07T01:54:08.596426+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/1d3e9f41-ac95-438b-a556-76a8f118d6d9/1742051157143.jpeg"
+  },
+  {
+    "id": "c44239d3-0fe2-4117-a9f6-82831b02f9a8",
+    "name": "Silvio",
+    "nickname": "",
+    "phone": "87888888888",
+    "created_by": "cab165aa-29f5-41f9-8da8-58986cdcce07",
+    "created_at": "2025-03-22T12:41:31.204194+00:00",
+    "updated_at": "2025-03-22T12:41:31.204194+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "name": "Cicero",
+    "nickname": null,
+    "phone": "87999999999",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:04:21.430726+00:00",
+    "updated_at": "2025-03-07T02:04:21.430726+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "0df328b5-68a8-42cc-9ea9-820229a563f6",
+    "name": "Sonita",
+    "nickname": null,
+    "phone": "87999880212",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:28:56.594215+00:00",
+    "updated_at": "2025-03-29T22:28:56.594215+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/0df328b5-68a8-42cc-9ea9-820229a563f6/1743329579129.jpeg"
+  },
+  {
+    "id": "0ec4230f-76e3-40e9-afee-925ec571bf6a",
+    "name": "Arlan",
+    "nickname": null,
+    "phone": "82999999999",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-08T13:23:27.751664+00:00",
+    "updated_at": "2025-03-08T13:23:27.751664+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "name": "M1",
+    "nickname": null,
+    "phone": "99999999999",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-10T09:46:22.744574+00:00",
+    "updated_at": "2025-03-10T09:46:22.744574+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "name": "M3",
+    "nickname": null,
+    "phone": "9999999992",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-10T09:47:04.482434+00:00",
+    "updated_at": "2025-03-10T09:47:04.482434+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "name": "M4",
+    "nickname": null,
+    "phone": "99999999994",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-10T09:47:36.344591+00:00",
+    "updated_at": "2025-03-10T09:47:36.344591+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "name": "Mader",
+    "nickname": "",
+    "phone": "87985638521",
+    "created_by": "d05a7850-2b85-4f57-8b2a-76716c375905",
+    "created_at": "2025-03-11T03:30:51.197774+00:00",
+    "updated_at": "2025-03-11T03:30:51.197774+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "name": "M2",
+    "nickname": null,
+    "phone": "99999999991",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-10T09:46:42.305919+00:00",
+    "updated_at": "2025-03-10T09:46:42.305919+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/21f7d11f-33da-4e13-ac21-2997c4bfc252/1742941461619.jpeg"
+  },
+  {
+    "id": "4f66056d-98ae-4604-9a8d-a58198b5287a",
+    "name": "Rodrigo",
+    "nickname": null,
+    "phone": "87998097388",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:33:28.793878+00:00",
+    "updated_at": "2025-03-29T22:33:28.793878+00:00",
+    "avatar_url": "https://evakdtqrtpqiuqhetkqr.supabase.co/storage/v1/object/public/player-avatars/4f66056d-98ae-4604-9a8d-a58198b5287a/1743329666846.jpeg"
+  },
+  {
+    "id": "83426315-90f0-48d6-a84c-009ec85fdb2c",
+    "name": "Naiara",
+    "nickname": null,
+    "phone": "87999412458",
+    "created_by": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "created_at": "2025-03-30T18:28:57.10633+00:00",
+    "updated_at": "2025-03-30T18:28:57.10633+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "2f80edd3-91b9-4dd5-8aeb-a58616fa4da9",
+    "name": "Juliellyson",
+    "nickname": null,
+    "phone": "87996078860",
+    "created_by": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "created_at": "2025-03-30T18:29:27.832226+00:00",
+    "updated_at": "2025-03-30T18:29:27.832226+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "fd3416f3-a949-4712-91d5-bcc0e17a24d1",
+    "name": "André",
+    "nickname": null,
+    "phone": "81992040044",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:26:38.267769+00:00",
+    "updated_at": "2025-03-29T22:26:38.267769+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "3a32c2bd-1874-49b7-8021-41d16118e2fe",
+    "name": "Wellington",
+    "nickname": null,
+    "phone": "87999676710",
+    "created_by": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "created_at": "2025-03-30T22:16:03.098412+00:00",
+    "updated_at": "2025-03-30T22:16:03.098412+00:00",
+    "avatar_url": null
+  },
+  {
+    "id": "65b965cc-a0bc-4cf5-bc23-908a36c04095",
+    "name": "M5",
+    "nickname": null,
+    "phone": "99999999993",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-04-04T03:04:37.558716+00:00",
+    "updated_at": "2025-04-04T03:04:37.558716+00:00",
+    "avatar_url": null
+  }
+]

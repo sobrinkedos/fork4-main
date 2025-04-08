@@ -1,0 +1,65 @@
+[
+  {
+    "id": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "name": "Rilton",
+    "email": "riltons@gmail.com",
+    "created_at": "2025-03-07T01:53:37.771114+00:00",
+    "updated_at": "2025-03-07T01:53:37.092+00:00"
+  },
+  {
+    "id": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "name": "Malu",
+    "email": "malu@gmail.com",
+    "created_at": "2025-03-10T09:44:51.234772+00:00",
+    "updated_at": "2025-03-10T09:44:51.027+00:00"
+  },
+  {
+    "id": "d05a7850-2b85-4f57-8b2a-76716c375905",
+    "name": "Mader",
+    "email": "mader@gmail.com",
+    "created_at": "2025-03-11T03:12:14.902732+00:00",
+    "updated_at": "2025-03-11T03:12:14.721+00:00"
+  },
+  {
+    "id": "1f2aacf6-c763-4b7f-a7b4-71f07e329dc5",
+    "name": "Gabriel",
+    "email": "sobrinkedos@gmail.com",
+    "created_at": "2025-03-11T03:34:28.188431+00:00",
+    "updated_at": "2025-03-11T03:34:27.57+00:00"
+  },
+  {
+    "id": "b0516839-e46f-4ccb-bb9b-9bf7e7b79b96",
+    "name": "val",
+    "email": "val@gmail.com",
+    "created_at": "2025-03-11T09:36:43.656273+00:00",
+    "updated_at": "2025-03-11T09:36:42.991+00:00"
+  },
+  {
+    "id": "79fd7f1a-25c3-4b6b-ad6b-859572631c47",
+    "name": "Liege",
+    "email": "liege.lima@hotmail.com",
+    "created_at": "2025-03-11T09:41:08.371376+00:00",
+    "updated_at": "2025-03-11T09:41:07.702+00:00"
+  },
+  {
+    "id": "fdec5df1-60a7-4ae5-a735-e76d651e9b70",
+    "name": "Arlan",
+    "email": "arlan@gmail.com",
+    "created_at": "2025-03-11T12:28:34.939048+00:00",
+    "updated_at": "2025-03-11T12:28:34.709+00:00"
+  },
+  {
+    "id": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "name": "Iuri Andrade de Melo ",
+    "email": "iuri.andrade123@hotmail.com",
+    "created_at": "2025-03-13T23:51:12.749304+00:00",
+    "updated_at": "2025-03-13T23:51:12.537+00:00"
+  },
+  {
+    "id": "cab165aa-29f5-41f9-8da8-58986cdcce07",
+    "name": "Silvio",
+    "email": "silvio@gmail.com",
+    "created_at": "2025-03-22T12:40:53.077173+00:00",
+    "updated_at": "2025-03-22T12:40:52.829+00:00"
+  }
+]

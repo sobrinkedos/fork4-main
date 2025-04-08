@@ -193,8 +193,8 @@ export default function Jogadores() {
     const loadPlayers = async () => {
         setLoading(true);
         try {
-            // Buscando jogadores com fetchStats = false, pois as estatísticas não são necessárias nessa página
-            const { myPlayers: my, communityPlayers: community } = await playerService.list(false);
+            // Buscando jogadores com fetchStats = true, pois as estatísticas são necessárias nessa página
+            const { myPlayers: my, communityPlayers: community } = await playerService.list(true);
             setMyPlayers(my);
             setCommunityPlayers(community);
         } catch (error) {

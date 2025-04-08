@@ -1,0 +1,1040 @@
+[
+  {
+    "id": "d78b547f-d498-4746-986a-bbc0dff15e0b",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-07T02:11:06.092129+00:00"
+  },
+  {
+    "id": "ab5fd671-39b3-4350-9d4f-5b14cc5d99d6",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-07T02:11:06.913732+00:00"
+  },
+  {
+    "id": "b4b23af1-344d-4ff9-8b86-df5a447c667a",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "created_at": "2025-03-07T02:11:08.114535+00:00"
+  },
+  {
+    "id": "a854e195-bd6a-4cea-8de4-8f51598af898",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-07T02:11:08.667724+00:00"
+  },
+  {
+    "id": "aee7d1aa-f651-49a2-a415-07fd95e6e015",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-07T02:11:09.207323+00:00"
+  },
+  {
+    "id": "ef62267b-56dc-448c-a10a-ca1339a52957",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-07T02:11:09.763947+00:00"
+  },
+  {
+    "id": "f623c717-4575-4c07-9bc7-3adbc4870973",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-07T02:11:10.250221+00:00"
+  },
+  {
+    "id": "eb32da56-a033-4fee-bfe7-6bebfbdef045",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "47c5c234-e5bc-413b-b564-3f574fd7803b",
+    "created_at": "2025-03-07T02:11:10.612192+00:00"
+  },
+  {
+    "id": "9d19328a-86ee-43c5-ae48-e1b732d3cd26",
+    "competition_id": "df256b9e-1128-40d9-ba11-15070617d12b",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-07T02:11:11.271362+00:00"
+  },
+  {
+    "id": "821fbe59-d979-4af5-b40c-2f0f0eee8c95",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-07T20:35:15.626006+00:00"
+  },
+  {
+    "id": "fe032c83-ce1d-4a8a-8c15-abb1e4628bb1",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-07T20:35:22.456105+00:00"
+  },
+  {
+    "id": "be3a9ea2-21c9-407d-9f97-c9715e583a3a",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-07T20:35:28.575142+00:00"
+  },
+  {
+    "id": "b9b2ee18-e6e3-42a9-b788-baa2fdde0769",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-07T20:35:31.14197+00:00"
+  },
+  {
+    "id": "2d4df190-aceb-4193-ba98-3b3e13c1c774",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-07T20:36:24.079519+00:00"
+  },
+  {
+    "id": "65c145b6-d133-49f9-b144-e5da5841f0e3",
+    "competition_id": "5feb2834-7052-46cb-a0e8-a40601231144",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-07T20:38:50.624829+00:00"
+  },
+  {
+    "id": "f69e32a0-0c02-4058-8346-29494e30d332",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-08T11:36:38.715361+00:00"
+  },
+  {
+    "id": "159c246b-9403-435b-b1c3-da2bdf102ef7",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T11:36:40.227109+00:00"
+  },
+  {
+    "id": "2ec308e4-adf3-4c4c-9711-7540892178e6",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T11:36:42.4754+00:00"
+  },
+  {
+    "id": "dd6ee278-600a-498e-8e15-17d27f7b3bae",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T11:36:44.134113+00:00"
+  },
+  {
+    "id": "b22fdec0-2243-4629-aac3-1a8c55d3e909",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T11:36:47.143082+00:00"
+  },
+  {
+    "id": "78c97c6d-abea-4cf1-b9fd-99d3a136a26f",
+    "competition_id": "d8555997-3565-4e02-9b6e-e7314d481c8e",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T11:36:48.690429+00:00"
+  },
+  {
+    "id": "cecc749e-5818-4f5d-aa68-b58d979a0407",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T12:25:14.531432+00:00"
+  },
+  {
+    "id": "0ff4e773-c45e-4838-8cfb-7ba8e6500e3a",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-08T12:25:15.396125+00:00"
+  },
+  {
+    "id": "2f15ceff-50b3-40c2-b583-b0406283ceb0",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T12:25:17.88919+00:00"
+  },
+  {
+    "id": "3022cec0-7cd5-41c1-9d97-92085fe0ea4d",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T12:25:19.32282+00:00"
+  },
+  {
+    "id": "883c7791-0c1a-4370-b74e-877bd0c391e9",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T12:25:20.917053+00:00"
+  },
+  {
+    "id": "11b34bb4-8c8c-49a1-9be0-40dde602ac98",
+    "competition_id": "7647fe58-15e1-421c-a889-049f0edf3e84",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T12:25:21.964285+00:00"
+  },
+  {
+    "id": "54355751-a33e-48ba-95d4-5ab4286267ca",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-08T12:38:06.559944+00:00"
+  },
+  {
+    "id": "92ad35a1-5ff3-4ffa-9c83-fd29af0eac63",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "created_at": "2025-03-08T12:38:23.340032+00:00"
+  },
+  {
+    "id": "a2159af8-d8c2-4ed9-96b6-4127e26aa4f1",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T12:38:27.331425+00:00"
+  },
+  {
+    "id": "56c8e8f3-a9ec-4c66-9e10-ed7d4b6b1aeb",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T12:38:31.071776+00:00"
+  },
+  {
+    "id": "336c6f50-ebfc-4edb-8686-0a22905f4f1a",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T12:38:34.138773+00:00"
+  },
+  {
+    "id": "1fd286db-8da9-4992-9003-5d4bebdde1b7",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T12:38:35.844314+00:00"
+  },
+  {
+    "id": "ad2bf7e7-41b7-4118-b8d0-3f9adc4ebd46",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "47c5c234-e5bc-413b-b564-3f574fd7803b",
+    "created_at": "2025-03-08T12:38:38.386128+00:00"
+  },
+  {
+    "id": "afa5b619-c1c4-492d-8961-6fc4a8598562",
+    "competition_id": "a5ae1d55-db90-47a5-9e37-001f6678aa0b",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T12:38:53.165759+00:00"
+  },
+  {
+    "id": "84e1fe94-7c40-47cf-9d49-a626dae739a6",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-08T13:25:31.704012+00:00"
+  },
+  {
+    "id": "0a6d6d02-2e4b-48a0-943c-073a75665828",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T13:25:34.567355+00:00"
+  },
+  {
+    "id": "5ac373dc-519c-4ad3-94bc-ef9f93323a4e",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T13:25:36.793792+00:00"
+  },
+  {
+    "id": "6718ac06-01cc-43d3-9358-c73b04fcee50",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T13:25:40.051575+00:00"
+  },
+  {
+    "id": "35f2ecea-85ec-465b-811e-b9a5017e8981",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "0ec4230f-76e3-40e9-afee-925ec571bf6a",
+    "created_at": "2025-03-08T13:31:23.320044+00:00"
+  },
+  {
+    "id": "c58a637d-ab51-44a2-8cc4-babfdc9c5461",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "54ea271b-1126-4754-a9c1-6cb56624e4dc",
+    "created_at": "2025-03-08T13:31:25.313426+00:00"
+  },
+  {
+    "id": "d6c3eac2-796d-4bad-b001-0d6cc6b8af6d",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "103e44fa-a9cd-4c02-a77e-7c7a328185e9",
+    "created_at": "2025-03-08T13:31:26.952932+00:00"
+  },
+  {
+    "id": "8f359a55-dd5d-4c8f-9d83-e0d98b235690",
+    "competition_id": "ba7b708f-500f-4a1b-a8ba-fe5f48e5d95e",
+    "player_id": "359d02e5-0d8b-4da4-8fa3-9bd99305746c",
+    "created_at": "2025-03-08T13:31:29.222637+00:00"
+  },
+  {
+    "id": "882efa2b-94bb-433a-a1df-8763201f21aa",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T20:10:59.06599+00:00"
+  },
+  {
+    "id": "6c7ca285-3403-4db6-9e2f-435a15f81fef",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T20:11:03.427686+00:00"
+  },
+  {
+    "id": "9ae6a6c1-e825-4f9f-b594-033939ea36ad",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-08T20:11:08.871471+00:00"
+  },
+  {
+    "id": "318497b4-3b7f-4b5a-906f-3a0fd7d003a1",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T20:11:11.220517+00:00"
+  },
+  {
+    "id": "cd3ea65b-624d-41fd-9d14-64fe20492b56",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T20:11:14.7999+00:00"
+  },
+  {
+    "id": "4d98ea77-8bcf-4255-8f4b-be9d35959e04",
+    "competition_id": "5559ae9a-1ac4-4e6b-86c1-97026c3447ef",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T20:11:16.003128+00:00"
+  },
+  {
+    "id": "bcd69236-a853-4db4-8bbc-2fd1edd7405c",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T20:25:13.441103+00:00"
+  },
+  {
+    "id": "c4133f5e-a6e5-404e-96f0-679235d3d200",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T20:25:15.86483+00:00"
+  },
+  {
+    "id": "499c3efa-a989-4b1f-848f-c03a4e8ba630",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T20:25:19.858858+00:00"
+  },
+  {
+    "id": "f26deacf-59c5-4244-a8b8-4c929ecd0fb8",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T20:25:24.132437+00:00"
+  },
+  {
+    "id": "2177be22-d857-4bb1-ba37-80df50fcd495",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-08T20:25:28.995917+00:00"
+  },
+  {
+    "id": "263480c5-4c18-4216-b803-adc122870baa",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "47c5c234-e5bc-413b-b564-3f574fd7803b",
+    "created_at": "2025-03-08T20:25:37.10129+00:00"
+  },
+  {
+    "id": "ae444ce8-2f97-42e6-a97e-cf154ead9dcc",
+    "competition_id": "83dfcea0-cbe4-4a29-8bf5-fdc19b13d15e",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T20:25:45.384709+00:00"
+  },
+  {
+    "id": "65c7dacf-c5fe-40d0-8d76-5982f87eb6ed",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-08T20:49:20.158977+00:00"
+  },
+  {
+    "id": "d15f5d58-e02a-492c-8b02-43720f74312d",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-08T20:49:23.237706+00:00"
+  },
+  {
+    "id": "b392e2ba-4dc4-4b84-8d99-9c8598a7b6a1",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-08T20:49:28.79193+00:00"
+  },
+  {
+    "id": "f5ecebc9-1133-49c7-b407-62302077043b",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-08T20:49:32.236582+00:00"
+  },
+  {
+    "id": "bfdb5c7a-4b8b-420f-982b-4c87b4347490",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-08T20:49:35.591633+00:00"
+  },
+  {
+    "id": "c9030372-f315-40dc-ac9e-2422be642e77",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-08T20:49:40.084728+00:00"
+  },
+  {
+    "id": "e15597e3-24af-46d0-bc42-8c9443a1fab9",
+    "competition_id": "d538c647-7d02-4aa0-948f-408f6de38b0d",
+    "player_id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "created_at": "2025-03-08T20:49:43.712091+00:00"
+  },
+  {
+    "id": "aaf6988f-f889-4862-9293-a3034b4d5bf2",
+    "competition_id": "04232249-4db2-4c3a-a158-2de2c57bcb1e",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-09T20:54:19.097887+00:00"
+  },
+  {
+    "id": "7cab9d84-24f3-4670-8bb4-55e35393d227",
+    "competition_id": "04232249-4db2-4c3a-a158-2de2c57bcb1e",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-09T20:54:22.060691+00:00"
+  },
+  {
+    "id": "813145b3-5d31-427e-9874-2cf053a818f3",
+    "competition_id": "04232249-4db2-4c3a-a158-2de2c57bcb1e",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-09T20:54:26.794438+00:00"
+  },
+  {
+    "id": "24091a12-34dd-4e8a-9e1e-3ecb9030e35c",
+    "competition_id": "04232249-4db2-4c3a-a158-2de2c57bcb1e",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-09T20:54:38.057318+00:00"
+  },
+  {
+    "id": "790b731b-bb51-4d19-80df-9a1a84ce5198",
+    "competition_id": "04232249-4db2-4c3a-a158-2de2c57bcb1e",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-09T20:54:44.890369+00:00"
+  },
+  {
+    "id": "3fd4318b-8909-4372-81bc-4f65dd6e426e",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-09T21:42:34.211734+00:00"
+  },
+  {
+    "id": "c6544a9a-75bc-42f5-b31f-1235290f8a1c",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-09T21:42:38.792966+00:00"
+  },
+  {
+    "id": "e8d81594-ab7d-42b2-9546-de7e99e0d184",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-09T21:43:12.818565+00:00"
+  },
+  {
+    "id": "0628b82f-bc29-4965-b737-86780fae1482",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-09T21:43:24.727601+00:00"
+  },
+  {
+    "id": "92891ea1-aefd-44d1-9f39-84900f5da2a7",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-09T21:43:30.002946+00:00"
+  },
+  {
+    "id": "c37cd3e8-089c-414b-9f43-251d83648620",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-09T21:43:32.683615+00:00"
+  },
+  {
+    "id": "5238e6a9-8f77-4743-a105-31e69d70ae0d",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-09T21:43:34.54526+00:00"
+  },
+  {
+    "id": "976b706e-53db-4b93-bc1f-cca6ab586d58",
+    "competition_id": "d63465cc-709f-4809-8e91-ecf48f97361a",
+    "player_id": "47c5c234-e5bc-413b-b564-3f574fd7803b",
+    "created_at": "2025-03-09T21:43:37.399183+00:00"
+  },
+  {
+    "id": "0fc4be3c-dcc2-46d9-918c-582fdab2084f",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-10T01:05:41.862207+00:00"
+  },
+  {
+    "id": "dd3612d9-3c66-4041-9dc4-e4b9f6f6b928",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-10T01:05:46.838152+00:00"
+  },
+  {
+    "id": "0bc23e32-bf1e-4a7b-92b3-09b2254ee81f",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-10T01:05:51.213568+00:00"
+  },
+  {
+    "id": "72f3e3e5-9f7a-489c-a9c8-f6ee8cdc24ac",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-10T01:06:01.790807+00:00"
+  },
+  {
+    "id": "8a6e70cf-cea3-4dec-addf-c3e9f981161f",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-10T01:06:05.580965+00:00"
+  },
+  {
+    "id": "a37ddce1-5535-404c-984a-cc6ea3801166",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-10T01:06:07.916793+00:00"
+  },
+  {
+    "id": "42b62405-bfb3-4330-b7b9-ce4d7fd20908",
+    "competition_id": "69429c64-bb22-4993-a0d1-4bc155a46659",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-10T01:06:09.200058+00:00"
+  },
+  {
+    "id": "c1be9091-9aa3-4677-a70f-aed92588c3c5",
+    "competition_id": "e3696a9f-a8a0-4988-96f6-93ea96be8877",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-10T01:31:12.373363+00:00"
+  },
+  {
+    "id": "6a80adfa-5fec-429c-a848-f5c7ea038e1b",
+    "competition_id": "e3696a9f-a8a0-4988-96f6-93ea96be8877",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-10T01:31:17.491908+00:00"
+  },
+  {
+    "id": "380390d0-827c-4575-9eba-d20f6274aa6f",
+    "competition_id": "e3696a9f-a8a0-4988-96f6-93ea96be8877",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-10T01:31:20.434889+00:00"
+  },
+  {
+    "id": "50a7938e-be96-4c35-a1d7-639e2a0dc2a1",
+    "competition_id": "e3696a9f-a8a0-4988-96f6-93ea96be8877",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-10T01:31:22.33478+00:00"
+  },
+  {
+    "id": "a93ddb54-d149-4550-a712-0d7fe87e46a0",
+    "competition_id": "e3696a9f-a8a0-4988-96f6-93ea96be8877",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-10T01:31:23.81125+00:00"
+  },
+  {
+    "id": "033e665d-bcbf-4aaa-a5bf-3c5e4c21bcd8",
+    "competition_id": "d87c75ac-7019-4a1e-8a65-47122b7ea19e",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-10T01:51:33.208728+00:00"
+  },
+  {
+    "id": "0c8c245e-fe21-4967-9f0a-655ab4c3a5fd",
+    "competition_id": "d87c75ac-7019-4a1e-8a65-47122b7ea19e",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-10T01:51:36.133101+00:00"
+  },
+  {
+    "id": "49f434f6-2840-488c-a027-30929758b941",
+    "competition_id": "d87c75ac-7019-4a1e-8a65-47122b7ea19e",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-10T01:51:38.158061+00:00"
+  },
+  {
+    "id": "a4549b14-e84d-40dd-ae47-d9f8561e325d",
+    "competition_id": "d87c75ac-7019-4a1e-8a65-47122b7ea19e",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-10T01:51:39.048141+00:00"
+  },
+  {
+    "id": "5d40a433-482c-49db-bf2a-ec534f5ec283",
+    "competition_id": "8530cf53-54b9-47d0-ad58-0abdeb866dd4",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-03-10T09:49:40.768095+00:00"
+  },
+  {
+    "id": "8ba88277-7b59-4171-8fb7-2c3c4433f013",
+    "competition_id": "8530cf53-54b9-47d0-ad58-0abdeb866dd4",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-03-10T09:49:40.772201+00:00"
+  },
+  {
+    "id": "5025d51e-163c-459d-8612-c9df6560f2a5",
+    "competition_id": "8530cf53-54b9-47d0-ad58-0abdeb866dd4",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-03-10T09:49:40.856244+00:00"
+  },
+  {
+    "id": "040ab799-efd8-44b4-bb42-8ed29448cc01",
+    "competition_id": "8530cf53-54b9-47d0-ad58-0abdeb866dd4",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-03-10T09:49:43.805795+00:00"
+  },
+  {
+    "id": "89e588e1-b8c9-4ea8-be04-fc7edab92c28",
+    "competition_id": "8530cf53-54b9-47d0-ad58-0abdeb866dd4",
+    "player_id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "created_at": "2025-03-11T03:31:32.468824+00:00"
+  },
+  {
+    "id": "f0be3658-2f5d-435d-8e0d-43f0f7f32799",
+    "competition_id": "d932da95-cc6d-4b44-9d8e-c543a4fe2184",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-14T00:01:59.616125+00:00"
+  },
+  {
+    "id": "80e78020-e9cd-4933-9428-e2efa0ecc16a",
+    "competition_id": "d932da95-cc6d-4b44-9d8e-c543a4fe2184",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-14T00:02:00.625717+00:00"
+  },
+  {
+    "id": "51be5406-3516-4366-9269-bec5847558ca",
+    "competition_id": "d932da95-cc6d-4b44-9d8e-c543a4fe2184",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-14T00:02:03.761002+00:00"
+  },
+  {
+    "id": "a533c5f2-627f-4baf-870c-934f78bb7c14",
+    "competition_id": "d932da95-cc6d-4b44-9d8e-c543a4fe2184",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-14T00:02:06.759611+00:00"
+  },
+  {
+    "id": "e2232288-9a3b-4de6-9b22-e90f0b581d29",
+    "competition_id": "f0ab2103-b066-4b9b-a1ad-31e189f5926b",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-15T17:38:12.670909+00:00"
+  },
+  {
+    "id": "69298ad9-2f4f-41fc-96a8-a4b1f614a1df",
+    "competition_id": "f0ab2103-b066-4b9b-a1ad-31e189f5926b",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-15T17:38:14.057965+00:00"
+  },
+  {
+    "id": "681e8081-43d9-4a6b-b05d-c82170708e70",
+    "competition_id": "f0ab2103-b066-4b9b-a1ad-31e189f5926b",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-15T17:38:17.168113+00:00"
+  },
+  {
+    "id": "862228c4-e037-4545-a86f-c95f0028a96b",
+    "competition_id": "f0ab2103-b066-4b9b-a1ad-31e189f5926b",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-15T17:38:19.399074+00:00"
+  },
+  {
+    "id": "e78eb293-4747-4ec4-b4ac-e7207917fe6e",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-03-16T16:26:40.841345+00:00"
+  },
+  {
+    "id": "26d0adb1-8c25-421a-8837-1e416f1461ba",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-16T16:26:42.276587+00:00"
+  },
+  {
+    "id": "ee3a2ed2-d076-495b-a469-c0ae8f9b94d5",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "created_at": "2025-03-16T16:26:43.421189+00:00"
+  },
+  {
+    "id": "6305a2c5-c5c7-455b-9a99-515a9d1bcf3c",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-16T16:26:46.251449+00:00"
+  },
+  {
+    "id": "f74ddf01-53b6-44db-9241-d48daace0729",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-16T16:26:51.640202+00:00"
+  },
+  {
+    "id": "384d84c2-6028-43cb-855e-a505b14e63a8",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-16T16:26:53.143886+00:00"
+  },
+  {
+    "id": "5f0db8ff-75d6-4de4-b9a0-3cb220009951",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-03-16T16:57:13.595772+00:00"
+  },
+  {
+    "id": "20a27967-ee9a-493f-ba1c-6fb86f443bbc",
+    "competition_id": "99d5fb9d-c9fb-4453-aebc-6cd088caf321",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-16T18:33:39.644367+00:00"
+  },
+  {
+    "id": "478eda87-d85f-4a0c-b7b6-e359f33534ab",
+    "competition_id": "5560a5c9-8a77-48b3-a1f3-f262f25f4d8b",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-03-27T02:25:56.690994+00:00"
+  },
+  {
+    "id": "d5087102-d42f-4523-8ec2-5134bf492938",
+    "competition_id": "5560a5c9-8a77-48b3-a1f3-f262f25f4d8b",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-03-27T02:25:57.465125+00:00"
+  },
+  {
+    "id": "70d25c9a-8304-4a5b-8303-a9d2dfe5a20d",
+    "competition_id": "5560a5c9-8a77-48b3-a1f3-f262f25f4d8b",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-03-27T02:25:57.980978+00:00"
+  },
+  {
+    "id": "32c4f63b-11f0-4645-a352-1410484ec2fd",
+    "competition_id": "5560a5c9-8a77-48b3-a1f3-f262f25f4d8b",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-03-27T02:25:58.43498+00:00"
+  },
+  {
+    "id": "6a483f5a-6149-4f7f-9931-7882e4d70cd2",
+    "competition_id": "5560a5c9-8a77-48b3-a1f3-f262f25f4d8b",
+    "player_id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "created_at": "2025-03-27T02:26:01.923031+00:00"
+  },
+  {
+    "id": "fa2d2578-ac40-40d1-8b38-eb55756d78ff",
+    "competition_id": "c3f707e5-4fcf-40fd-9951-1e3b6c1941b4",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-03-27T22:20:40.42978+00:00"
+  },
+  {
+    "id": "250f4202-e61d-48ac-9886-3995cbdcb26f",
+    "competition_id": "c3f707e5-4fcf-40fd-9951-1e3b6c1941b4",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-03-27T22:20:41.10336+00:00"
+  },
+  {
+    "id": "1ff2ffed-83c9-412a-bc2e-60a1675ac97e",
+    "competition_id": "c3f707e5-4fcf-40fd-9951-1e3b6c1941b4",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-03-27T22:20:41.560217+00:00"
+  },
+  {
+    "id": "eaa1fe19-51ea-447d-a6ae-7f4efb209c72",
+    "competition_id": "c3f707e5-4fcf-40fd-9951-1e3b6c1941b4",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-03-27T22:20:41.980538+00:00"
+  },
+  {
+    "id": "805aa49f-dc58-42b1-a9b2-7b66f9db5ae4",
+    "competition_id": "c3f707e5-4fcf-40fd-9951-1e3b6c1941b4",
+    "player_id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "created_at": "2025-03-27T22:20:45.080137+00:00"
+  },
+  {
+    "id": "6750e372-92e4-4f13-be4a-5ec00168fb73",
+    "competition_id": "2e876595-30ab-4d57-a8ce-9e4451bb45b1",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-03-29T20:10:40.873437+00:00"
+  },
+  {
+    "id": "bbf66ea2-4b0e-4fc9-94ed-ae2229c4dbe4",
+    "competition_id": "2e876595-30ab-4d57-a8ce-9e4451bb45b1",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-03-29T20:10:42.685311+00:00"
+  },
+  {
+    "id": "6d0d1e6a-24de-470e-9a2d-89b801fc01a0",
+    "competition_id": "2e876595-30ab-4d57-a8ce-9e4451bb45b1",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-03-29T20:10:44.339802+00:00"
+  },
+  {
+    "id": "42119368-66ad-4f37-9694-d98733c30b6a",
+    "competition_id": "2e876595-30ab-4d57-a8ce-9e4451bb45b1",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-03-29T20:10:46.510555+00:00"
+  },
+  {
+    "id": "0177181e-cbfe-448d-adae-5860cd351485",
+    "competition_id": "2e876595-30ab-4d57-a8ce-9e4451bb45b1",
+    "player_id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "created_at": "2025-03-29T20:10:48.308355+00:00"
+  },
+  {
+    "id": "dd1e8dd8-d249-4861-927f-bd4e0b4c1b40",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "fd3416f3-a949-4712-91d5-bcc0e17a24d1",
+    "created_at": "2025-03-29T22:32:08.816809+00:00"
+  },
+  {
+    "id": "eeb6fc8b-c0dd-42ba-a7c7-85206b301fdc",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-29T22:32:11.240304+00:00"
+  },
+  {
+    "id": "05ac1e17-4cfc-4ac6-84b3-4035c2a98f77",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-03-29T22:32:13.35793+00:00"
+  },
+  {
+    "id": "84198eb0-5f9d-4a61-b6fd-6b7068118319",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-29T22:32:14.646058+00:00"
+  },
+  {
+    "id": "87c07972-e08d-479e-a879-87ca47f8a03d",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-03-29T22:32:16.363327+00:00"
+  },
+  {
+    "id": "8cd11e60-3024-405b-846f-efc26140fbba",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "3bf8e484-b230-4e01-b702-96b4ff36c053",
+    "created_at": "2025-03-29T22:32:17.540962+00:00"
+  },
+  {
+    "id": "2f1c1bc0-ff6f-4e25-ac2c-cc8c5b9f6bba",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-03-29T22:32:19.122547+00:00"
+  },
+  {
+    "id": "4f45e81b-6771-4116-8580-c351de2e3ca0",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "3f19eb53-053a-486c-8688-9fb073a219fa",
+    "created_at": "2025-03-29T22:32:20.460775+00:00"
+  },
+  {
+    "id": "67042f40-5e45-46f2-a658-e7c1d0b94bf6",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "52e2cb74-57ce-4178-bef8-daf83b7db243",
+    "created_at": "2025-03-29T22:32:22.289701+00:00"
+  },
+  {
+    "id": "6af8ab77-54a1-4771-8559-b5925418ecce",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "4f66056d-98ae-4604-9a8d-a58198b5287a",
+    "created_at": "2025-03-29T22:34:35.98242+00:00"
+  },
+  {
+    "id": "fbdf1255-7807-4bc0-9591-7332f9230c99",
+    "competition_id": "0aa976a8-9b97-4dd0-98d1-d175b7e1d8c9",
+    "player_id": "622bf66f-d16b-4a3e-b11d-9bfb560c960c",
+    "created_at": "2025-03-30T00:42:08.630434+00:00"
+  },
+  {
+    "id": "0b357ae4-70b1-4d60-810d-351459872386",
+    "competition_id": "545fc96c-7746-4d6c-b79d-d813dfea8dd7",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-30T18:30:11.191336+00:00"
+  },
+  {
+    "id": "714ecee6-374c-4ebd-a962-f0c2b31f2a4a",
+    "competition_id": "545fc96c-7746-4d6c-b79d-d813dfea8dd7",
+    "player_id": "2f80edd3-91b9-4dd5-8aeb-a58616fa4da9",
+    "created_at": "2025-03-30T18:30:13.966666+00:00"
+  },
+  {
+    "id": "3bf325ea-e173-4c72-bfb0-8bf00cf1960b",
+    "competition_id": "545fc96c-7746-4d6c-b79d-d813dfea8dd7",
+    "player_id": "83426315-90f0-48d6-a84c-009ec85fdb2c",
+    "created_at": "2025-03-30T18:30:17.006239+00:00"
+  },
+  {
+    "id": "d102b7ca-8e23-4717-b524-cf938f46c505",
+    "competition_id": "545fc96c-7746-4d6c-b79d-d813dfea8dd7",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-30T18:30:28.942864+00:00"
+  },
+  {
+    "id": "2e03335e-d76e-4fdd-91dd-d252c1d44bd0",
+    "competition_id": "90cd0214-4b8e-4449-8c18-e3aa2e1cdc56",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-30T20:34:17.025777+00:00"
+  },
+  {
+    "id": "bc6b6796-378e-4857-962b-d7865e536526",
+    "competition_id": "90cd0214-4b8e-4449-8c18-e3aa2e1cdc56",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-30T20:34:18.265777+00:00"
+  },
+  {
+    "id": "b169660a-8f02-4fcb-9aca-997618de28ec",
+    "competition_id": "90cd0214-4b8e-4449-8c18-e3aa2e1cdc56",
+    "player_id": "2f80edd3-91b9-4dd5-8aeb-a58616fa4da9",
+    "created_at": "2025-03-30T20:34:18.86224+00:00"
+  },
+  {
+    "id": "6852ffc4-9695-4b78-8b78-9efa0529d1c7",
+    "competition_id": "90cd0214-4b8e-4449-8c18-e3aa2e1cdc56",
+    "player_id": "83426315-90f0-48d6-a84c-009ec85fdb2c",
+    "created_at": "2025-03-30T20:34:19.245228+00:00"
+  },
+  {
+    "id": "4acfc496-0cf6-4dcf-b59d-b0283737986b",
+    "competition_id": "9dc38e66-90db-4ce0-9360-043d4d3d0936",
+    "player_id": "3a32c2bd-1874-49b7-8021-41d16118e2fe",
+    "created_at": "2025-03-30T22:28:02.545354+00:00"
+  },
+  {
+    "id": "b601c07b-2b31-4faa-ac92-f691b5636f02",
+    "competition_id": "9dc38e66-90db-4ce0-9360-043d4d3d0936",
+    "player_id": "83426315-90f0-48d6-a84c-009ec85fdb2c",
+    "created_at": "2025-03-30T22:28:06.674274+00:00"
+  },
+  {
+    "id": "c7858a43-7370-4f36-86ba-acdce0a1b5d6",
+    "competition_id": "9dc38e66-90db-4ce0-9360-043d4d3d0936",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-03-30T22:28:15.839517+00:00"
+  },
+  {
+    "id": "d869e663-3bb2-486d-8c53-641fc7ef3698",
+    "competition_id": "9dc38e66-90db-4ce0-9360-043d4d3d0936",
+    "player_id": "2f80edd3-91b9-4dd5-8aeb-a58616fa4da9",
+    "created_at": "2025-03-30T22:28:18.964316+00:00"
+  },
+  {
+    "id": "fc8a244e-e042-4cc3-bba8-1b1bb88a4f97",
+    "competition_id": "9dc38e66-90db-4ce0-9360-043d4d3d0936",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-03-30T22:49:38.81517+00:00"
+  },
+  {
+    "id": "16f2576c-8ae6-4479-a271-8963831349da",
+    "competition_id": "8ffd9c2b-f589-48ec-bb63-24cac1d34541",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-04-04T02:47:45.668988+00:00"
+  },
+  {
+    "id": "efcc75d2-8c48-40d3-96e1-e898ac11e5b9",
+    "competition_id": "8ffd9c2b-f589-48ec-bb63-24cac1d34541",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-04-04T02:47:46.152107+00:00"
+  },
+  {
+    "id": "8de2d345-dace-44aa-b8d8-635c9cf955d0",
+    "competition_id": "8ffd9c2b-f589-48ec-bb63-24cac1d34541",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-04-04T02:47:46.601114+00:00"
+  },
+  {
+    "id": "6d4ac28f-c7d1-45a9-8ee3-83560e044977",
+    "competition_id": "8ffd9c2b-f589-48ec-bb63-24cac1d34541",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-04-04T02:47:46.879773+00:00"
+  },
+  {
+    "id": "59645852-5dbd-4704-b5a6-2f717324c836",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "fd03d325-e2b0-433a-8078-5853e04c9f49",
+    "created_at": "2025-04-04T17:25:47.290076+00:00"
+  },
+  {
+    "id": "4da24993-c058-4182-9742-ff8adc83857c",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "21f7d11f-33da-4e13-ac21-2997c4bfc252",
+    "created_at": "2025-04-04T17:25:47.781993+00:00"
+  },
+  {
+    "id": "e7271402-24b4-4246-a3cd-c8d8dd564e5e",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "2b024806-2b38-43ee-a59b-ea026f566f82",
+    "created_at": "2025-04-04T17:25:48.306994+00:00"
+  },
+  {
+    "id": "ed653604-fdcf-4b22-b50f-aaf8b955fc1c",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "10fba5d1-7c66-4357-842e-d8c7a0e7866c",
+    "created_at": "2025-04-04T17:25:48.744477+00:00"
+  },
+  {
+    "id": "e109663d-552f-4f96-bd70-8b1cbf22e193",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "65b965cc-a0bc-4cf5-bc23-908a36c04095",
+    "created_at": "2025-04-04T17:25:48.9812+00:00"
+  },
+  {
+    "id": "602eceac-318c-4edb-93e0-58cfdad53edf",
+    "competition_id": "a2e635bc-9d94-49b7-93c5-8530984bb2ee",
+    "player_id": "5dce08b9-e432-43fe-990d-dbe4e79d82f2",
+    "created_at": "2025-04-04T17:25:49.255853+00:00"
+  },
+  {
+    "id": "edeb42ef-c951-4743-86dc-e90ac3db9168",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "753e873f-bc1e-4908-b0ea-4da03803a548",
+    "created_at": "2025-04-05T21:03:52.053778+00:00"
+  },
+  {
+    "id": "f6e275d4-edc5-4985-8d80-783081f7df94",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "ad51c3bc-e4be-46b2-a329-b4b1ab8fd8fe",
+    "created_at": "2025-04-05T21:03:54.123838+00:00"
+  },
+  {
+    "id": "48f43210-e715-4546-bb75-8eb8356965fa",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-04-05T21:03:55.82871+00:00"
+  },
+  {
+    "id": "0605b0e2-de81-4b5d-819c-24ee690837ba",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-04-05T21:03:56.733802+00:00"
+  },
+  {
+    "id": "96f738d1-6da8-4430-a7cd-ad5314104914",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-04-05T22:03:11.286448+00:00"
+  },
+  {
+    "id": "c0bc9990-01e7-4227-a038-0dcfa2751358",
+    "competition_id": "4ddfe4cb-48fa-4c64-9681-25448744822f",
+    "player_id": "a9396c0f-4f5a-4f90-b5ff-b7fd3aa493df",
+    "created_at": "2025-04-05T22:03:18.848959+00:00"
+  },
+  {
+    "id": "fc6690a6-33b7-4910-b305-c9755df3ce03",
+    "competition_id": "88a251f1-a353-43f6-ae81-9951fcd905e6",
+    "player_id": "1637ccd3-f390-478a-863a-4b9e810831e3",
+    "created_at": "2025-04-06T16:18:15.617767+00:00"
+  },
+  {
+    "id": "c52be7e6-7d36-49a2-ac22-ce65808795f1",
+    "competition_id": "88a251f1-a353-43f6-ae81-9951fcd905e6",
+    "player_id": "7bbdea74-7bb8-4f90-9ff7-1402e9d92408",
+    "created_at": "2025-04-06T16:18:17.699231+00:00"
+  },
+  {
+    "id": "2d170a33-b8b1-4115-ad37-2dad3d584f4d",
+    "competition_id": "88a251f1-a353-43f6-ae81-9951fcd905e6",
+    "player_id": "501d4f90-f56d-4603-aba1-9d184b087975",
+    "created_at": "2025-04-06T16:18:19.015827+00:00"
+  },
+  {
+    "id": "8820d444-f0c0-4f4f-84f9-84579654e98d",
+    "competition_id": "88a251f1-a353-43f6-ae81-9951fcd905e6",
+    "player_id": "58815c9c-8651-442d-9d89-edb8024219d2",
+    "created_at": "2025-04-06T16:18:20.938801+00:00"
+  },
+  {
+    "id": "803003b3-f33a-4299-9442-feda7208c18e",
+    "competition_id": "88a251f1-a353-43f6-ae81-9951fcd905e6",
+    "player_id": "1d3e9f41-ac95-438b-a556-76a8f118d6d9",
+    "created_at": "2025-04-06T16:18:21.985764+00:00"
+  }
+]

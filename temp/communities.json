@@ -1,0 +1,92 @@
+[
+  {
+    "id": "26f88ed2-7cb4-4257-ab2e-353c93f5f618",
+    "name": "Turma de Rilton",
+    "description": "",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-07T02:09:38.361724+00:00",
+    "updated_at": "2025-03-07T02:09:38.361724+00:00",
+    "is_active": true
+  },
+  {
+    "id": "8124a25d-87f6-4646-9356-28b8d603f6f4",
+    "name": "Malu kos",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-10T09:45:23.041281+00:00",
+    "updated_at": "2025-03-10T09:45:23.041281+00:00",
+    "is_active": true
+  },
+  {
+    "id": "ed6d9546-ee00-4b38-aa36-c6e7cef1de6c",
+    "name": "Maloca",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-27T02:23:08.065485+00:00",
+    "updated_at": "2025-03-27T02:23:08.065485+00:00",
+    "is_active": true
+  },
+  {
+    "id": "f61aeb3c-f98f-4326-940c-f05f827675bb",
+    "name": "Turminha",
+    "description": "",
+    "created_by": "58064b54-8ad5-4120-a570-539b830e8ab8",
+    "created_at": "2025-03-29T22:23:37.663169+00:00",
+    "updated_at": "2025-03-29T22:23:37.663169+00:00",
+    "is_active": true
+  },
+  {
+    "id": "47b30ecf-6688-4de7-b319-678c3b3ac67e",
+    "name": "Almoço na casa de Naiara e Julielison",
+    "description": "",
+    "created_by": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "created_at": "2025-03-30T18:26:43.49325+00:00",
+    "updated_at": "2025-03-30T18:26:43.49325+00:00",
+    "is_active": true
+  },
+  {
+    "id": "79fcc654-3fb7-4bb9-bbd9-351021664cc8",
+    "name": "Almoço Naiara",
+    "description": "",
+    "created_by": "f5873830-1d28-4692-816f-ad008ad638e4",
+    "created_at": "2025-03-30T22:25:10.735316+00:00",
+    "updated_at": "2025-03-30T22:25:10.735316+00:00",
+    "is_active": true
+  },
+  {
+    "id": "8b400136-3a06-49fb-a70c-2a9920cb2b6f",
+    "name": "Comunidade da Malu",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-03-29T18:41:51.294264+00:00",
+    "updated_at": "2025-04-03T00:40:47.199434+00:00",
+    "is_active": false
+  },
+  {
+    "id": "d3dcd85d-959c-4013-b1f2-594ae53ea457",
+    "name": "Comunidade 4",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-04-04T02:39:19.879324+00:00",
+    "updated_at": "2025-04-04T02:39:19.879324+00:00",
+    "is_active": true
+  },
+  {
+    "id": "0f272d8d-a990-4ee1-9c3e-9566f2ade2e2",
+    "name": "Comunidade 5",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-04-04T02:46:24.701468+00:00",
+    "updated_at": "2025-04-04T02:46:24.701468+00:00",
+    "is_active": true
+  },
+  {
+    "id": "5afcbd76-20a4-4964-9e97-b88b12747f1a",
+    "name": "Comunidade ⁶",
+    "description": "",
+    "created_by": "89122f94-d082-4791-89f6-6a01ad3b0533",
+    "created_at": "2025-04-04T17:24:31.500341+00:00",
+    "updated_at": "2025-04-04T17:24:31.500341+00:00",
+    "is_active": true
+  }
+]
