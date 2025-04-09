@@ -27,6 +27,31 @@ export const isProduction = (): boolean => {
 };
 
 /**
+ * Retorna o prefixo da tabela com base no ambiente
+ * Se estiver em desenvolvimento, retorna "dev_", caso contrário retorna ""
+ */
+export const getTablePrefix = (): string => {
+  // Podemos usar uma variável de ambiente ou um arquivo de configuração para forçar um ambiente específico
+  // Isso é útil para testar o ambiente de desenvolvimento em produção ou vice-versa
+  const forceEnv = process.env.EXPO_PUBLIC_DB_ENV || '';
+  
+  if (forceEnv === 'prod') return '';
+  if (forceEnv === 'dev') return 'dev_';
+  
+  // Se não houver configuração forçada, usamos a lógica de detecção automática
+  return isProduction() ? '' : 'dev_';
+};
+
+/**
+ * Retorna o nome da tabela com o prefixo correto para o ambiente atual
+ * @param tableName Nome da tabela sem prefixo
+ * @returns Nome da tabela com prefixo apropriado para o ambiente
+ */
+export const getTableName = (tableName: string): string => {
+  return `${getTablePrefix()}${tableName}`;
+};
+
+/**
  * Retorna informações sobre o ambiente de execução atual
  */
 export const getEnvironmentInfo = () => {
@@ -38,6 +63,8 @@ export const getEnvironmentInfo = () => {
     expoVersion: Constants.expoVersion,
     nativeAppVersion: Constants.nativeAppVersion,
     nativeBuildVersion: Constants.nativeBuildVersion,
+    dbPrefix: getTablePrefix(),
+    dbEnvironment: getTablePrefix() ? 'desenvolvimento' : 'produção'
   };
 };
 
