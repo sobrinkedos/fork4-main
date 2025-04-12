@@ -14,11 +14,12 @@ consumers:
 ###
 ### Access Control List
 ###
-acls:
-  - consumer: anon
-    group: anon
-  - consumer: service_role
-    group: admin
+# Removendo seção acls que está causando erro no Kong 2.8.1
+# acls:
+#   - consumer: anon
+#     group: anon
+#   - consumer: service_role
+#     group: admin
 
 ###
 ### API Routes
